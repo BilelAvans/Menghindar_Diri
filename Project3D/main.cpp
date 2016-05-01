@@ -1,11 +1,7 @@
-#include <windows.h>
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -13,6 +9,17 @@
 #include <vector>
 #include <cmath>
 #include "Model_OBJ.h"
+
+#ifndef MAC_OSX
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+
+#else
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#endif
 
 #define KEY_ESCAPE 27
 
@@ -34,13 +41,13 @@ void display()
 	//glRotatef(90, 0, 1, 0);
 	g_rotation++;
 
-	for each (Model_OBJ obj in blenderObjects)
-		obj.Draw();
+	for(int i = 0; i < blenderObjects.size(); i++){
+		blenderObjects[i].Draw();
+	}
 
 	glPopMatrix();
 	glutSwapBuffers();
 }
-
 
 void initialize()
 {
@@ -107,8 +114,8 @@ int main(int argc, char **argv)
 	initialize();
 
 	// Load objects
-	blenderObjects.push_back(Model_OBJ("Models/sphere.obj"));
-	blenderObjects.push_back(Model_OBJ("Models/cube.obj"));
+	blenderObjects.push_back(Model_OBJ("/Users/gjoosen/Documents/avans/jaar2/periode4/project/Menghindar_Diri/Models/airplane.obj"));
+//	blenderObjects.push_back(Model_OBJ("Models/cube.obj"));
 
 	glutMainLoop();												// run GLUT mainloop
 	return 0;
