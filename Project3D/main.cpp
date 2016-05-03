@@ -38,8 +38,10 @@ void display()
 	gluLookAt(0, 1, -20, 0, 0, 0, 0, 1, 0);
 	glPushMatrix();
 	//glRotatef(g_rotation, 0, 1, 0);
-	//glRotatef(90, 0, 1, 0);
+	glRotatef(180, 1, 0, 0);
 	g_rotation++;
+
+	glRotatef(g_rotation, 0, 1,0);
 
 	for(int i = 0; i < blenderObjects.size(); i++){
 		blenderObjects[i].Draw();
