@@ -12,14 +12,17 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include "Model_OBJ.h"
+#include <memory>
+#include "Character.h"
+#include "Player.h"
+#include "ModelObject.h"
 
 #define KEY_ESCAPE 27
 
 using namespace std;
 
 // The objects we will be drawing
-std::vector<Model_OBJ> blenderObjects;
+//std::vector<std::shared_ptr<Character>> characters;
 
 float g_rotation;
 glutWindow win;
@@ -28,14 +31,19 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	gluLookAt(0, 1, -20, 0, 0, 0, 0, 1, 0);
+	gluLookAt(0, 1, -10, 0, 0, 0, 0, 1, 0);
 	glPushMatrix();
-	//glRotatef(g_rotation, 0, 1, 0);
-	//glRotatef(90, 0, 1, 0);
+	glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
-
-	for each (Model_OBJ obj in blenderObjects)
-		obj.Draw();
+	/*
+	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
+		Character temp = it._Ptr->get;
+		temp.getModel().Draw();
+	}
+	*/
+	ModelObject("Models/cube.obj").Draw();
+	//ModelObject("Models/cube.obj").Draw();
+	 
 
 	glPopMatrix();
 	glutSwapBuffers();
@@ -51,20 +59,23 @@ void initialize()
 	glLoadIdentity();
 	gluPerspective(win.field_of_view_angle, aspect, win.z_near, win.z_far);
 	glMatrixMode(GL_MODELVIEW);
-	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_SMOOTH);
 	glClearColor(0.0f, 0.1f, 0.0f, 0.5f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+	
+	// Light 1
 	GLfloat amb_light[] = { 0.1, 0.1, 0.1, 1.0 };
 	GLfloat diffuse[] = { 0.6, 0.6, 0.6, 1 };
 	GLfloat specular[] = { 0.7, 0.7, 0.3, 1 };
+
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb_light);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
 	glEnable(GL_LIGHT0);
+	
 	glEnable(GL_COLOR_MATERIAL);
 	glShadeModel(GL_SMOOTH);
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
@@ -107,8 +118,13 @@ int main(int argc, char **argv)
 	initialize();
 
 	// Load objects
-	blenderObjects.push_back(Model_OBJ("Models/sphere.obj"));
-	blenderObjects.push_back(Model_OBJ("Models/cube.obj"));
+	//ModelObject ob = ModelObject("Models/sphere.obj");
+	//ob.Move();
+	//ob.Release();
+	//blenderObjects.push_back(ob);
+	//std::shared_ptr<Player> player = make_shared<Player>(Player("Bilel"));
+	
+	//characters.emplace_back(player);
 
 	glutMainLoop();												// run GLUT mainloop
 	return 0;
