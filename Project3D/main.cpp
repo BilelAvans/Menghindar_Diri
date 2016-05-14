@@ -1,11 +1,7 @@
-#include <windows.h>
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -16,6 +12,17 @@
 #include "Character.h"
 #include "Player.h"
 #include "ModelObject.h"
+
+#ifndef MAC_OSX
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+
+#else
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#endif
 
 #define KEY_ESCAPE 27
 
@@ -35,6 +42,7 @@ void display()
 	glPushMatrix();
 	glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
+	
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
 		Character temp = it._Ptr->get;
@@ -43,12 +51,10 @@ void display()
 	*/
 	ModelObject("Models/cube.obj").Draw();
 	//ModelObject("Models/cube.obj").Draw();
-	 
 
 	glPopMatrix();
 	glutSwapBuffers();
 }
-
 
 void initialize()
 {
