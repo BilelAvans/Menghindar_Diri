@@ -13,10 +13,14 @@ set(SOURCE_FILES
 #    glew-1.11.0/include/GL/glew.h
 #    glew-1.11.0/include/GL/glxew.h
 #    glew-1.11.0/include/GL/wglew.h
-    Project3D/main.cpp
-    Project3D/Model_OBJ.cpp
-    Project3D/Model_OBJ.h
-    Project3D/ShapeCalculator.h)
+        Project3D/main.cpp
+        Project3D/Character.cpp
+        Project3D/Model_OBJ.cpp
+        Project3D/ModelObject.cpp
+        Project3D/Model_OBJ.h
+        Project3D/ShapeCalculator.h
+        Project3D/Player.cpp
+        )
 
 add_executable(Menghindar_Diri ${SOURCE_FILES})
 
