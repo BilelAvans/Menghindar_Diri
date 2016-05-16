@@ -20,6 +20,9 @@ set(SOURCE_FILES
         Project3D/Model_OBJ.h
         Project3D/ShapeCalculator.h
         Project3D/Player.cpp
+
+        #models
+        Project3D/Objects/ObjModel.cpp
         )
 
 add_executable(Menghindar_Diri ${SOURCE_FILES})
