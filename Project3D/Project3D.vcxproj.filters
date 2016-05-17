@@ -33,6 +33,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="wiimote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModelObject.h">
@@ -43,6 +46,15 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="wiimote_state.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wiimote.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wiimote_common.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -172,6 +172,7 @@ void ModelObject::Draw()
 	glDrawArrays(GL_TRIANGLES, 0, TotalConnectedTriangles);		// Draw the triangles
 	glDisableClientState(GL_VERTEX_ARRAY);						// Disable vertex arrays
 	glDisableClientState(GL_NORMAL_ARRAY);						// Disable normal arrays
+
 }
 
 void ModelObject::Move() {

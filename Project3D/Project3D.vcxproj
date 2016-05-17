@@ -127,11 +127,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="wiimote.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="wiimote.h" />
+    <ClInclude Include="wiimote_common.h" />
+    <ClInclude Include="wiimote_state.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

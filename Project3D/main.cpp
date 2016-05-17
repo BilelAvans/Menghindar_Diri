@@ -11,6 +11,7 @@
 #include <memory>
 #include "Character.h"
 #include "Player.h"
+#include "wiimote.h"
 #include "ModelObject.h"
 
 #ifndef MAC_OSX
@@ -33,14 +34,35 @@ using namespace std;
 
 float g_rotation;
 glutWindow win;
-
+wiimote w;
+int offset = 0;
+int i = 0;
+void checkWiiBoard() {
+	w.RefreshState();
+	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
+	double weightR = w.BalanceBoard.Kg.BottomR + w.BalanceBoard.Kg.TopR;
+	printf("%d", weightR);
+	if (weightR + 10 < weightL) {
+		printf("Going left");
+		offset++;
+	}
+	if (weightL + 10 < weightR) {
+		printf("going right");
+		offset--;
+	}
+}
 void display()
 {
+	if (i == 10) {
+		checkWiiBoard();
+		i = 0;
+	}
+	i++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	gluLookAt(0, 1, -10, 0, 0, 0, 0, 1, 0);
+	gluLookAt(offset-10, 1, -10, 0, 0, 0, 0, 1, 0);
 	glPushMatrix();
-	glRotatef(g_rotation, 0, 1, 0);
+	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
 	
 	/*
@@ -54,10 +76,12 @@ void display()
 
 	glPopMatrix();
 	glutSwapBuffers();
+	
 }
 
 void initialize()
 {
+	w.CalibrateAtRest();
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -89,6 +113,7 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	
 }
 
 
@@ -122,6 +147,12 @@ int main(int argc, char **argv)
 	glutIdleFunc(display);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
+	w.Connect();
+
+	
+	
+	
+
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
