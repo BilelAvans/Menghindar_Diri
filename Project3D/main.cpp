@@ -13,10 +13,11 @@
 #include "Player.h"
 #include "wiimote.h"
 #include "ModelObject.h"
+#include <GL\freeglut.h>
 
 #ifndef MAC_OSX
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
+//#include <OpenGL/OpenGL.h>
+//#include <GLUT/glut.h>
 
 #else
 #include <windows.h>
@@ -35,8 +36,15 @@ using namespace std;
 float g_rotation;
 glutWindow win;
 wiimote w;
-int offset = 0;
+double offset = 0;
 int i = 0;
+struct Camera
+{
+	float posX = 4;
+	float posY = -10;
+	float rotX = 0;
+	float rotY = 0;
+} camera;
 void checkWiiBoard() {
 	w.RefreshState();
 	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
@@ -44,23 +52,28 @@ void checkWiiBoard() {
 	printf("%d", weightR);
 	if (weightR + 10 < weightL) {
 		printf("Going left");
-		offset++;
+		offset--;
 	}
 	if (weightL + 10 < weightR) {
 		printf("going right");
-		offset--;
+		offset++;
 	}
 }
 void display()
 {
-	if (i == 10) {
+	if (i == 100) {
 		checkWiiBoard();
+		//offset+=0.5f;
 		i = 0;
 	}
 	i++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	gluLookAt(offset-10, 1, -10, 0, 0, 0, 0, 1, 0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glRotatef(camera.rotX, 1, 0, 0);
+	glRotatef(camera.rotY, 0, 1, 0);
+	glTranslatef(camera.posX+offset, 0, camera.posY);
 	glPushMatrix();
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
