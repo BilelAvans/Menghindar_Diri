@@ -20,7 +20,7 @@
 #include <tchar.h>		// auto Unicode/Ansi support
 #include <queue>		// for HID write method
 #include <list>			// for state recording
- 
+
 #ifndef QWORD
  typedef unsigned __int64 QWORD;
 #endif

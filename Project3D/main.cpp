@@ -1,3 +1,5 @@
+#include "Controls/GameController.h"
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -11,7 +13,6 @@
 #include <memory>
 #include "Character.h"
 #include "Player.h"
-#include "wiimote.h"
 #include "ModelObject.h"
 
 #ifndef MAC_OSX
@@ -34,27 +35,14 @@ using namespace std;
 
 float g_rotation;
 glutWindow win;
-wiimote w;
+GameController *w = GameController::getInstance();
 int offset = 0;
 int i = 0;
-void checkWiiBoard() {
-	w.RefreshState();
-	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
-	double weightR = w.BalanceBoard.Kg.BottomR + w.BalanceBoard.Kg.TopR;
-	printf("%d", weightR);
-	if (weightR + 10 < weightL) {
-		printf("Going left");
-		offset++;
-	}
-	if (weightL + 10 < weightR) {
-		printf("going right");
-		offset--;
-	}
-}
+
 void display()
 {
 	if (i == 10) {
-		checkWiiBoard();
+		offset = w->leftRightMovement();
 		i = 0;
 	}
 	i++;
@@ -81,7 +69,6 @@ void display()
 
 void initialize()
 {
-	w.CalibrateAtRest();
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -147,12 +134,7 @@ int main(int argc, char **argv)
 	glutIdleFunc(display);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
-	w.Connect();
-
-	
-	
-	
-
+	w->connect();
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
