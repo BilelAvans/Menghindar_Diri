@@ -1,3 +1,14 @@
+#ifndef MAC_OSX
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+
+#else
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#endif
+
 #include "ObjModel.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <fstream>
