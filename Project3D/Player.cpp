@@ -1,6 +1,2 @@
 #include "Player.h"
-
-Player::Player(){
-
-
-}
+#include "GameObject.h"

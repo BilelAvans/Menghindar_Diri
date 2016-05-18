@@ -37,6 +37,7 @@ glutWindow win;
 wiimote w;
 int offset = 0;
 int i = 0;
+Player* player;
 
 void collisionTest() {
 	CollisionBox* vagina = new CollisionBox(0, 0, 0, 2, 2, 2);
@@ -85,7 +86,7 @@ void display()
 		temp.getModel().Draw();
 	}
 	*/
-	ModelObject("Models/cube.obj").Draw();
+
 	//ModelObject("Models/cube.obj").Draw();
 
 	glPopMatrix();
@@ -127,7 +128,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	
+	player = new Player(0,0,0,1,1,1,new ModelObject("Models/sphere.obj"));
+	player->getModelObject()->Draw();
 }
 
 
