@@ -3,3 +3,7 @@
 //
 
 #include "WiiMoteController.h"
+
+GameController* GameController::getInstance() {
+	return new WiiMoteController();
+}

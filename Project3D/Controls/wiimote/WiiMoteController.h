@@ -10,7 +10,7 @@
 
 class WiiMoteController: public GameController {
 	public:
-		GameController* Controller::getInstance(){
+		GameController* GameController::getInstance(){
 			return new WiiMoteController();
 		}
 

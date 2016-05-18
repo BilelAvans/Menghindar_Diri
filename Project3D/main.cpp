@@ -18,12 +18,13 @@
 #ifndef MAC_OSX
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
-
+#include "Controls/keyboard/KeyboardController.h"
 #else
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include "Controls/wiimote/wiimote.h"
 #endif
 
 #define KEY_ESCAPE 27
@@ -42,7 +43,7 @@ int i = 0;
 void display()
 {
 	if (i == 10) {
-		offset = w->leftRightMovement();
+		offset += w->leftRightMovement();
 		i = 0;
 	}
 	i++;
