@@ -13,11 +13,11 @@
 #include "Player.h"
 #include "wiimote.h"
 #include "ModelObject.h"
+#include "Objects\Collision\CollisionBox.h"
 
-#ifndef MAC_OSX
+#ifdef MAC_OSX
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
-
 #else
 #include <windows.h>
 #include <GL/gl.h>
@@ -37,6 +37,16 @@ glutWindow win;
 wiimote w;
 int offset = 0;
 int i = 0;
+
+void collisionTest() {
+	CollisionBox* vagina = new CollisionBox(0, 0, 0, 2, 2, 2);
+	CollisionBox* lul = new CollisionBox(2, 2, 2, 2, 2, 2);
+	if (lul->intersect(vagina))
+	{
+		printf("ja hoor hij zit erin");
+	}
+}
+
 void checkWiiBoard() {
 	w.RefreshState();
 	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
@@ -54,9 +64,13 @@ void checkWiiBoard() {
 void display()
 {
 	if (i == 10) {
+		collisionTest();
+	}
+	if (i == 10) {
 		checkWiiBoard();
 		i = 0;
 	}
+	
 	i++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
