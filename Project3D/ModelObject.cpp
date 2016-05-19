@@ -1,6 +1,6 @@
 #ifndef MAC_OSX
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
+//#include <OpenGL/OpenGL.h>
+//#include <GLUT/glut.h>
 
 #else
 #include <windows.h>
@@ -8,7 +8,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #endif
-
+#include <GL\freeglut.h>
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -88,7 +88,7 @@ int ModelObject::Load(char* filename)
 			{
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
-				sscanf(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
+				sscanf_s(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
 					&vertexBuffer[TotalConnectedPoints],
 					&vertexBuffer[TotalConnectedPoints + 1],
 					&vertexBuffer[TotalConnectedPoints + 2]);
@@ -100,7 +100,7 @@ int ModelObject::Load(char* filename)
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
 				int vertexNumber[4] = { 0, 0, 0 };
-				sscanf(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
+				sscanf_s(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
 					&vertexNumber[0],										// First point of our triangle. This is an 
 					&vertexNumber[1],										// pointer to our vertexBuffer list
 					&vertexNumber[2]);										// each point represents an X,Y,Z.

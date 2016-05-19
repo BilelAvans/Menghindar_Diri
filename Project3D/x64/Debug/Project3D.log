@@ -1,12 +1,19 @@
 ﻿  main.cpp
-c:\users\sander\desktop\menghindar_diri\project3d\wiimote.h(18): warning C4005: 'WIN32_LEAN_AND_MEAN': macro redefinition
-  c:\users\sander\desktop\menghindar_diri\freeglut\include\gl\freeglut_std.h(58): note: see previous definition of 'WIN32_LEAN_AND_MEAN'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(37): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(94): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(94): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(95): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(95): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(96): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(96): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(88): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(90): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(123): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(123): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(124): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(124): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(125): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(125): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  logic.cpp
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(40): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(66): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(93): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+  Generating Code...
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
