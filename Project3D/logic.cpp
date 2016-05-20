@@ -64,15 +64,28 @@ void createBuffer() {
 }
 void createI(int i) {
 	srand(time(NULL));
-			 random = ((rand() % 10 + 1) / 10.0) - 1;
+	bool done = false;
+	while (done == false) {
+		if (i == 9) {
+			random = ((rand() % 20 + 1) / 20.0) - 1;
+			if (enemy1[0][1] != random*30.0) {	
 				enemy1[i][0] = 0;
 				enemy1[i][1] = random*30.0;
-				if (i == 9) {
-					enemy1[i][2] = enemy1[0][2] - 20;
-				}
-				else {
-					enemy1[i][2] = enemy1[i +1][2] - 20;
-				}
+				enemy1[i][2] = enemy1[0][2] - 20;
+				done = true;
+			}
+		}
+		else {
+			random = ((rand() % 20 + 1) / 20.0) - 1;
+			if (enemy1[i + 1][1] != random*30.0) {
+				enemy1[i][0] = 0;
+				enemy1[i][1] = random*30.0;
+				enemy1[i][2] = enemy1[i + 1][2] - 20;
+				done = true;
+			}
+		}
+		
+	}
 	}
 void posnextBuf() {
 	for (int i = 0; i < 10; i++)

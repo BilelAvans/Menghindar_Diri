@@ -146,6 +146,12 @@ void keyboard(unsigned char key, int x, int y)
 	case KEY_ESCAPE:
 		exit(0);
 		break;
+	case 'a':
+		camera.posX++;
+		break;
+	case 'd':
+		camera.posX--;
+		break;
 	default:
 		break;
 	}
@@ -178,7 +184,7 @@ int main(int argc, char **argv)
 
 
 	// Load objects
-	//ModelObject ob = ModelObject("Models/sphere.obj");
+	//ModelObject ob = ModelObject("Models/phere.obj");
 	//ob.Move();
 	//ob.Release();
 	//blenderObjects.push_back(ob);
