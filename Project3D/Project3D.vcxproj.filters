@@ -33,7 +33,10 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="wiimote.cpp">
+    <ClCompile Include="Controls\wiimote\wiimote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controls\wiimote\WiiMoteController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="wiimote_common.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls\wiimote\wiimote.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -124,13 +124,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Controls\wiimote\wiimote.cpp" />
+    <ClCompile Include="Controls\wiimote\WiiMoteController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="wiimote.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Controls\wiimote\wiimote.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="wiimote.h" />

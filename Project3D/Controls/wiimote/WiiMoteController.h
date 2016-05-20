@@ -10,9 +10,7 @@
 
 class WiiMoteController: public GameController {
 	public:
-		GameController* GameController::getInstance(){
-			return new WiiMoteController();
-		}
+
 
 		void init(){
 			w.CalibrateAtRest();
