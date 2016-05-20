@@ -72,7 +72,7 @@ void checkWiiBoard() {
 }
 void display()
 {
-	if (i == 10) {
+	if (i == 60) {
 		collisionTest();
 		checkWiiBoard();
 		posnextConti();

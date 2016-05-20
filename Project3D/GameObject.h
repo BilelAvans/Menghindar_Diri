@@ -24,5 +24,5 @@ public:
 	virtual ~GameObject()=0;
 };
 
-GameObject::~GameObject() {}
+
 

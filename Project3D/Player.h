@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Objects\Collision\CollisionBox.h"
+#include "ModelObject.h"
 
 class Player : public GameObject {
 

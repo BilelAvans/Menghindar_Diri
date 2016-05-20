@@ -12,5 +12,6 @@ GameObject::GameObject(float x, float y, float z,float width, float length, floa
 	this->height = height;
 	this->model = model;
 }
+GameObject::~GameObject() {}
 
 
