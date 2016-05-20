@@ -14,10 +14,11 @@
 #include "wiimote.h"
 #include "ModelObject.h"
 #include "Objects\Collision\CollisionBox.h"
-
-#ifdef MAC_OSX
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
+#include <GL\freeglut.h>
+#include "logic.h"
+#ifndef MAC_OSX
+//#include <OpenGL/OpenGL.h>
+//#include <GLUT/glut.h>
 #else
 #include <windows.h>
 #include <GL/gl.h>
@@ -47,38 +48,44 @@ void collisionTest() {
 		printf("ja hoor hij zit erin");
 	}
 }
-
+ModelObject a = ModelObject("Models/cube.obj");
+struct Camera
+{
+	float posX = 15;
+	float posY = -150;
+	float rotX = 0;
+	float rotY = 0;
+} camera;
 void checkWiiBoard() {
 	w.RefreshState();
 	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
 	double weightR = w.BalanceBoard.Kg.BottomR + w.BalanceBoard.Kg.TopR;
-	printf("%d", weightR);
+	//printf("%d", weightR);
 	if (weightR + 10 < weightL) {
-		printf("Going left");
-		offset++;
+	//	printf("Going left");
+		camera.posX++;
 	}
 	if (weightL + 10 < weightR) {
-		printf("going right");
-		offset--;
+	//	printf("going right");
+		camera.posX--;
 	}
 }
 void display()
 {
 	if (i == 10) {
 		collisionTest();
-	}
-	if (i == 10) {
 		checkWiiBoard();
+		posnextConti();
 		i = 0;
 	}
 	
 	i++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	gluLookAt(offset-10, 1, -10, 0, 0, 0, 0, 1, 0);
-	glPushMatrix();
+	glTranslatef(camera.posX, 0, camera.posY);
+	
 	//glRotatef(g_rotation, 0, 1, 0);
-	g_rotation++;
+	//g_rotation++;
 	
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
@@ -86,16 +93,29 @@ void display()
 		temp.getModel().Draw();
 	}
 	*/
-
+	
+	for (int i = 0; i < 10; i++)
+	{
+		
+		glColor3f(i, 1.0f, i);
+		float x = enemy1[i][2];
+		float y = enemy1[i][1];
+		glPushMatrix();
+		glTranslatef(y, 0 , x);
+		a.Draw();
+		glPopMatrix();
+	}
 	//ModelObject("Models/cube.obj").Draw();
 
-	glPopMatrix();
+	
 	glutSwapBuffers();
 	
 }
 
 void initialize()
 {
+	create(10);
+	createBuffer();
 	w.CalibrateAtRest();
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
@@ -139,6 +159,12 @@ void keyboard(unsigned char key, int x, int y)
 	case KEY_ESCAPE:
 		exit(0);
 		break;
+	case 'a':
+		camera.posX++;
+		break;
+	case 'd':
+		camera.posX--;
+		break;
 	default:
 		break;
 	}
@@ -171,7 +197,7 @@ int main(int argc, char **argv)
 
 
 	// Load objects
-	//ModelObject ob = ModelObject("Models/sphere.obj");
+	//ModelObject ob = ModelObject("Models/phere.obj");
 	//ob.Move();
 	//ob.Release();
 	//blenderObjects.push_back(ob);

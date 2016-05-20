@@ -36,6 +36,9 @@
     <ClCompile Include="wiimote.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="logic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModelObject.h">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="wiimote_common.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logic.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

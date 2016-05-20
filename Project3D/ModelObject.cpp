@@ -1,13 +1,14 @@
-#ifdef MAC_OSX
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
+#ifndef MAC_OSX
+//#include <OpenGL/OpenGL.h>
+//#include <GLUT/glut.h>
+
 #else
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 #endif
-
+#include <GL\freeglut.h>
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
