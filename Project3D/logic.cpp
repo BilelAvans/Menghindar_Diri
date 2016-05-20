@@ -21,14 +21,14 @@ void create(double width) {
 			if (i == 0) {
 				if (enemy1[i - 1][1] - random < 10 &&  enemy1[i - 1][1] - random>-10) {
 					enemy1[i][0] = 0;
-					enemy1[i][1] = random*20.0;
+					enemy1[i][1] = random*40.0;
 					enemy1[i][2] = i*20 + 10;
 					done = true;
 				}
 			}
 			else {
 				enemy1[i][0] = 0;
-				enemy1[i][1] = random*20.0;
+				enemy1[i][1] = random*40.0;
 				enemy1[i][2] = i*20 + 10;
 				done = true;
 			}
