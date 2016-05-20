@@ -11,7 +11,6 @@
 #include <memory>
 #include "Character.h"
 #include "Player.h"
-#include "wiimote.h"
 #include "ModelObject.h"
 #include "Objects\Collision\CollisionBox.h"
 #include <GL\freeglut.h>
@@ -19,11 +18,17 @@
 #ifndef MAC_OSX
 //#include <OpenGL/OpenGL.h>
 //#include <GLUT/glut.h>
+
+#ifdef MAC_OSX
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+#include "Controls/keyboard/KeyboardController.h"
 #else
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include "Controls/wiimote/wiimote.h"
 #endif
 
 #define KEY_ESCAPE 27
@@ -35,9 +40,10 @@ using namespace std;
 
 float g_rotation;
 glutWindow win;
-wiimote w;
+GameController *w = GameController::getInstance();
 int offset = 0;
 int i = 0;
+
 Player* player;
 
 void collisionTest() {
@@ -72,20 +78,17 @@ void checkWiiBoard() {
 }
 void display()
 {
-	if (i == 60) {
-		collisionTest();
-		checkWiiBoard();
-		posnextConti();
+	if (i == 10) {
+		offset += w->leftRightMovement();
 		i = 0;
 	}
-	
 	i++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(camera.posX, 0, camera.posY);
-	
+
 	//glRotatef(g_rotation, 0, 1, 0);
-	//g_rotation++;
+	g_rotation++;
 	
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
@@ -93,10 +96,10 @@ void display()
 		temp.getModel().Draw();
 	}
 	*/
-	
+
 	for (int i = 0; i < 10; i++)
 	{
-		
+
 		glColor3f(i, 1.0f, i);
 		float x = enemy1[i][2];
 		float y = enemy1[i][1];
@@ -107,15 +110,13 @@ void display()
 	}
 	//ModelObject("Models/cube.obj").Draw();
 
-	
+
 	glutSwapBuffers();
 	
 }
 
 void initialize()
 {
-	create(10);
-	createBuffer();
 	w.CalibrateAtRest();
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
@@ -189,15 +190,10 @@ int main(int argc, char **argv)
 	glutIdleFunc(display);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
-	w.Connect();
-
-	
-	
-	
-
+	w->connect();
 
 	// Load objects
-	//ModelObject ob = ModelObject("Models/phere.obj");
+	//ModelObject ob = ModelObject("Models/sphere.obj");
 	//ob.Move();
 	//ob.Release();
 	//blenderObjects.push_back(ob);

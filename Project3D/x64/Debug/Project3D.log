@@ -1,18 +1,2 @@
-﻿  CollisionBox.cpp
-  GameObject.cpp
-  Generating Code...
-  Compiling...
-  main.cpp
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(100): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(101): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(102): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(135): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(135): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(136): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(136): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(137): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-c:\users\sander\desktop\menghindar_diri\project3d\main.cpp(137): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-  Player.cpp
-  Generating Code...
-  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
+﻿﻿  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
