@@ -1,5 +1,5 @@
 #include "GameObject.h"
-#include "Objects\Collision\CollisionBox.h"
+#include "Objects/Collision/CollisionBox.h"
 
 
 GameObject::GameObject(float x, float y, float z,float width, float length, float height, ModelObject* model)

@@ -1,6 +1,6 @@
 #pragma once
 #include "ModelObject.h"
-#include "Objects\Collision\CollisionBox.h"
+#include "Objects/Collision/CollisionBox.h"
 class GameObject
 {
 private:

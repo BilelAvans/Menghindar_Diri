@@ -12,18 +12,16 @@
 #include "Character.h"
 #include "Player.h"
 #include "ModelObject.h"
-#include "Objects\Collision\CollisionBox.h"
-#include <GL\freeglut.h>
+#include "Objects/Collision/CollisionBox.h"
+#include "Controls/GameController.h"
 #include "logic.h"
-#ifndef MAC_OSX
-//#include <OpenGL/OpenGL.h>
-//#include <GLUT/glut.h>
 
-#ifdef MAC_OSX
+#ifndef MAC_OSX
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 #include "Controls/keyboard/KeyboardController.h"
 #else
+#include <GL/freeglut.h>
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -62,27 +60,10 @@ struct Camera
 	float rotX = 0;
 	float rotY = 0;
 } camera;
-void checkWiiBoard() {
-	w.RefreshState();
-	double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
-	double weightR = w.BalanceBoard.Kg.BottomR + w.BalanceBoard.Kg.TopR;
-	//printf("%d", weightR);
-	if (weightR + 10 < weightL) {
-	//	printf("Going left");
-		camera.posX++;
-	}
-	if (weightL + 10 < weightR) {
-	//	printf("going right");
-		camera.posX--;
-	}
-}
+
 void display()
 {
-	if (i == 10) {
-		offset += w->leftRightMovement();
-		i = 0;
-	}
-	i++;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(camera.posX, 0, camera.posY);
@@ -117,7 +98,8 @@ void display()
 
 void initialize()
 {
-	w.CalibrateAtRest();
+	create(10);
+	w->connect();
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -171,6 +153,18 @@ void keyboard(unsigned char key, int x, int y)
 	}
 }
 
+void idle(){
+	if (i == 2) {
+		offset += w->leftRightMovement();
+		posnextConti();
+		i = 0;
+	}
+	i++;
+
+	//repaint
+	display();
+}
+
 int main(int argc, char **argv)
 {
 	// set window values
@@ -187,7 +181,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(win.width, win.height);					// set window size
 	glutCreateWindow(win.title);								// create Window
 	glutDisplayFunc(display);									// register Display Function
-	glutIdleFunc(display);									// register Idle Function
+	glutIdleFunc(idle);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
 	w->connect();

@@ -2,12 +2,13 @@
 #include <cmath>
 #include <string>
 #include <time.h>
+#include <cstdlib>
 //#include "logic.h"
 
 extern double enemy1[10][3];
 extern double enemybuffer1[10][3];
 bool done = false;
-double random;
+double randomVal;
 int widthEnemy;
 void create(double width) {
 	widthEnemy = width;
@@ -67,19 +68,19 @@ void createI(int i) {
 	bool done = false;
 	while (done == false) {
 		if (i == 9) {
-			random = ((rand() % 20 + 1) / 20.0) - 1;
-			if (enemy1[0][1] != random*30.0) {	
+			randomVal = ((rand() % 20 + 1) / 20.0) - 1;
+			if (enemy1[0][1] != randomVal*30.0) {
 				enemy1[i][0] = 0;
-				enemy1[i][1] = random*30.0;
+				enemy1[i][1] = randomVal*30.0;
 				enemy1[i][2] = enemy1[0][2] - 20;
 				done = true;
 			}
 		}
 		else {
-			random = ((rand() % 20 + 1) / 20.0) - 1;
-			if (enemy1[i + 1][1] != random*30.0) {
+			randomVal = ((rand() % 20 + 1) / 20.0) - 1;
+			if (enemy1[i + 1][1] != randomVal*30.0) {
 				enemy1[i][0] = 0;
-				enemy1[i][1] = random*30.0;
+				enemy1[i][1] = randomVal*30.0;
 				enemy1[i][2] = enemy1[i + 1][2] - 20;
 				done = true;
 			}
@@ -103,7 +104,7 @@ void posnextConti() {
 	for (int i = 0; i < 10; i++)
 	{
 		if (i == 9) {
-			printf("%d", enemy1[9][2]);
+//			printf("%d\n", enemy1[9][2]);
 		}
 		enemy1[i][2] += 2.0f;
 			if (enemy1[i][2] == 216) {

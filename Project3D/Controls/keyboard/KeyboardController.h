@@ -17,8 +17,7 @@ class KeyboardController: public GameController{
 
 		}
 		int leftRightMovement(){
-			cout << "left" << endl;
-			return -1;
+			return 0;
 		}
 		void connect(){
 
