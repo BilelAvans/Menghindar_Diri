@@ -1,0 +1,23 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project3D.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Player.cpp
+  Object.cpp
+  Model_OBJ.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\model_obj.cpp(22): fatal error C1083: Cannot open include file: 'GL/glut.h': No such file or directory
+  ModelObject.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\modelobject.cpp(9): fatal error C1083: Cannot open include file: 'GL/glut.h': No such file or directory
+  main.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\main.cpp(23): fatal error C1083: Cannot open include file: 'GL/freeglut.h': No such file or directory
+  logic.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(41): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(67): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  WiiMoteController.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(37): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(28): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+  wiimote.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimote.cpp(2692): warning C4838: conversion from 'int' to 'BYTE' requires a narrowing conversion
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimote.cpp(2757): warning C4838: conversion from 'int' to 'BYTE' requires a narrowing conversion
+  GameController.cpp
+  Character.cpp
+  Generating Code...

@@ -14,6 +14,7 @@
 #include "ModelObject.h"
 #include "Controls/GameController.h"
 #include "logic.h"
+#include "SoundPlayer.h"
 
 #ifdef MAC_OSX
 #include <OpenGL/OpenGL.h>
@@ -80,7 +81,7 @@ void display()
 	for (int i = 0; i < 10; i++)
 	{
 
-		glColor3f(i, 1.0f, i);
+		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
 		float x = enemy1[i][2];
 		float y = enemy1[i][1];
 		glPushMatrix();
@@ -114,9 +115,9 @@ void initialize()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
 	
 	// Light 1
-	GLfloat amb_light[] = { 0.1, 0.1, 0.1, 1.0 };
-	GLfloat diffuse[] = { 0.6, 0.6, 0.6, 1 };
-	GLfloat specular[] = { 0.7, 0.7, 0.3, 1 };
+	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
+	GLfloat diffuse[] = { (GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6, (GLfloat)1 };
+	GLfloat specular[] = { (GLfloat)0.7,(GLfloat) 0.7,(GLfloat) 0.3, (GLfloat)1 };
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb_light);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
@@ -184,6 +185,8 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
 	w->connect();
+	SoundPlayer sound("New.ogg");
+	sound.Play();
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
