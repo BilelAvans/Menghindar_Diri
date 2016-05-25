@@ -1,6 +1,11 @@
 #pragma once
 #include "ModelObject.h"
-#include "Objects/Collision/CollisionBox.h"
+#ifndef CollisionBox_H
+#include "CollisionBox.h"
+#endif // !COLLISIONBOX_H
+
+
+
 class GameObject
 {
 private:
@@ -23,6 +28,16 @@ public:
 	}
 	virtual ~GameObject()=0;
 };
+
+GameObject::GameObject(float x, float y, float z, float width, float length, float height, ModelObject* model) {
+	this->x = x;
+	this->y = y;
+	this->z = z;
+	this->width = width;
+	this->length = length;
+	this->height = height;
+	this->model = model;
+}
 
 
 

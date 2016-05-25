@@ -12,11 +12,10 @@
 #include "Character.h"
 #include "Player.h"
 #include "ModelObject.h"
-#include "Objects/Collision/CollisionBox.h"
 #include "Controls/GameController.h"
 #include "logic.h"
 
-#ifndef MAC_OSX
+#ifdef MAC_OSX
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 #include "Controls/keyboard/KeyboardController.h"

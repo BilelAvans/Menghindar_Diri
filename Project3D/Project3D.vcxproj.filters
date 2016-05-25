@@ -1,66 +1,51 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Characters">
-      <UniqueIdentifier>{4f54c1f2-e96e-469b-87ab-f21586700e70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Characters">
-      <UniqueIdentifier>{c2b1166d-4e5c-48c8-b899-c4d23832ac68}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Controls\wiimote\wiimote.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModelObject.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="logic.cpp" />
+    <ClCompile Include="Model_OBJ.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Controls\GameController.cpp">
+      <Filter>Controls</Filter>
     </ClCompile>
     <ClCompile Include="Controls\wiimote\WiiMoteController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Controls\wiimote\wiimote.cpp">
+      <Filter>Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ModelObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Characters</Filter>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="ModelObject.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="logic.h" />
+    <ClInclude Include="Model_OBJ.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Controls\GameController.h">
+      <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="wiimote_state.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="wiimote.h">
-      <Filter>Source Files</Filter>
+      <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="wiimote_common.h">
-      <Filter>Source Files</Filter>
+      <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="Controls\wiimote\wiimote.h">
-      <Filter>Source Files</Filter>
+      <Filter>Controls</Filter>
     </ClInclude>
+    <ClInclude Include="wiimote.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="CollisionBox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{7d4eff2b-c70c-471f-a529-0b8525ded126}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

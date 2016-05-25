@@ -1,2 +1,18 @@
-﻿﻿  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
-  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
+﻿  main.cpp
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\controls\wiimote\wiimote.h(18): warning C4005: 'WIN32_LEAN_AND_MEAN': macro redefinition
+  c:\users\bilel\desktop\branches\collision\menghindar_diri\freeglut\include\gl\freeglut_std.h(58): note: see previous definition of 'WIN32_LEAN_AND_MEAN'
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(83): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(84): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(85): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(117): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(117): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(118): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(118): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(119): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\bilel\desktop\branches\collision\menghindar_diri\project3d\main.cpp(119): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+Player.obj : error LNK2005: "public: __cdecl CollisionBox::CollisionBox(float,float,float,float,float,float)" (??0CollisionBox@@QEAA@MMMMMM@Z) already defined in main.obj
+Player.obj : error LNK2005: "public: __cdecl GameObject::GameObject(float,float,float,float,float,float,class ModelObject *)" (??0GameObject@@QEAA@MMMMMMPEAVModelObject@@@Z) already defined in main.obj
+Player.obj : error LNK2005: "bool __cdecl intersect(class CollisionBox *)" (?intersect@@YA_NPEAVCollisionBox@@@Z) already defined in main.obj
+main.obj : error LNK2019: unresolved external symbol "public: bool __cdecl CollisionBox::intersect(class CollisionBox *)" (?intersect@CollisionBox@@QEAA_NPEAV1@@Z) referenced in function "void __cdecl collisionTest(void)" (?collisionTest@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl GameObject::~GameObject(void)" (??1GameObject@@UEAA@XZ) referenced in function "int `public: __cdecl Player::Player(float,float,float,float,float,float,class ModelObject *)'::`1'::dtor$0" (?dtor$0@?0???0Player@@QEAA@MMMMMMPEAVModelObject@@@Z@4HA)
+C:\Users\Bilel\Desktop\Branches\collision\Menghindar_Diri\x64\Debug\Menghindar Diri.exe : fatal error LNK1120: 2 unresolved externals

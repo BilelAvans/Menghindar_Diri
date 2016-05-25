@@ -1,4 +1,4 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -124,16 +124,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Controls\GameController.cpp" />
     <ClCompile Include="Controls\wiimote\wiimote.cpp" />
     <ClCompile Include="Controls\wiimote\WiiMoteController.cpp" />
+    <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelObject.cpp" />
+    <ClCompile Include="Model_OBJ.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="Controls\GameController.h" />
     <ClInclude Include="Controls\wiimote\wiimote.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="logic.h" />
     <ClInclude Include="ModelObject.h" />
+    <ClInclude Include="Model_OBJ.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="wiimote.h" />
     <ClInclude Include="wiimote_common.h" />

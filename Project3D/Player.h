@@ -1,7 +1,8 @@
 #pragma once
+#ifndef GameObject_H
 #include "GameObject.h"
-#include "Objects/Collision/CollisionBox.h"
-#include "ModelObject.h"
+#endif // !GameObject_H
+
 
 class Player : public GameObject {
 
