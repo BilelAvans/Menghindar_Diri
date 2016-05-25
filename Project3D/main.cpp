@@ -186,7 +186,7 @@ int main(int argc, char **argv)
 	initialize();
 	w->connect();
 	SoundPlayer sound("New.ogg");
-	sound.Play();
+	//sound.Play();
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
