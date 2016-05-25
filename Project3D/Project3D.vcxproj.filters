@@ -17,6 +17,8 @@
     <ClCompile Include="Controls\wiimote\wiimote.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
+    <ClCompile Include="GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -41,7 +43,7 @@
       <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="Objects\Collision\collisionbox.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">

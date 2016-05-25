@@ -127,16 +127,17 @@
     <ClCompile Include="Controls\GameController.cpp" />
     <ClCompile Include="Controls\wiimote\wiimote.cpp" />
     <ClCompile Include="Controls\wiimote\WiiMoteController.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Model_OBJ.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
-    <ClInclude Include="CollisionBox.h" />
     <ClInclude Include="Controls\GameController.h" />
     <ClInclude Include="Controls\wiimote\wiimote.h" />
     <ClInclude Include="GameObject.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Model_OBJ.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="wiimote.h" />
     <ClInclude Include="wiimote_common.h" />

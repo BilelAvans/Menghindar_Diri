@@ -153,7 +153,7 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 void idle(){
-	if (i == 2) {
+	if (i == 60) {
 		offset += w->leftRightMovement();
 		posnextConti();
 		i = 0;

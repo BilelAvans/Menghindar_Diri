@@ -1,7 +1,7 @@
 #pragma once
 #include "ModelObject.h"
 #ifndef CollisionBox_H
-#include "CollisionBox.h"
+#include "Objects/Collision/CollisionBox.h"
 #endif // !COLLISIONBOX_H
 
 
@@ -26,18 +26,9 @@ public:
 	ModelObject* getModelObject() {
 		return model;
 	}
-	virtual ~GameObject()=0;
+	virtual ~GameObject() = 0;
 };
 
-GameObject::GameObject(float x, float y, float z, float width, float length, float height, ModelObject* model) {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->width = width;
-	this->length = length;
-	this->height = height;
-	this->model = model;
-}
 
 
 
