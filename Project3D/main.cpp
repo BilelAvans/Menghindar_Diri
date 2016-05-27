@@ -15,7 +15,7 @@
 #include "Controls/GameController.h"
 #include "logic.h"
 #include "SoundPlayer.h"
-
+#include <thread>
 #ifdef MAC_OSX
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
@@ -156,7 +156,7 @@ void keyboard(unsigned char key, int x, int y)
 void idle(){
 	if (i == 60) {
 		offset += w->leftRightMovement();
-		posnextConti();
+		
 		i = 0;
 	}
 	i++;
@@ -164,7 +164,13 @@ void idle(){
 	//repaint
 	display();
 }
-
+void logics() {
+	while (true)
+	{
+		Sleep(20);
+		posnextConti();
+	}
+}
 int main(int argc, char **argv)
 {
 	// set window values
@@ -185,6 +191,7 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
 	initialize();
 	w->connect();
+	thread logic(logics);
 	SoundPlayer sound("New.ogg");
 	sound.Play();
 
