@@ -3,13 +3,15 @@
 #include <string>
 #include <time.h>
 #include <cstdlib>
+#include <windows.h>
+#include "enemy.h"
 //#include "logic.h"
 
 extern double enemy1[10][3];
-extern double enemybuffer1[10][3];
+extern enemy enemybuffer1[10];
 bool done = false;
-double randomVal;
 int widthEnemy;
+ModelObject* o = new ModelObject("Models/sphere.obj");
 void create(double width) {
 	widthEnemy = width;
 	srand(time(NULL));
@@ -20,94 +22,44 @@ void create(double width) {
 			
 			double random = ((rand() % 10 + 1) / 10.0) - 1;
 			if (i == 0) {
-				if (enemy1[i - 1][1] - random < 10 &&  enemy1[i - 1][1] - random>-10) {
-					enemy1[i][0] = 0;
-					enemy1[i][1] = random*40.0;
-					enemy1[i][2] = i*20 + 10;
+				
+
+					enemybuffer1[i] = enemy(random*40.0, 0 , i*20+10,1,1,1,o);
 					done = true;
-				}
+
 			}
 			else {
-				enemy1[i][0] = 0;
-				enemy1[i][1] = random*40.0;
-				enemy1[i][2] = i*20 + 10;
+				enemybuffer1[i] = enemy(random*40.0, 0, i * 20 + 10, 1, 1, 1, o);
 				done = true;
 			}
 			
 		}
 	}
 }
-void createBuffer() {
-	srand(time(NULL));
-	for (int i = 0; i < 10; i++)
-	{
-		done = false;
-		while (done == false) {
-
-			double random = ((rand() % 10 + 1) / 10.0) - 1;
-			if (i == 0) {
-				if (enemy1[i - 1][1] - random < 10 && enemy1[i - 1][1] - random>-10) {
-					enemy1[i][0] = 0;
-					enemy1[i][1] = random*20.0;
-					enemy1[i][2] = i * 20 + 10;
-					done = true;
-				}
-			}
-			else {
-				enemy1[i][0] = 0;
-				enemy1[i][1] = random*20.0;
-				enemy1[i][2] = i * 20 + 10;
-				done = true;
-			}
-
-		}
-	}
-}
 void createI(int i) {
 	srand(time(NULL));
+	Sleep(15);
 	bool done = false;
 	while (done == false) {
+		double randomVal = ((rand() % 10 + 1) / 10.0) - 1;
 		if (i == 9) {
-			randomVal = ((rand() % 20 + 1) / 20.0) - 1;
-			if (enemy1[0][1] != randomVal*30.0) {
-				enemy1[i][0] = 0;
-				enemy1[i][1] = randomVal*30.0;
-				enemy1[i][2] = enemy1[0][2] - 20;
+				enemybuffer1[i] = enemy(randomVal*40.0, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o);
 				done = true;
-			}
 		}
 		else {
-			randomVal = ((rand() % 20 + 1) / 20.0) - 1;
-			if (enemy1[i + 1][1] != randomVal*30.0) {
-				enemy1[i][0] = 0;
-				enemy1[i][1] = randomVal*30.0;
-				enemy1[i][2] = enemy1[i + 1][2] - 20;
+			
+				enemybuffer1[i] = enemy(randomVal*40.0, 0, enemybuffer1[i+1].getz() - 20, 1, 1, 1, o);
 				done = true;
-			}
+
 		}
 		
 	}
 	}
-void posnextBuf() {
-	for (int i = 0; i < 10; i++)
-	{
-			enemy1[i][2] += 0.5f;
-			if (enemy1[9][2] == 320) {
-				memcpy(enemy1, enemybuffer1, sizeof(enemybuffer1));
-				createBuffer();
-				
-			}
-	}
-
-}
 void posnextConti() {
 	for (int i = 0; i < 10; i++)
 	{
-		if (i == 9) {
-//			printf("%d\n", enemy1[9][2]);
-		}
-		enemy1[i][2] += 2.0f;
-			if (enemy1[i][2] == 216) {
+		enemybuffer1[i].move();
+			if (enemybuffer1[i].getz() > 216) {
 				createI(i);
 			}
 		

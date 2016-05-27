@@ -82,10 +82,8 @@ void display()
 	{
 
 		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
-		float x = enemy1[i][2];
-		float y = enemy1[i][1];
 		glPushMatrix();
-		glTranslatef(y, 0 , x);
+		glTranslatef(enemybuffer1[i].getx(), enemybuffer1[i].gety(), enemybuffer1[i].getz());
 		a.Draw();
 		glPopMatrix();
 	}
@@ -167,7 +165,7 @@ void idle(){
 void logics() {
 	while (true)
 	{
-		Sleep(20);
+		Sleep(5);
 		posnextConti();
 	}
 }

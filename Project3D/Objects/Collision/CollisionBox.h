@@ -6,6 +6,7 @@ class CollisionBox {
 public:
 	CollisionBox(float x, float y, float z, float width, float length, float height);
 	bool intersect(CollisionBox *collisionBox);
+	void move();
 protected:
 private:
 	float x, y, z, width, length, height;

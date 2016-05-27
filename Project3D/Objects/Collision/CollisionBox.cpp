@@ -12,7 +12,9 @@ CollisionBox::CollisionBox(float x, float y,float z, float width,float length, f
 	this->length = length;
 	this->height = height;
 }
-
+void CollisionBox::move(){
+	z += 2.0f;
+}
 bool CollisionBox::intersect(CollisionBox *collisionBox){
 	float xMin = x-width/2;
 	float xMax = xMin + width;

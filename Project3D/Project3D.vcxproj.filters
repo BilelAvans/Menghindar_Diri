@@ -20,6 +20,7 @@
     <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">
