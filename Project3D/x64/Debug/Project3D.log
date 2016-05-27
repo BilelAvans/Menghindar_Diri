@@ -1,3 +1,26 @@
-﻿  SoundPlayer.cpp
+﻿  main.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimote.h(18): warning C4005: 'WIN32_LEAN_AND_MEAN': macro redefinition
+  c:\users\bilel\documents\menghindar_diri\freeglut\include\gl\freeglut_std.h(58): note: see previous definition of 'WIN32_LEAN_AND_MEAN'
+c:\users\bilel\documents\menghindar_diri\project3d\main.cpp(85): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\main.cpp(86): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  logic.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(41): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\logic.cpp(67): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  SoundPlayer.cpp
+  CollisionBox.cpp
+  Object.cpp
+  Model_OBJ.cpp
+  ModelObject.cpp
+  GameObject.cpp
+  WiiMoteController.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(37): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(28): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+  GameController.cpp
+  Generating Code...
+c:\users\bilel\documents\menghindar_diri\project3d\modelobject.cpp(63): warning C4172: returning address of local variable or temporary: norm
+c:\users\bilel\documents\menghindar_diri\project3d\model_obj.cpp(61): warning C4172: returning address of local variable or temporary: norm
+  LINK : C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe not found or not built by the last incremental link; performing full link
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
