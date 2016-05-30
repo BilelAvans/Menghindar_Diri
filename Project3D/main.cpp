@@ -16,9 +16,10 @@
 #include "logic.h"
 #include "SoundPlayer.h"
 #include <thread>
-#ifdef MAC_OSX
+#ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
+#include <zconf.h>
 #include "Controls/keyboard/KeyboardController.h"
 #else
 #include <GL/freeglut.h>
@@ -167,7 +168,7 @@ void idle(){
 void logics() {
 	while (true)
 	{
-		Sleep(20);
+		usleep(20);
 		posnextConti();
 	}
 }
