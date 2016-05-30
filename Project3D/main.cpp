@@ -171,7 +171,7 @@ void logics() {
 #ifdef __APPLE__
 		usleep(20*1000);
 #else
-		Sleep(20*1000);
+		Sleep(20);
 #endif
 		posnextConti();
 	}
