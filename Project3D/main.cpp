@@ -168,13 +168,16 @@ void idle(){
 void logics() {
 	while (true)
 	{
-		usleep(20);
+#ifdef __APPLE__
+		usleep(20*1000);
+#else
+		Sleep(20*1000);
+#endif
 		posnextConti();
 	}
 }
 int main(int argc, char **argv)
 {
-	// set window values
 	win.width = 640;
 	win.height = 480;
 	win.title = "Menghindar? DIRI?!?!.";
