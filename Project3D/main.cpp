@@ -53,7 +53,7 @@ void collisionTest() {
 		printf("ja hoor hij zit erin");
 	}
 }
-ModelObject a = ModelObject("Models/cube.obj");
+ModelObject a = ModelObject((char *) "Models/cube.obj");
 struct Camera
 {
 	float posX = 15;
@@ -90,7 +90,7 @@ void display()
 		a.Draw();
 		glPopMatrix();
 	}
-	//ModelObject("Models/cube.obj").Draw();
+//	ModelObject("Models/cube.obj").Draw();
 
 
 	glutSwapBuffers();
@@ -132,7 +132,7 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	player = new Player(0,0,0,1,1,1,new ModelObject("Models/sphere.obj"));
+	player = new Player(0,0,0,1,1,1,new ModelObject((char *) "Models/sphere.obj"));
 	player->getModelObject()->Draw();
 }
 
@@ -180,7 +180,7 @@ int main(int argc, char **argv)
 {
 	win.width = 640;
 	win.height = 480;
-	win.title = "Menghindar? DIRI?!?!.";
+	win.title = (char *) "Menghindar? DIRI?!?!.";
 	win.field_of_view_angle = 45;
 	win.z_near = 1.0f;
 	win.z_far = 500.0f;
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
 	initialize();
 	w->connect();
 	thread logic(logics);
-	SoundPlayer sound("New.ogg");
+	SoundPlayer sound((char *) "New.ogg");
 	sound.Play();
 
 	// Load objects

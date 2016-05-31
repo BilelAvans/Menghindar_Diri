@@ -22,6 +22,7 @@
 #include <cmath>
 
 #include "ModelObject.h"
+#include "Objects/CustomScan.h"
 
 #define POINTS_PER_VERTEX 3
 #define TOTAL_FLOATS_IN_TRIANGLE 9
@@ -89,7 +90,7 @@ int ModelObject::Load(char* filename)
 			{
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
-				sscanf(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
+				custom_scanf(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
 					&vertexBuffer[TotalConnectedPoints],
 					&vertexBuffer[TotalConnectedPoints + 1],
 					&vertexBuffer[TotalConnectedPoints + 2]);
@@ -101,7 +102,7 @@ int ModelObject::Load(char* filename)
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
 				int vertexNumber[4] = { 0, 0, 0 };
-				sscanf(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
+				custom_scanf(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
 					&vertexNumber[0],										// First point of our triangle. This is an 
 					&vertexNumber[1],										// pointer to our vertexBuffer list
 					&vertexNumber[2]);										// each point represents an X,Y,Z.
