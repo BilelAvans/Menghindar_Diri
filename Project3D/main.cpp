@@ -53,7 +53,7 @@ void collisionTest() {
 		printf("ja hoor hij zit erin");
 	}
 }
-ModelObject a = ModelObject((char *) "Models/cube.obj");
+ModelObject a = ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
 struct Camera
 {
 	float posX = 15;
@@ -92,6 +92,7 @@ void display()
 	}
 //	ModelObject("Models/cube.obj").Draw();
 
+	player->getModelObject()->Draw();
 
 	glutSwapBuffers();
 	
@@ -132,7 +133,7 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	player = new Player(0,0,0,1,1,1,new ModelObject((char *) "Models/sphere.obj"));
+	player = new Player(0,0,0,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
 	player->getModelObject()->Draw();
 }
 
