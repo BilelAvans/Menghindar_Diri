@@ -57,7 +57,8 @@ ModelObject a = ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj
 struct Camera
 {
 	float posX = 15;
-	float posY = -150;
+	float posY = -150; //-150 default
+	float posZ = -5;
 	float rotX = 0;
 	float rotY = 0;
 } camera;
@@ -67,7 +68,7 @@ void display()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	glTranslatef(camera.posX, 0, camera.posY);
+	glTranslatef(camera.posX, camera.posZ, camera.posY);
 
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
@@ -87,12 +88,13 @@ void display()
 		float y = enemy1[i][1];
 		glPushMatrix();
 		glTranslatef(y, 0 , x);
+		glScalef(.3, .3, .3);
 		a.Draw();
 		glPopMatrix();
 	}
 //	ModelObject("Models/cube.obj").Draw();
 
-	player->getModelObject()->Draw();
+	player->Draw();
 
 	glutSwapBuffers();
 	
@@ -133,8 +135,7 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	player = new Player(0,0,0,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
-	player->getModelObject()->Draw();
+	player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
 }
 
 
@@ -145,11 +146,13 @@ void keyboard(unsigned char key, int x, int y)
 		exit(0);
 		break;
 	case 'a':
-		camera.posX++;
+//		camera.posX++;
+			player->move(-1, 0, 0);
 		break;
 	case 'd':
-		camera.posX--;
-		break;
+//		camera.posX--;
+			player->move(1, 0, 0);
+			break;
 	default:
 		break;
 	}
@@ -198,7 +201,7 @@ int main(int argc, char **argv)
 	w->connect();
 	thread logic(logics);
 	SoundPlayer sound((char *) "New.ogg");
-	sound.Play();
+//	sound.Play();
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
