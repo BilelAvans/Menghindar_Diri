@@ -20,7 +20,6 @@
     <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
-    <ClCompile Include="Skybox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -47,9 +46,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="SoundPlayer.h" />
-    <ClInclude Include="Skybox.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="SOIL.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">

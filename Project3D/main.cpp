@@ -16,13 +16,7 @@
 #include "logic.h"
 #include "SoundPlayer.h"
 #include <thread>
-<<<<<<< Updated upstream
 #ifdef __APPLE__
-=======
-#include "Skybox.h"
-#include <GL/glew.h>
-#ifdef MAC_OSX
->>>>>>> Stashed changes
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 #include <zconf.h>
@@ -71,27 +65,20 @@ struct Camera
 
 void display()
 {
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
 
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
-
+	
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
 		Character temp = it._Ptr->get;
 		temp.getModel().Draw();
 	}
 	*/
-
-	glBegin(GL_QUADS);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glVertex3f(-1000, -10, -1000);
-	glVertex3f(-1000, -10, 1000);
-	glVertex3f(1000, -10, 1000);
-	glVertex3f(1000, -10, -1000);
-	glEnd();
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -100,12 +87,8 @@ void display()
 		float x = enemy1[i][2];
 		float y = enemy1[i][1];
 		glPushMatrix();
-<<<<<<< Updated upstream
 		glTranslatef(y, 0 , x);
 		glScalef(.3, .3, .3);
-=======
-		glTranslatef(y, 0, x);
->>>>>>> Stashed changes
 		a.Draw();
 		glPopMatrix();
 	}
@@ -114,14 +97,13 @@ void display()
 	player->Draw();
 
 	glutSwapBuffers();
-
+	
 }
 
 void initialize()
 {
 	create(10);
 	w->connect();
-	glDepthMask(GL_FALSE);
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -135,34 +117,17 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-
-	//glBindVertexArray(skyboxVAO);
-	Skybox box;
-	box.loadskybox();
-	glBindTexture(GL_TEXTURE_CUBE_MAP, box.getcubemapTexture());
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	glBindVertexArray(0);
-	glDepthMask(GL_TRUE);
-
+	
 	// Light 1
 	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
 	GLfloat diffuse[] = { (GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6, (GLfloat)1 };
 	GLfloat specular[] = { (GLfloat)0.7,(GLfloat) 0.7,(GLfloat) 0.3, (GLfloat)1 };
 
-	//GLfloat mat_specular[] = { 0.1,0.1,0.1,1 };
-	//GLfloat mat_shininess[] = { 50.0 };
-	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
-	//glClearColor(0.0, 0.0, 0.0, 0.0);
-
-	//glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-	//glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-	//glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb_light);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
 	glEnable(GL_LIGHT0);
-
+	
 	glEnable(GL_COLOR_MATERIAL);
 	glShadeModel(GL_SMOOTH);
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
@@ -170,12 +135,7 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-<<<<<<< Updated upstream
 	player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
-=======
-	player = new Player(0, 0, 0, 1, 1, 1, new ModelObject("Models/sphere.obj"));
-	player->getModelObject()->Draw();
->>>>>>> Stashed changes
 }
 
 
@@ -198,10 +158,10 @@ void keyboard(unsigned char key, int x, int y)
 	}
 }
 
-void idle() {
+void idle(){
 	if (i == 60) {
 		offset += w->leftRightMovement();
-
+		
 		i = 0;
 	}
 	i++;
@@ -231,23 +191,17 @@ int main(int argc, char **argv)
 
 	// initialize and run program
 	glutInit(&argc, argv);                                      // GLUT initialization
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);  // Display Mode
 	glutInitWindowSize(win.width, win.height);					// set window size
 	glutCreateWindow(win.title);								// create Window
 	glutDisplayFunc(display);									// register Display Function
 	glutIdleFunc(idle);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
-	glEnable(GLUT_MULTISAMPLE);
 	initialize();
 	w->connect();
 	thread logic(logics);
-<<<<<<< Updated upstream
 	SoundPlayer sound((char *) "New.ogg");
 //	sound.Play();
-=======
-	SoundPlayer sound("New.ogg");
-	//sound.Play();
->>>>>>> Stashed changes
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
@@ -255,7 +209,7 @@ int main(int argc, char **argv)
 	//ob.Release();
 	//blenderObjects.push_back(ob);
 	//std::shared_ptr<Player> player = make_shared<Player>(Player("Bilel"));
-
+	
 	//characters.emplace_back(player);
 
 	glutMainLoop();												// run GLUT mainloop
