@@ -8,10 +8,10 @@
 #include <string>
 #include <vector>
 #include <cmath>
-
 #include "Model_OBJ.h"
+#include "Objects/CustomScan.h"
 
-#ifdef MAC_OSX
+#ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 
@@ -32,6 +32,7 @@ Model_OBJ::Model_OBJ(char *filename) {
 
 	Load(filename);
 }
+
 
 float* Model_OBJ::calculateNormal(float *coord1, float *coord2, float *coord3)
 {
@@ -87,7 +88,8 @@ int Model_OBJ::Load(char* filename)
 			{
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
-				sscanf_s(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
+
+				custom_scanf(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
 					&vertexBuffer[TotalConnectedPoints],
 					&vertexBuffer[TotalConnectedPoints + 1],
 					&vertexBuffer[TotalConnectedPoints + 2]);
@@ -99,7 +101,7 @@ int Model_OBJ::Load(char* filename)
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
 
 				int vertexNumber[4] = { 0, 0, 0 };
-				sscanf_s(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
+				custom_scanf(line.c_str(), "%i%i%i",								// Read integers from the line:  f 1 2 3
 					&vertexNumber[0],										// First point of our triangle. This is an 
 					&vertexNumber[1],										// pointer to our vertexBuffer list
 					&vertexNumber[2]);										// each point represents an X,Y,Z.
@@ -154,6 +156,9 @@ int Model_OBJ::Load(char* filename)
 	}
 	return 0;
 }
+
+
+
 
 void Model_OBJ::Release()
 {
