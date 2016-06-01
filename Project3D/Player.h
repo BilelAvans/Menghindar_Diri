@@ -9,6 +9,7 @@
 
 #include "GameObject.h"
 #endif // !GameObject_H
+#include <GL/gl.h>
 
 
 class Player : public GameObject {

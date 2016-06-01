@@ -135,6 +135,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +149,10 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SOIL.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="wiimote.h" />
     <ClInclude Include="wiimote_common.h" />
     <ClInclude Include="wiimote_state.h" />
