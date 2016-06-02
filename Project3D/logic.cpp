@@ -3,11 +3,17 @@
 #include <string>
 #include <time.h>
 #include <cstdlib>
-#include <windows.h>
 #include <iostream>
 #include "Player.h"
 #include "enemy.h"
 //#include "logic.h"
+
+#ifdef __APPLE__
+#include <zconf.h>
+#else
+#include <windows.h>
+#endif
+
 
 extern double enemy1[10][3];
 extern enemy enemybuffer1[10];
@@ -40,7 +46,13 @@ void create(double width) {
 }
 void createI(int i) {
 	srand(time(NULL));
+
+	#ifdef __APPLE__
+	usleep(15 * 1000);
+	#else
 	Sleep(15);
+	#endif
+
 	bool done = false;
 	while (done == false) {
 		double randomVal = ((rand() % 10 + 1) / 10.0) - 1;

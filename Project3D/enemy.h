@@ -17,7 +17,7 @@ public:
 	{
 		collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
 	}
-	enemy::~enemy() {}
+	~enemy() {}
 	enemy()
 	{
 
