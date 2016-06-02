@@ -1,3 +1,5 @@
+
+#define STB_IMAGE_IMPLEMENTATION
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -16,6 +18,7 @@
 #include "logic.h"
 #include "SoundPlayer.h"
 #include <thread>
+#include "Skybox.h"
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
@@ -69,10 +72,10 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
-
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
-	
+	glRotatef(camera.rotX, 1, 0, 0);
+		glRotatef(camera.rotY, 0, 1, 0);
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
 		Character temp = it._Ptr->get;
@@ -90,10 +93,23 @@ void display()
 	}
 //	ModelObject("Models/cube.obj").Draw();
 
-	player->Draw();
+	drawSkybox(50.0);
 
+	player->Draw();
 	glutSwapBuffers();
 	
+}
+
+void mousePassiveMotion(int x, int y)
+{
+	int dx = x - win.width / 2;
+	int dy = y - win.height / 2;
+	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
+	{
+		camera.rotY += dx / 10.0f;
+		camera.rotX += dy / 10.0f;
+		glutWarpPointer(win.width / 2, win.height / 2);
+	}
 }
 
 void initialize()
@@ -113,7 +129,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-	
+	glutPassiveMotionFunc(mousePassiveMotion);
+	glutWarpPointer(win.width/2,win.height/2);
 	// Light 1
 	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
 	GLfloat diffuse[] = { (GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6, (GLfloat)1 };
@@ -131,6 +148,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+
+	initSkybox();
 	player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
 	
 }
