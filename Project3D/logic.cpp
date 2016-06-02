@@ -32,12 +32,12 @@ void create(double width) {
 			if (i == 0) {
 				
 
-					enemybuffer1[i] = enemy(random*20.0, 0 , i*20+10,1,1,1,o,random);
+					enemybuffer1[i] = enemy(random*20.0, 0 , i*20-200,1,1,1,o,random);
 					done = true;
 
 			}
 			else {
-				enemybuffer1[i] = enemy(random*20.0, 0, i * 20 + 10, 1, 1, 1, o, random);
+				enemybuffer1[i] = enemy(random*20.0, 0, i * 20 - 200, 1, 1, 1, o, random);
 				done = true;
 			}
 			
