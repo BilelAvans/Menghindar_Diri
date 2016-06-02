@@ -8,13 +8,16 @@ CollisionBox::CollisionBox(float x, float y,float z, float width,float length, f
 	this->x = x;
 	this->y = y;
 	this->z = z;
-	this->width = width;
+	this->width = width+2;
 	this->length = length;
 	this->height = height;
 }
-void CollisionBox::move(){
-	z += 2.0f;
+void CollisionBox::move(float x, float y, float z){
+	this->x += x;
+	this->y += y;
+	this->z += z;
 }
+
 bool CollisionBox::intersect(CollisionBox *collisionBox){
 	float xMin = x-width/2;
 	float xMax = xMin + width;
