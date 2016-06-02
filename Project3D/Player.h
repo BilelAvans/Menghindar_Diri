@@ -24,6 +24,7 @@ class Player : public GameObject {
 			glPushMatrix();
 			glTranslatef(x, y, z);
 			glScalef(.3, .3, .3);
+			glRotatef(180, 0, 1, 0);
 			model->Draw();
 			glPopMatrix();
 		}
