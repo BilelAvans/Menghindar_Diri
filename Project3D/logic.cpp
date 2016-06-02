@@ -22,7 +22,7 @@ int widthEnemy;
 ModelObject* o = new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj");
 void create(double width) {
 	widthEnemy = width;
-	srand(time(NULL));
+	srand(rand());
 	for (int i = 0; i < 10; i++)
 	{
 		done = false;
@@ -32,12 +32,12 @@ void create(double width) {
 			if (i == 0) {
 				
 
-					enemybuffer1[i] = enemy(random*40.0, 0 , i*20+10,1,1,1,o,random);
+					enemybuffer1[i] = enemy(random*20.0, 0 , i*20+10,1,1,1,o,random);
 					done = true;
 
 			}
 			else {
-				enemybuffer1[i] = enemy(random*40.0, 0, i * 20 + 10, 1, 1, 1, o, random);
+				enemybuffer1[i] = enemy(random*20.0, 0, i * 20 + 10, 1, 1, 1, o, random);
 				done = true;
 			}
 			
@@ -45,7 +45,7 @@ void create(double width) {
 	}
 }
 void createI(int i) {
-	srand(time(NULL));
+	srand(rand());
 
 	#ifdef __APPLE__
 	usleep(15 * 1000);
@@ -57,12 +57,12 @@ void createI(int i) {
 	while (done == false) {
 		double randomVal = ((rand() % 10 + 1) / 10.0) - 1;
 		if (i == 9) {
-				enemybuffer1[i] = enemy(randomVal*40.0, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o, randomVal);
+				enemybuffer1[i] = enemy(randomVal*20.0, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o, randomVal);
 				done = true;
 		}
 		else {
 			
-				enemybuffer1[i] = enemy(randomVal*40.0, 0, enemybuffer1[i+1].getz() - 20, 1, 1, 1, o, randomVal);
+				enemybuffer1[i] = enemy(randomVal*20.0, 0, enemybuffer1[i+1].getz() - 20, 1, 1, 1, o, randomVal);
 				done = true;
 
 		}
