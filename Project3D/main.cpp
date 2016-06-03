@@ -55,7 +55,8 @@ void collisionTest() {
 		printf("ja hoor hij zit erin");
 	}
 }
-ModelObject a = ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
+Node *a;
+//= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
 struct Camera
 {
 	float posX = 10;
@@ -103,6 +104,7 @@ void display()
 
 void initialize()
 {
+	init();
 	create(10);
 	w->connect();
 	glMatrixMode(GL_PROJECTION);
@@ -120,6 +122,8 @@ void initialize()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
 
 	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+	a = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+
 
 	// Light 1
 	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
@@ -138,8 +142,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
-	
+//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
+	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
 }
 
 

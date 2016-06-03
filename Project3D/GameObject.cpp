@@ -2,7 +2,7 @@
 #include "Objects/Collision/CollisionBox.h"
 
 
-GameObject::GameObject(float x, float y, float z,float width, float length, float height, ModelObject* model)
+GameObject::GameObject(float x, float y, float z,float width, float length, float height, Node* model)
 {
 	this->x=x;
 	this->y=y;

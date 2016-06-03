@@ -19,7 +19,7 @@ extern double enemy1[10][3];
 extern enemy enemybuffer1[10];
 bool done = false;
 int widthEnemy;
-ModelObject* o = new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj");
+Node* o;
 void create(double width) {
 	widthEnemy = width;
 	srand(rand());
@@ -44,6 +44,11 @@ void create(double width) {
 		}
 	}
 }
+
+void init(){
+	o = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+}
+
 void createI(int i) {
 	srand(rand());
 
