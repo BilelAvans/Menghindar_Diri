@@ -74,7 +74,16 @@ void display()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
+
+	//skybox
+	glPushMatrix();
+	glRotatef(180, 1, 0, 0);
+	drawSkybox(400.0);
+	glPopMatrix();
+
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
+
 
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
@@ -90,17 +99,13 @@ void display()
 	for (int i = 0; i < 10; i++)
 	{
 
-		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
+//		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
 		glPushMatrix();
 		enemybuffer1[i].Draw();
 		glPopMatrix();
 	}
 //	ModelObject("Models/cube.obj").Draw();
 
-	glPushMatrix();
-	glRotatef(180, 0, 1, 0);
-	drawSkybox(400.0);
-	glPopMatrix();
 
 	player->Draw();
 
@@ -111,14 +116,14 @@ void display()
 
 void mousePassiveMotion(int x, int y)
 {
-	int dx = x - win.width / 2;
-	int dy = y - win.height / 2;
-	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
-	{
-		camera.rotY += dx / 10.0f;
-		camera.rotX += dy / 10.0f;
-		glutWarpPointer(win.width / 2, win.height / 2);
-	}
+//	int dx = x - win.width / 2;
+//	int dy = y - win.height / 2;
+//	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
+//	{
+//		camera.rotY += dx / 10.0f;
+//		camera.rotX += dy / 10.0f;
+//		glutWarpPointer(win.width / 2, win.height / 2);
+//	}
 }
 
 void initialize()
@@ -140,7 +145,7 @@ void initialize()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_2D);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-	glutPassiveMotionFunc(mousePassiveMotion);
+//	glutPassiveMotionFunc(mousePassiveMotion);
 	glutWarpPointer(win.width/2,win.height/2);
 
 	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
@@ -229,7 +234,7 @@ int main(int argc, char **argv)
 	w->connect();
 	thread logic(logics);
 	SoundPlayer sound((char *) "New.ogg");
-//	sound.Play();
+	sound.Play();
 
 	// Load objects
 	//ModelObject ob = ModelObject("Models/sphere.obj");
