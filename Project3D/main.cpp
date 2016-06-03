@@ -1,5 +1,3 @@
-
-#define STB_IMAGE_IMPLEMENTATION
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -24,6 +22,8 @@
 #include <GLUT/glut.h>
 #include <zconf.h>
 #include "Controls/keyboard/KeyboardController.h"
+#include "Objects/node/Node.h"
+
 #else
 #include <GL/freeglut.h>
 #include <windows.h>
@@ -56,15 +56,18 @@ void collisionTest() {
 		printf("ja hoor hij zit erin");
 	}
 }
-ModelObject a = ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
+Node *a;
+//= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
 struct Camera
 {
 	float posX = 10;
-	float posY = -150; //-150 default
-	float posZ = -5;
+	float posY = -170; //-150 default
+	float posZ = -10;
 	float rotX = 0;
 	float rotY = 0;
 } camera;
+
+Node *node;
 
 void display()
 {
@@ -72,6 +75,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
+
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
 	glRotatef(camera.rotX, 1, 0, 0);
@@ -99,6 +103,8 @@ void display()
 	glPopMatrix();
 
 	player->Draw();
+
+	node->draw();
 	glutSwapBuffers();
 	
 }
@@ -117,6 +123,7 @@ void mousePassiveMotion(int x, int y)
 
 void initialize()
 {
+	init();
 	create(10);
 	w->connect();
 	glMatrixMode(GL_PROJECTION);
@@ -135,6 +142,11 @@ void initialize()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
 	glutPassiveMotionFunc(mousePassiveMotion);
 	glutWarpPointer(win.width/2,win.height/2);
+
+	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+	a = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+
+
 	// Light 1
 	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
 	GLfloat diffuse[] = { (GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6, (GLfloat)1 };
@@ -152,10 +164,12 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
+//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
 
 	initSkybox();
-	player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
-	
+	//player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
+
 }
 
 

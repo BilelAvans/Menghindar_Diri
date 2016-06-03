@@ -15,7 +15,7 @@
 class Player : public GameObject {
 
 	public:
-		Player(float x, float y, float z, float width, float length, float height, ModelObject* model) : GameObject(x, y, z, width, length, height, model)
+		Player(float x, float y, float z, float width, float length, float height, Node* model) : GameObject(x, y, z, width, length, height, model)
 		{
 			collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
 		}
@@ -25,7 +25,7 @@ class Player : public GameObject {
 			glTranslatef(x, y, z);
 			glScalef(.3, .3, .3);
 			glRotatef(180, 0, 1, 0);
-			model->Draw();
+			model->draw();
 			glPopMatrix();
 		}
 

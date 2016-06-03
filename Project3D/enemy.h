@@ -13,7 +13,7 @@ class enemy : public GameObject {
 
 public:
 	double random;
-	enemy(float x, float y, float z, float width, float length, float height, ModelObject* model, double random) : GameObject(x, y, z, width, length, height, model)
+	enemy(float x, float y, float z, float width, float length, float height, Node* model, double random) : GameObject(x, y, z, width, length, height, model)
 	{
 		collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
 	}
@@ -31,7 +31,7 @@ public:
 		glPushMatrix();
 		glTranslatef(x, y, z);
 		glScalef(.3, .3, .3);
-		model->Draw();
+		model->draw();
 		glPopMatrix();
 	}
 	float getx() {

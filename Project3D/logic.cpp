@@ -19,7 +19,7 @@ extern double enemy1[10][3];
 extern enemy enemybuffer1[10];
 bool done = false;
 int widthEnemy;
-ModelObject* o = new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj");
+Node* o;
 void create(double width) {
 	widthEnemy = width;
 	srand(rand());
@@ -32,20 +32,25 @@ void create(double width) {
 			if (i == 0) {
 				
 
-					enemybuffer1[i] = enemy(random*20.0, 0 , i*20+10,1,1,1,o,random);
+					enemybuffer1[i] = enemy(random*20.0, 0 , i*20-200,1,1,1,o,random);
 					done = true;
 
 			}
 			else {
-				enemybuffer1[i] = enemy(random*20.0, 0, i * 20 + 10, 1, 1, 1, o, random);
+				enemybuffer1[i] = enemy(random*20.0, 0, i * 20 - 200, 1, 1, 1, o, random);
 				done = true;
 			}
 			
 		}
 	}
 }
+
+void init(){
+	o = new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj"));
+}
+
 void createI(int i) {
-	srand(rand());
+	srand(rand()*rand());
 
 	#ifdef __APPLE__
 	usleep(15 * 1000);

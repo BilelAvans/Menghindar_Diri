@@ -2,6 +2,8 @@
 #include "ModelObject.h"
 #ifndef CollisionBox_H
 #include "Objects/Collision/CollisionBox.h"
+#include "Objects/node/Node.h"
+
 #endif // !COLLISIONBOX_H
 
 
@@ -17,9 +19,9 @@ protected:
 		float width;
 		float length;
 		float height;
-		ModelObject* model;
+		Node* model;
 public:
-	GameObject(float x, float y, float z, float width, float length, float height, ModelObject* model);
+	GameObject(float x, float y, float z, float width, float length, float height, Node* model);
 	CollisionBox* getCollisionBox() {
 		return collisionBox;
 	}
@@ -32,7 +34,7 @@ public:
 		length = 0;
 		model = 0;
 	}
-	ModelObject* getModelObject() {
+		Node* getModelObject() {
 		return model;
 	}
 	virtual ~GameObject() = 0;

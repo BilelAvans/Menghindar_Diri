@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
@@ -21,7 +21,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="enemy.cpp" />
-    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Objects\ObjModel.cpp" />
+    <ClCompile Include="Objects\node\Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -49,7 +50,8 @@
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="enemy.h" />
-    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Objects\objmodel.h" />
+    <ClInclude Include="Objects\node\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">

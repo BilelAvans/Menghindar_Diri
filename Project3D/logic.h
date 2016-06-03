@@ -11,4 +11,5 @@ enemy enemybuffer1[10];
 void create(double width);
 void collisioncheck(Player *player);
 void posnextConti();
+void init();
 #endif
