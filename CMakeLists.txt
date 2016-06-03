@@ -66,6 +66,9 @@ set(SOURCE_FILES
 
         #Node
         Project3D/Objects/node/Node.cpp
+
+        #skybox
+        Project3D/Skybox.cpp
         )
 
 add_executable(Menghindar_Diri ${SOURCE_FILES})

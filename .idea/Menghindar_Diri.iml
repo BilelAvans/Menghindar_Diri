@@ -3,49 +3,53 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IAudioStreamLoader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_vec3d.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IRefCounted.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IAudioStream.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundEngine.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundStopEventReceiver.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IFileReader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/irrKlang.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ESoundOutputDrivers.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ESoundEngineOptions.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_irrKlangTypes.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundMixedOutputReceiver.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IVirtualRefCounted.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundDeviceList.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundSource.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_SAudioStreamFormat.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IFileFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_irrKlangTypes.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ESoundEngineOptions.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_EStreamModes.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_vec3d.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISound.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ESoundOutputDrivers.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_IAudioRecorder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/irrKlang-1.5.0/64/include/ik_ISoundEffectControl.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Model_OBJ.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/SoundPlayer.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/ShapeCalculator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/SoundPlayer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Project3D/ModelObject.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/logic.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Character.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/GameObject.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/Skybox.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Object.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Object.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/ModelObject.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Project3D/SoundPlayer.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/Skybox.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Controls/keyboard/KeyboardController.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Controls/keyboard/KeyboardController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Controls/GameController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Controls/GameController.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Project3D/ShapeCalculator.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/GameObject.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Player.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Character.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/logic.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Project3D/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/ModelObject.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Player.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Project3D/GameObject.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/ObjModel.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/ObjModel.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/node/Node.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/node/Node.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/Collision/CollisionBox.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Objects/Collision/CollisionBox.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project3D/Model_OBJ.cpp" isTestSource="false" />

@@ -145,7 +145,6 @@ void initialize()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_2D);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-//	glutPassiveMotionFunc(mousePassiveMotion);
 	glutWarpPointer(win.width/2,win.height/2);
 
 	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
@@ -224,12 +223,13 @@ int main(int argc, char **argv)
 
 	// initialize and run program
 	glutInit(&argc, argv);                                      // GLUT initialization
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);  // Display Mode
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
 	glutInitWindowSize(win.width, win.height);					// set window size
 	glutCreateWindow(win.title);								// create Window
 	glutDisplayFunc(display);									// register Display Function
 	glutIdleFunc(idle);									// register Idle Function
 	glutKeyboardFunc(keyboard);								// register Keyboard Handler
+	glEnable(GLUT_MULTISAMPLE);								// Enable Multisampling
 	initialize();
 	w->connect();
 	thread logic(logics);
