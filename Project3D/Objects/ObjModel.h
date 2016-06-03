@@ -3,7 +3,13 @@
 #include <string>
 #include <vector>
 #include <list>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL\freeglut.h>
+#endif
+
 //#include <windows.h>
 //#include <OpenGL/OpenGL.h>
 
