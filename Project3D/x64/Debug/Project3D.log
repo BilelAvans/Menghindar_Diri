@@ -8,7 +8,7 @@ c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(35): warning C4244: 
 c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(60): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(65): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(70): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)

@@ -60,8 +60,8 @@ Node *a;
 struct Camera
 {
 	float posX = 10;
-	float posY = -150; //-150 default
-	float posZ = -5;
+	float posY = -170; //-150 default
+	float posZ = -10;
 	float rotX = 0;
 	float rotY = 0;
 } camera;
@@ -88,7 +88,7 @@ void display()
 	for (int i = 0; i < 10; i++)
 	{
 
-		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
+		//glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
 		glPushMatrix();
 		enemybuffer1[i].Draw();
 		glPopMatrix();
@@ -142,8 +142,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
-	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
+	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
+//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
 }
 
 

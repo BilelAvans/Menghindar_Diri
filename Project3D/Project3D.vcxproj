@@ -135,6 +135,8 @@
     <ClCompile Include="Model_OBJ.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Objects\Collision\CollisionBox.cpp" />
+    <ClCompile Include="Objects\node\Node.cpp" />
+    <ClCompile Include="Objects\ObjModel.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
   </ItemGroup>
@@ -149,6 +151,8 @@
     <ClInclude Include="Model_OBJ.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Objects\Collision\collisionbox.h" />
+    <ClInclude Include="Objects\node\Node.h" />
+    <ClInclude Include="Objects\objmodel.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="wiimote.h" />

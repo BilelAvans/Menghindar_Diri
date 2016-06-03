@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 #include <list>
-
+#include <GL\freeglut.h>
 //#include <windows.h>
-#include <OpenGL/OpenGL.h>
+//#include <OpenGL/OpenGL.h>
 
 using namespace std;
 

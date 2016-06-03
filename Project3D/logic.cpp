@@ -46,11 +46,11 @@ void create(double width) {
 }
 
 void init(){
-	o = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+	o = new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj"));
 }
 
 void createI(int i) {
-	srand(rand());
+	srand(rand()*rand());
 
 	#ifdef __APPLE__
 	usleep(15 * 1000);

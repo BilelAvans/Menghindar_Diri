@@ -21,6 +21,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="Objects\ObjModel.cpp" />
+    <ClCompile Include="Objects\node\Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -48,6 +50,8 @@
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="Objects\objmodel.h" />
+    <ClInclude Include="Objects\node\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">
