@@ -21,6 +21,8 @@
 #include <GLUT/glut.h>
 #include <zconf.h>
 #include "Controls/keyboard/KeyboardController.h"
+#include "Objects/node/Node.h"
+
 #else
 #include <GL/freeglut.h>
 #include <windows.h>
@@ -63,6 +65,8 @@ struct Camera
 	float rotY = 0;
 } camera;
 
+Node *node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+
 void display()
 {
 
@@ -92,6 +96,7 @@ void display()
 
 	player->Draw();
 
+	node->draw();
 	glutSwapBuffers();
 	
 }

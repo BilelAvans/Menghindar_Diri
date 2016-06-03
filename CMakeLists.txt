@@ -63,6 +63,9 @@ set(SOURCE_FILES
 
         #models
         Project3D/Objects/ObjModel.cpp
+
+        #Node
+        Project3D/Objects/node/Node.cpp
         )
 
 add_executable(Menghindar_Diri ${SOURCE_FILES})
