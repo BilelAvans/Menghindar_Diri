@@ -65,7 +65,7 @@ struct Camera
 	float rotY = 0;
 } camera;
 
-Node *node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+Node *node;
 
 void display()
 {
@@ -118,7 +118,9 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-	
+
+	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
+
 	// Light 1
 	GLfloat amb_light[] = { (GLfloat)0.1, (GLfloat)0.1, (GLfloat)0.1, (GLfloat)1.0 };
 	GLfloat diffuse[] = { (GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6, (GLfloat)1 };

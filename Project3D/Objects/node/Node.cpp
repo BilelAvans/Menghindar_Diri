@@ -2,7 +2,17 @@
 // Created by Gilian Joosen on 13/05/16.
 //
 
-#include <OpenGL/gl.h>
+#ifdef __APPLE__
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+
+#else
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#endif
+
 #include "Node.h"
 #include "../ObjModel.h"
 
