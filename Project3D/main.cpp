@@ -75,7 +75,7 @@ void display()
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
 	glRotatef(camera.rotX, 1, 0, 0);
-		glRotatef(camera.rotY, 0, 1, 0);
+	glRotatef(camera.rotY, 0, 1, 0);
 	/*
 	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
 		Character temp = it._Ptr->get;
@@ -93,7 +93,10 @@ void display()
 	}
 //	ModelObject("Models/cube.obj").Draw();
 
-	drawSkybox(50.0);
+	glPushMatrix();
+	glRotatef(180, 0, 1, 0);
+	drawSkybox(400.0);
+	glPopMatrix();
 
 	player->Draw();
 	glutSwapBuffers();
@@ -128,6 +131,7 @@ void initialize()
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_TEXTURE_2D);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
 	glutPassiveMotionFunc(mousePassiveMotion);
 	glutWarpPointer(win.width/2,win.height/2);

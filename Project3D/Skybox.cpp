@@ -1,16 +1,18 @@
 #include "Skybox.h"
+#include <iostream>
+
 enum {SKY_LEFT=0,SKY_BACK,SKY_RIGHT,SKY_FRONT,SKY_TOP,SKY_BOTTOM};
 unsigned int skybox[6];
 
 
 void initSkybox()
 {
-	skybox[SKY_LEFT] = loadTexture("Project3D/Models/left.jpg");
-	skybox[SKY_BACK] = loadTexture("Project3D/Models/back.jpg");
-	skybox[SKY_RIGHT] = loadTexture("Project3D/Models/right.jpg");
-	skybox[SKY_FRONT] = loadTexture("Project3D/Models/front.jpg");
-	skybox[SKY_TOP] = loadTexture("Project3D/Models/top.jpg");
-	skybox[SKY_BOTTOM] = loadTexture("Project3D/Models/bottom.jpg");
+	skybox[SKY_LEFT] = loadTexture("Models/Skybox/left.jpg");
+	skybox[SKY_BACK] = loadTexture("Models/Skybox/back.jpg");
+	skybox[SKY_RIGHT] = loadTexture("Models/Skybox/right.jpg");
+	skybox[SKY_FRONT] = loadTexture("Models/Skybox/front.jpg");
+	skybox[SKY_TOP] = loadTexture("Models/Skybox/top.jpg");
+	skybox[SKY_BOTTOM] = loadTexture("Models/Skybox/bottom.jpg");
 }
 
 void killSkybox()
@@ -20,11 +22,12 @@ void killSkybox()
 
 void drawSkybox(float size)
 {
+
 	bool b1 = glIsEnabled(GL_TEXTURE_2D);     //new, we left the textures turned on, if it was turned on
 	glDisable(GL_LIGHTING); //turn off lighting, when making the skybox
 	glDisable(GL_DEPTH_TEST);       //turn off depth texting
 	glEnable(GL_TEXTURE_2D);        //and turn on texturing
-	glBindTexture(GL_TEXTURE_2D, skybox[SKY_BACK]);  //use the texture we want
+	glBindTexture(GL_TEXTURE_2D, skybox[SKY_FRONT]);  //use the texture we want
 	glBegin(GL_QUADS);      //and draw a face
 							//back face
 	glTexCoord2f(0, 0);      //use the correct texture coordinate
@@ -48,7 +51,7 @@ void drawSkybox(float size)
 	glTexCoord2f(0, 1);
 	glVertex3f(-size / 2, -size / 2, size / 2);
 	glEnd();
-	glBindTexture(GL_TEXTURE_2D, skybox[SKY_FRONT]);
+	glBindTexture(GL_TEXTURE_2D, skybox[SKY_BACK]);
 	glBegin(GL_QUADS);
 	//front face
 	glTexCoord2f(1, 0);
@@ -105,14 +108,17 @@ unsigned int loadTexture(const char* filename)
 {
 	unsigned int num;
 	int img_width, img_height, bbp;
-	unsigned char* img = stbi_load(filename, &img_width, &img_height, &bbp, 4);
+	unsigned char* img = stbi_load(filename, &img_width, &img_height, &bbp, 3);
+	if(!img)
+		std::cout << stbi_failure_reason() << std::endl;
 	glGenTextures(1, &num);
 	glBindTexture(GL_TEXTURE_2D, num);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+	
 	stbi_image_free(img);
 	return num;
 
