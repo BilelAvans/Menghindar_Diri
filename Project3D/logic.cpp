@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Player.h"
 #include "enemy.h"
-//#include "logic.h"
+#include "logic.h"
 
 #ifdef __APPLE__
 #include <zconf.h>

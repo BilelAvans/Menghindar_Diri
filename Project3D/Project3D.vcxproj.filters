@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="logic.cpp" />
@@ -21,6 +20,9 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -48,6 +50,7 @@
     <ClInclude Include="Objects\Collision\collisionbox.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controls">
