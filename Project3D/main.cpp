@@ -174,6 +174,9 @@ void initialize()
 	initSkybox();
 	//player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
 
+
+	//full screen
+	glutFullScreen();
 }
 
 
