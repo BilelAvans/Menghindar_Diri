@@ -128,11 +128,9 @@
     <ClCompile Include="Controls\wiimote\wiimote.cpp" />
     <ClCompile Include="Controls\wiimote\WiiMoteController.cpp" />
     <ClCompile Include="enemy.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Model_OBJ.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -148,10 +146,8 @@
     <ClInclude Include="Controls\GameController.h" />
     <ClInclude Include="Controls\wiimote\wiimote.h" />
     <ClInclude Include="enemy.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="logic.h" />
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Model_OBJ.h" />
     <ClInclude Include="Object.h" />

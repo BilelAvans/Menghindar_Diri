@@ -10,6 +10,7 @@
 #endif
 
 #include "ObjModel.h"
+#define STB_IMAGE_IMPLEMENTATION
 #include <fstream>
 #include <iostream>
 #include <vector>
