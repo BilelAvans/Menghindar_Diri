@@ -23,6 +23,12 @@
 
 using namespace std;
 
+typedef struct GameInfo {
+
+	int Score = 0;
+	int ItemsHit = 0;
+};
+
 class Game {
 
 public:
