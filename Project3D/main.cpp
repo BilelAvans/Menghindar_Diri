@@ -84,6 +84,9 @@ void display()
 
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
 
+	//HUD
+	glutStrokeCharacter(GLUT_STROKE_ROMAN, player->score);
+
 
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;

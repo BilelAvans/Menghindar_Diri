@@ -18,21 +18,14 @@ class Player : public GameObject {
 		Player(float x, float y, float z, float width, float length, float height, Node* model) : GameObject(x, y, z, width, length, height, model)
 		{
 			collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
+			life = 3;
 		}
 
-		void Draw(){
-			glPushMatrix();
-			glTranslatef(x, y, z);
-			glScalef(.3, .3, .3);
-			glRotatef(180, 0, 1, 0);
-			model->draw();
-			glPopMatrix();
-		}
+		void Draw(void);
 
-		void move(float x, float y, float z){
-			this->x += x;
-			this->y += y;
-			this->z += z;
-			this->collisionBox->move(x,y,z);
-		}
+		void move(float, float, float);
+
+		int isLit;
+		int life;
+		int score;
 };
