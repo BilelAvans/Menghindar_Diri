@@ -67,9 +67,6 @@ void Reshape(int w, int h) {
 }
 
 void KeysFunc(unsigned char c, int a, int b) {
-	printf("Key num is %i \n", c);
-
-
 	switch (c) {
 		// Backspace
 		case 8: mMenu.Back();

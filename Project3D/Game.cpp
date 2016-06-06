@@ -199,13 +199,21 @@ void Game::idleWrapper() {
 }
 
 
+void dot() {
+
+}
+
+void pot(int k) {
+
+}
+
 void Game::Run()
 {
 	game = Game();
 	game.initialize();
-
-	win.width = 640;
-	win.height = 480;
+	
+	win.width = 1200;
+	win.height = 720;
 	win.title = (char *) "Menghindar? DIRI?!?!.";
 	win.field_of_view_angle = 45;
 	win.z_near = 1.0f;
@@ -213,9 +221,9 @@ void Game::Run()
 
 	// initialize and run program
 	//glutInit(&argc, argv);                                      // GLUT initialization
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
+	//glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
 	glutInitWindowSize(win.width, win.height);					// set window size
-	glutCreateWindow(win.title);								// create Window
+	//glutCreateWindow(win.title);								// create Window
 	glutDisplayFunc(game.displayWrapper);									// register Display Function
 	glutIdleFunc(game.idleWrapper);									// register Idle Function
 	glutKeyboardFunc(game.keyboardWrapper);								// register Keyboard Handler

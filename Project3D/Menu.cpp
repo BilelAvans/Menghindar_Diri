@@ -92,9 +92,9 @@ void Menu::DrawMenu(void(*func)(int, int, char*)) {
 
 
 void Menu::activateCurrentItem() {
-	if (menuItems.at(selectedIndex).doSomething != nullptr)
+	if (menuItems.at(selectedIndex).doSomething != NULL)
 		menuItems.at(selectedIndex).doSomething(menuItems.at(selectedIndex).funcargs);
-	else if (menuItems.at(selectedIndex).doFunc != nullptr)
+	else if (menuItems.at(selectedIndex).doFunc != NULL)
 		menuItems.at(selectedIndex).doFunc();
 
 }
@@ -108,11 +108,11 @@ void Menu::Back() {
 Menu Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)()) {
 	Menu menu;
 	// Add menuitems
-	menu.addMenuItem(new MenuItem{ 0, "Play Game", toGame });
-	menu.addMenuItem(new MenuItem{ 1, "Theme", func1, "ThemeMenu" });
-	menu.addMenuItem(new MenuItem{ 2, "Settings", func1, "SettingsMenu" });
-	menu.addMenuItem(new MenuItem{ 3, "Scoreboard", func1, "ScoreMenu" });
-	menu.addMenuItem(new MenuItem{ 4, "Help", func1, "HelpMenu" });
+	menu.addMenuItem(new MenuItem( 0, "Play Game", toGame ));
+	menu.addMenuItem(new MenuItem( 1, "Theme", func1, "ThemeMenu" ));
+	menu.addMenuItem(new MenuItem( 2, "Settings", func1, "SettingsMenu" ));
+	menu.addMenuItem(new MenuItem( 3, "Scoreboard", func1, "ScoreMenu" ));
+	menu.addMenuItem(new MenuItem( 4, "Help", func1, "HelpMenu" ));
 
 	menu.setBackGround("Backgrounds/MainMenuBlankPage.png");
 
