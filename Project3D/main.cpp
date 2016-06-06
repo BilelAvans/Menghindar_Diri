@@ -106,7 +106,7 @@ void toGame() {
 
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GL_DOUBLE | GL_RGB | GL_FLOAT | GL_TEXTURE_2D);
+	glutInitDisplayMode(GL_DOUBLE | GL_RGB);
 	glutInitWindowSize(window_width, window_height);
 	glutInitWindowPosition(50, 50);
 	glutCreateWindow("Glut");

@@ -199,14 +199,6 @@ void Game::idleWrapper() {
 }
 
 
-void dot() {
-
-}
-
-void pot(int k) {
-
-}
-
 void Game::Run()
 {
 	game = Game();
