@@ -74,7 +74,7 @@ void Menu::DrawMenu(void(*func)(int, int, char*)) {
 	// Textures uitzetten anders kunnen we bitmaps geen kleur geven blijkbaar
 	glDisable(GL_TEXTURE_2D);
 	// Alle menu items diaplyen
-	for each (MenuItem item in this->getMenuItems()) {
+	for (MenuItem item :this->getMenuItems()) {
 		// Kleur aanpassen naar selectie
 		if (this->IsSelectedIndex(item.id))
 			glColor3f(0.0, 1.0, 0.0);

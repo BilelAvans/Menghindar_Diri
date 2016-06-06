@@ -1,6 +1,5 @@
 #define STB_IMAGE_IMPLEMENTATION
 
-#include <windows.h>
 #include <string.h>
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
@@ -13,11 +12,12 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include <fileapi.h>
+
 #include "Controls/wiimote/wiimote.h"
 #endif
 #include <iostream>
 #include <fstream>
-#include <fileapi.h>
 #include <stdio.h>
 
 #include "Game.h"
@@ -106,7 +106,7 @@ void toGame() {
 
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GL_DOUBLE | GL_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(window_width, window_height);
 	glutInitWindowPosition(50, 50);
 	glutCreateWindow("Glut");
