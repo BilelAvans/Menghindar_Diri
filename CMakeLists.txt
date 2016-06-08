@@ -69,6 +69,14 @@ set(SOURCE_FILES
 
         #skybox
         Project3D/Skybox.cpp
+
+        #Menu
+        Project3D/Menu.cpp
+        Project3D/Game.cpp
+        Project3D/enemy.cpp
+
+        #highscore
+        Project3D/highscore/Highscore.cpp
         )
 
 add_executable(Menghindar_Diri ${SOURCE_FILES})
