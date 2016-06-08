@@ -69,6 +69,67 @@ struct Camera
 
 Node *node;
 
+void output(GLfloat x, GLfloat y, char *text)
+{
+	char *p;
+
+	glPushMatrix();
+	glTranslatef(x, y, 0);
+	for (p = text; *p; p++)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, *p);
+	glPopMatrix();
+}
+
+void hud()
+{
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(0.0, win.width, win.height, 0.0, -1.0, 10.0);
+	glMatrixMode(GL_MODELVIEW);
+	//glPushMatrix();        ----Not sure if I need this
+	glLoadIdentity();
+	glDisable(GL_CULL_FACE);
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	string score_str = "SCORE:" + to_string(player->score);
+	char score_char[1024];
+	strcpy_s(score_char, score_str.c_str());
+
+	string lives_str = "LIVES:" + to_string(player->life);
+	char lives_char[1024];
+	strcpy_s(lives_char, lives_str.c_str());
+
+
+	glPushMatrix();
+	glTranslatef(10, 60, 0);
+	glScalef(0.2, 0.2, 1);
+	glRotatef(180, 1, 0, 0);
+	for (char* p = lives_char; *p; p++)
+	{
+		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
+	}
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(10, 30, 0);
+	glScalef(0.2, 0.2, 1);
+	glRotatef(180, 1, 0, 0);
+	for (char* p = score_char; *p; p++)
+	{
+		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
+	}
+	glPopMatrix();
+	//glutStrokeCharacter(GLUT_STROKE_ROMAN, *score_c);
+
+
+	// Making sure we can render 3d again
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+}
+
 void display()
 {
 
@@ -84,10 +145,6 @@ void display()
 
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
 
-	//HUD
-	glutStrokeCharacter(GLUT_STROKE_ROMAN, player->score);
-
-
 	//glRotatef(g_rotation, 0, 1, 0);
 	g_rotation++;
 	glRotatef(camera.rotX, 1, 0, 0);
@@ -102,31 +159,34 @@ void display()
 	for (int i = 0; i < 10; i++)
 	{
 
-//		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
+		//		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
 		glPushMatrix();
 		enemybuffer1[i].Draw();
 		glPopMatrix();
 	}
-//	ModelObject("Models/cube.obj").Draw();
+	//	ModelObject("Models/cube.obj").Draw();
 
 
 	player->Draw();
 
 	node->draw();
+
+	hud();
+
 	glutSwapBuffers();
-	
+
 }
 
 void mousePassiveMotion(int x, int y)
 {
-//	int dx = x - win.width / 2;
-//	int dy = y - win.height / 2;
-//	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
-//	{
-//		camera.rotY += dx / 10.0f;
-//		camera.rotX += dy / 10.0f;
-//		glutWarpPointer(win.width / 2, win.height / 2);
-//	}
+	//	int dx = x - win.width / 2;
+	//	int dy = y - win.height / 2;
+	//	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
+	//	{
+	//		camera.rotY += dx / 10.0f;
+	//		camera.rotX += dy / 10.0f;
+	//		glutWarpPointer(win.width / 2, win.height / 2);
+	//	}
 }
 
 void initialize()
@@ -148,7 +208,7 @@ void initialize()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_2D);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-	glutWarpPointer(win.width/2,win.height/2);
+	glutWarpPointer(win.width / 2, win.height / 2);
 
 	node = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
 	a = new Node(new ObjModel("Models/bloemetje/PrimroseP.obj"));
@@ -163,7 +223,7 @@ void initialize()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
 	glEnable(GL_LIGHT0);
-	
+
 	glEnable(GL_COLOR_MATERIAL);
 	glShadeModel(GL_SMOOTH);
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
@@ -171,8 +231,8 @@ void initialize()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
-//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
+	player = new Player(-10, 0, 130, 1, 1, 1, new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
+	//	player = new Player(-10,0,130,1,1,1,new Node(new ObjModel("Models/bloemetje/PrimroseP.obj")));
 
 	initSkybox();
 	//player = new Player(-10,0,130,1,1,1,new ModelObject("Models/lowPolyAirplane/lowPolyAirplane.obj"));
@@ -187,27 +247,27 @@ void keyboard(unsigned char key, int x, int y)
 		exit(0);
 		break;
 	case 'a':
-//		camera.posX++;
-			player->move(-1, 0, 0);
+		//		camera.posX++;
+		player->move(-1, 0, 0);
 		break;
 	case 'd':
-//		camera.posX--;
-			player->move(1, 0, 0);
-			break;
+		//		camera.posX--;
+		player->move(1, 0, 0);
+		break;
 	default:
 		break;
 	}
 }
 
-void idle(){
-//repaint
+void idle() {
+	//repaint
 	display();
 }
 void logics() {
 	while (true)
 	{
 #ifdef __APPLE__
-		usleep(20*1000);
+		usleep(20 * 1000);
 #else
 		Sleep(20);
 #endif
@@ -245,7 +305,7 @@ int main(int argc, char **argv)
 	//ob.Release();
 	//blenderObjects.push_back(ob);
 	//std::shared_ptr<Player> player = make_shared<Player>(Player("Bilel"));
-	
+
 	//characters.emplace_back(player);
 
 	glutMainLoop();												// run GLUT mainloop
