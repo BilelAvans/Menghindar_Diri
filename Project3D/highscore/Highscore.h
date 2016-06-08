@@ -16,7 +16,7 @@ class Highscore {
 		void printHighscores();
 		void writeScoresToFile();
 		int getHighscoreRank(int score);
-
+		vector<int> getTopTenScores();
 
 	private:
 		vector<int> *scores;

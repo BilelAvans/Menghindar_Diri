@@ -105,24 +105,6 @@ void toGame() {
 	game.Run();
 }
 
-Highscore *score;
-
-void testHighscore(){
-	score = new Highscore();
-	score->readHighscores();
-	score->printHighscores();
-//	score->addScore(7);
-//	score->addScore(2);
-//	score->addScore(4);
-//	score->addScore(5);
-//	score->addScore(2);
-//	score->addScore(3);
-//	score->printHighscores();
-
-	cout << "value 5 is at index: " << score->getHighscoreRank(5) << endl;
-	cout << "value 4 is at index: " << score->getHighscoreRank(4) << endl;
-}
-
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -145,8 +127,6 @@ int main(int argc, char **argv) {
 	//Game game = Game();
 	//game.Run(argc, argv);
 
-
-	testHighscore();
 
 	glutMainLoop();
 	return 0;

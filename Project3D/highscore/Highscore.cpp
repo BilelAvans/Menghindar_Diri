@@ -75,3 +75,18 @@ int Highscore::getHighscoreRank(int score) {
 	}
 	return -1;
 }
+
+vector<int> Highscore::getTopTenScores(){
+	//number of scores in scores vector
+	int numberOfScores = scores->size();
+
+	if(numberOfScores > 10)
+		numberOfScores = 10;
+
+	vector<int> topScores = vector<int>(numberOfScores);
+
+	for(int i = 0; i < numberOfScores; i++)
+		topScores[i] = (*scores)[i];
+
+	return topScores;
+}
