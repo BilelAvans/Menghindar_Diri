@@ -1,5 +1,6 @@
 #include <iostream>
 #include "SoundPlayer.h"
+#include "StaticSettings.h"
 
 using namespace irrklang;
 using namespace std;
@@ -15,6 +16,7 @@ SoundPlayer::SoundPlayer(char* filename) {
 //	strcat(this->filename, 20, filename);
 
 	this->filename = (char *) "Sounds/New.ogg";
+	
 	Load();
 }
 
@@ -23,6 +25,7 @@ void SoundPlayer::Load() {
 }
 
 void SoundPlayer::Play() {
+	setVolume((float)MusicVolume / float(100));
 	engine->play2D(filename, true);
 }
 
@@ -32,6 +35,14 @@ void SoundPlayer::Pause() {
 
 void SoundPlayer::Stop() {
 	engine->stopAllSounds();
+}
+
+void SoundPlayer::setVolume(float fVolume) {
+	engine->setSoundVolume(fVolume);
+}
+
+int SoundPlayer::getVolume() {
+	return engine->getSoundVolume();
 }
 
 SoundPlayer::~SoundPlayer() {

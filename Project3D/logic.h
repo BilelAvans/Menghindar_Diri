@@ -6,8 +6,8 @@
 #include "Player.h"
 #ifndef _LOGIC
 #define _LOGIC
-double enemy1[10][3];
-enemy enemybuffer1[10];
+extern double enemy1[10][3];
+extern enemy enemybuffer1[10];
 void create(double width);
 void collisioncheck(Player *player);
 void posnextConti();

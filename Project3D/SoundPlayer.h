@@ -14,6 +14,8 @@ class SoundPlayer {
 		void Play();
 		void Pause();
 		void Stop();
+		void setVolume(float fVolume);
+		int  getVolume();
 		SoundPlayer(char* filename);
 		~SoundPlayer();
 

@@ -128,9 +128,12 @@
     <ClCompile Include="Controls\wiimote\wiimote.cpp" />
     <ClCompile Include="Controls\wiimote\WiiMoteController.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuItem.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Model_OBJ.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -138,6 +141,7 @@
     <ClCompile Include="Objects\node\Node.cpp" />
     <ClCompile Include="Objects\ObjModel.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SettingsMenuItem.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
   </ItemGroup>
@@ -146,8 +150,11 @@
     <ClInclude Include="Controls\GameController.h" />
     <ClInclude Include="Controls\wiimote\wiimote.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="logic.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuItem.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Model_OBJ.h" />
     <ClInclude Include="Object.h" />
@@ -155,8 +162,12 @@
     <ClInclude Include="Objects\node\Node.h" />
     <ClInclude Include="Objects\objmodel.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SettingsMenuItem.h" />
+    <ClInclude Include="ShapeCalculator.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="StaticOpenGLFunctions.h" />
+    <ClInclude Include="StaticSettings.h" />
     <ClInclude Include="wiimote.h" />
     <ClInclude Include="wiimote_common.h" />
     <ClInclude Include="wiimote_state.h" />

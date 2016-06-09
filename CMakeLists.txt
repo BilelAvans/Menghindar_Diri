@@ -53,6 +53,14 @@ set(SOURCE_FILES
         irrKlang-1.5.0/64/include/ik_ISoundEffectControl.h
 
         Project3D/SoundPlayer.cpp
+		Project3D/Game.cpp
+		Project3D/Menu.cpp
+		Project3D/MenuItem.cpp
+		Project3D/SettingsMenuItem.cpp
+		
+		# headers ook?
+		Project3D/StaticSettings.h
+		Project3D/StaticOpenGLFunctions.h
 
         #logic
         Project3D/logic.cpp

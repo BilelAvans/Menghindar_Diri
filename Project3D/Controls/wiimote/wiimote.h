@@ -15,7 +15,7 @@
 #ifndef _WIIMOTE_H
 # define _WIIMOTE_H
 
-#define WIN32_LEAN_AND_MEAN
+
 #include <windows.h>
 #include <tchar.h>		// auto Unicode/Ansi support
 #include <queue>		// for HID write method
@@ -38,6 +38,10 @@
 #include "Python/wiimote_state.i"
 #else
 #include "wiimote_state.h"
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
 #endif
 
 // configs:

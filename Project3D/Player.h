@@ -23,7 +23,7 @@ class Player : public GameObject {
 		void Draw(){
 			glPushMatrix();
 			glTranslatef(x, y, z);
-			glScalef(.3, .3, .3);
+			glScalef(0.3f, 0.3f, 0.3f);
 			glRotatef(180, 0, 1, 0);
 			model->draw();
 			glPopMatrix();

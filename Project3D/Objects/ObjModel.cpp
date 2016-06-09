@@ -10,12 +10,16 @@
 #endif
 
 #include "ObjModel.h"
-#define STB_IMAGE_IMPLEMENTATION
+//#define STB_IMAGE_IMPLEMENTATION
 #include <fstream>
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
+#ifndef stb_image_h
 #include "stb_image.h"
+#endif
+
 
 std::string replace(std::string str, std::string toReplace, std::string replacement)
 {
@@ -182,7 +186,7 @@ void ObjModel::draw()
 			glEnable(GL_TEXTURE_2D);
 			materials[group->materialIndex]->texture->bind();
 		}
-
+		
 
 		glBegin(GL_TRIANGLES);
 		for(auto &face: group->faces){

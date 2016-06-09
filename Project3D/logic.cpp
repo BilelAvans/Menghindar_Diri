@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Player.h"
 #include "enemy.h"
-//#include "logic.h"
+#include "logic.h"
 
 #ifdef __APPLE__
 #include <zconf.h>
@@ -15,8 +15,8 @@
 #endif
 
 
-extern double enemy1[10][3];
-extern enemy enemybuffer1[10];
+double enemy1[10][3];
+enemy enemybuffer1[10];
 bool done = false;
 int widthEnemy;
 Node* o;
