@@ -25,6 +25,7 @@ public:
 	CollisionBox* getCollisionBox() {
 		return collisionBox;
 	}
+
 	GameObject() {
 		x = 0;
 		y = 0;

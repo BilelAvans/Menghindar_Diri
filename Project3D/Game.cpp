@@ -8,13 +8,7 @@
 
 using namespace std;
 
-// The objects we will be drawing
-//std::vector<std::shared_ptr<Character>> characters;
-
-Game Game::game;
-
-
-GameController *w;
+char* haha = "haha";
 
 SoundPlayer sound((char *) "New.ogg");
 
@@ -23,6 +17,9 @@ thread logic;
 Player* player;
 
 bool threadRunning = false;
+
+glutWindow win;
+GameController *w;
 
 Node *a;
 //= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
@@ -37,6 +34,7 @@ struct Camera
 
 Node *node;
 
+
 Game::Game() {
 
 }
@@ -47,7 +45,7 @@ Game::Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc) {
 	w = gc;
 }
 
-void Game::display()
+void display()
 {
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -64,7 +62,7 @@ void Game::display()
 
 
 	//glRotatef(g_rotation, 0, 1, 0);
-	g_rotation++;
+	//g_rotation++;
 	glRotatef(camera.rotX, 1, 0, 0);
 	glRotatef(camera.rotY, 0, 1, 0);
 	/*
@@ -104,11 +102,7 @@ void Game::mousePassiveMotion(int x, int y)
 	//	}
 }
 
-void Game::logicsWrapper() {
-	game.logics();
-}
-
-void Game::initialize()
+void initialize()
 {
 	init();
 	create(10);
@@ -158,12 +152,12 @@ void Game::initialize()
 
 
 	//full screen
-	glutFullScreen();
+	//glutFullScreen();
 
 }
 
 
-void Game::keyboard(unsigned char key, int x, int y)
+void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case KEY_ESCAPE:
@@ -182,11 +176,12 @@ void Game::keyboard(unsigned char key, int x, int y)
 	}
 }
 
-void Game::idle() {
+void idle() {
 	//repaint
 	display();
 }
-void Game::logics() {
+
+void logics() {
 	threadRunning = true;
 	while (threadRunning)
 	{
@@ -200,28 +195,12 @@ void Game::logics() {
 	}
 }
 
-void Game::setInstance(Game tGame) {
-	game = tGame;
-}
 
-void Game::displayWrapper() {
-	game.display();
-}
-
-void Game::keyboardWrapper(unsigned char c, int a, int b) {
-	game.keyboard(c, a, b);
-}
-void Game::idleWrapper() {
-	game.idle();
-}
-
-
-void Game::Run(Game g)
+void Run()
 {
-	game = g;
-	game.initialize();
-
-
+	//initialize();
+	printf("hoi: %s", haha);
+	
 	win.width = 1200;
 	win.height = 720;
 	win.title = (char *) "Menghindar? DIRI?!?!.";
@@ -236,28 +215,27 @@ void Game::Run(Game g)
 	glutDestroyWindow(glutGetWindow());
 	glutCreateWindow("Glut");
 	//glutCreateWindow(win.title);								// create Window
-	glutDisplayFunc(&game.displayWrapper);									// register Display Function
-	glutIdleFunc(&game.idleWrapper);									// register Idle Function
-	glutKeyboardFunc(game.keyboardWrapper);								// register Keyboard Handler
-	glEnable(GLUT_MULTISAMPLE);								// Enable Multisampling
+	glutDisplayFunc(display);						// register Display Function
+	glutIdleFunc(idle);							// register Idle Function
+	glutKeyboardFunc(keyboard);						// register Keyboard Handler
+	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
 	w->connect();
-	logic = std::thread(game.logicsWrapper);
+	logic = std::thread(logics);
 	SoundPlayer sound((char *) "New.ogg");
+	
 	sound.Play();
+
+	
+
 
 	glutMainLoop();												// run GLUT mainloop
 																//return 0;
-
-
 }
 
-void Game::Stop() {
-	//glutLeaveMainLoop();
-	//endFunc("MainPage");
-	std::cout << "Lets try this";
+void Stop() {
 	sound.Stop();
-	logic.detach();
+	//logic.detach();
 	threadRunning = false;
 	glPopMatrix();
 	glDisable(GL_LIGHTING);

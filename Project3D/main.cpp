@@ -30,8 +30,12 @@ int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
 
+Game *game;
 
-void toGame();
+void comeback();
+
+void(*backspaceFunc)() = comeback;
+
 
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
@@ -112,17 +116,28 @@ void resetMenu() {
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeysFunc);
+
+	//delete &game;
+
 }
 
 void setMenu(char* MenuType);
 
 void comeback() {
 	resetMenu();
+	
 	setMenu("MainMenu");
 }
 // Dummy function
 void setMenu() {
 
+}
+
+void toGame() {
+	// Create a game
+	game = new Game(&comeback, &setMenu, gw);
+	// Start
+	Run();
 }
 
 void setMenu(char *MenuType) {
@@ -135,13 +150,6 @@ void setMenu(char *MenuType) {
 	if (MenuType == "HelpMenu")
 		mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu);
 
-}
-
-void toGame() {
-	// Create a game
-	Game game(&comeback, &setMenu, gw);
-	// Start
-	game.Run(game);
 }
 
 int main(int argc, char **argv) {

@@ -21,6 +21,9 @@
 #include "StaticSettings.h"
 #include "irrKlang.h"
 #include "ik_ISound.h"
+#include "logic.h"
+
+extern void Run();
 
 
 //#include "SoundPlayer.h"
@@ -39,19 +42,23 @@ using namespace irrklang;
 
 using namespace std;
 
+extern void(*backspaceFunc)();
+
+void Stop();
+
 class Game {
 
 private:
-	GameController *w;
-	void(*backspaceFunc)();
+
 	void(*endFunc)(char*);
 
 	float g_rotation;
-	glutWindow win;
+
 	int offset = 0;
 	int i = 0;
+	void(*backspaceFunc)();
 
-	Player* player;
+	
 	Node *a;
 	//= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
 	struct Camera
@@ -66,30 +73,21 @@ private:
 	Node *node;
 
 public:
-
+	
 	Game(void);
 	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
-
-	static Game game;
-
-	static void displayWrapper();
-	static void keyboardWrapper(unsigned char c, int a, int b);
-	static void idleWrapper();
-	static void setInstance(Game game);
-	static void logicsWrapper();
-
-	virtual void display(void);
-
+	
 	void mousePassiveMotion(int x, int y);
 
-	void initialize(void);
+	//void initialize(void);
 
-	virtual void keyboard(unsigned char key, int x, int y);
-	virtual void logics(void);
-	virtual void idle(void);
-	void Run(Game g);
-	void Stop();
+	//void keyboard(unsigned char key, int x, int y);
+	//void logics(void);
+	//void idle(void);
+	//void display(void);
+	//void Run();
+	//void Stop();
 
-	~Game() { std::cout << "Cleaning uo Game"; }
+	~Game() { std::cout << "Cleaning up Game"; }
 
 };
