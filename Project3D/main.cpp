@@ -168,6 +168,9 @@ void resetMenu() {
 
 void toGame() {
 	// Create a game
+	if (game != 0)
+		delete &game;
+
 	game = new Game(&comeback, &setMenu, gw);
 	// Start
 	Run();

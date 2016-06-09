@@ -4,7 +4,8 @@
 
 using namespace std;
 
-SoundPlayer sound((char *) "New.ogg");
+SoundPlayer sound("Sounds/New2.ogg");
+SoundPlayer *hitSound = new SoundPlayer("Sounds/Hit.mp3");
 
 thread logic;
 
@@ -289,11 +290,14 @@ void logics() {
 		Sleep(20);
 #endif
 		posnextConti();
-		if (collisioncheck(player))
+		if (collisioncheck(player)) {
+			hitSound->PlaySoundje();
 			if (player->life == 0) { // Out of lives
+				printf("Bye");
 				threadRunning = false;
 				Stop();
 			}
+		}
 	}
 }
 
@@ -321,9 +325,8 @@ void Run()
 	initialize();
 	w->connect();
 	logic = std::thread(logics);
-	SoundPlayer sound("Sounds/New2.ogg");
-	
-	sound.Play();
+
+	sound.PlaySoundje();
 
 	glutMainLoop();												// run GLUT mainloop
 																//return 0;
@@ -331,7 +334,7 @@ void Run()
 
 void Stop() {
 	sound.Stop();
-	//logic.detach();
+	logic.detach();
 	threadRunning = false;
 	glPopMatrix();
 	glDisable(GL_LIGHTING);
