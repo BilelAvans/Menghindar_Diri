@@ -20,19 +20,11 @@ class Player : public GameObject {
 			collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
 		}
 
-		void Draw(){
-			glPushMatrix();
-			glTranslatef(x, y, z);
-			glScalef(0.3f, 0.3f, 0.3f);
-			glRotatef(180, 0, 1, 0);
-			model->draw();
-			glPopMatrix();
-		}
+		void Draw(void);
 
-		void move(float x, float y, float z){
-			this->x += x;
-			this->y += y;
-			this->z += z;
-			this->collisionBox->move(x,y,z);
-		}
+		void move(float, float, float);
+
+	int isLit;
+	int score;
+	int life = 3;
 };

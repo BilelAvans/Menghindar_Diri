@@ -75,10 +75,23 @@ void createI(int i) {
 	}
 	}
 void collisioncheck(Player *player) {
+	if (player->isLit > 0)
+	{
+		player->isLit--;
+	}
+	else {
+		player->score++;
+		cout << "score: " << player->score << endl;
+	}
+
 	for (int i = 0; i < 10; i++)
 	{
-		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0) {
-			std::cout << "1" << std::endl;
+		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0 && player->isLit <= 0) {
+			player->isLit = 75;
+			player->life--;
+
+			cout << "shits lit yo" << endl;
+			cout << "lives: " << player->life << endl;
 		}
 	}
 }
