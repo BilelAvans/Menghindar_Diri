@@ -135,7 +135,7 @@ void KeysFunc(unsigned char c, int a, int b) {
 }
 
 void resetMenu() {
-	glutLeaveFullScreen();
+//	glutLeaveFullScreen();
 	glutInitWindowSize(window_width, window_height);
 	glutInitWindowPosition(50, 50);
 

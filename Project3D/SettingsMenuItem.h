@@ -1,7 +1,11 @@
 #pragma once
 
 #include "MenuItem.h"
+#ifdef __APPLE__
+#include "../irrKlang-1.5.0/64/include/irrKlang.h"
+#else
 #include "irrKlang.h"
+#endif
 
 class SettingsMenuItem : public MenuItem {
 

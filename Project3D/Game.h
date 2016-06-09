@@ -19,8 +19,15 @@
 #include <thread>
 #include "Skybox.h"
 #include "StaticSettings.h"
+
+#ifdef __APPLE__
+#include "../irrKlang-1.5.0/64/include/irrKlang.h"
+#include "../irrKlang-1.5.0/64/include/ik_ISound.h"
+#else
 #include "irrKlang.h"
 #include "ik_ISound.h"
+#endif
+
 #include "logic.h"
 
 extern void Run();
