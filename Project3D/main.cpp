@@ -95,12 +95,18 @@ void hud()
 
 	string score_str = "SCORE:" + to_string(player->score);
 	char score_char[1024];
+#ifdef __APPLE__
+	strcpy(score_char, score_str.c_str());
+	#else
 	strcpy_s(score_char, score_str.c_str());
-
+#endif
 	string lives_str = "LIVES:" + to_string(player->life);
 	char lives_char[1024];
+#ifdef __APPLE__
+	strcpy(lives_char, lives_str.c_str());
+#else
 	strcpy_s(lives_char, lives_str.c_str());
-
+#endif
 
 	glPushMatrix();
 	glTranslatef(10, 60, 0);

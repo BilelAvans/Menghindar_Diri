@@ -25,7 +25,7 @@ class Player : public GameObject {
 
 		void move(float, float, float);
 
-		int isLit;
+		int isLit = 0;
 		int life;
 		int score;
 };
