@@ -2,7 +2,7 @@
 c:\users\bilel\documents\menghindar_diri\project3d\player.h(20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\bilel\documents\menghindar_diri\project3d\enemy.h(18): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\bilel\documents\menghindar_diri\project3d\enemy.h(33): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(73): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(83): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(74): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(84): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
