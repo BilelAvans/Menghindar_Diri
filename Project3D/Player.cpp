@@ -18,7 +18,8 @@ void Player::move(float x, float y, float z) {
 	if ((this->x < -22 && x < 0) || (this->x > 0 && x > 0))
 	{
 		return;
-	} 
+	}
+
 	std::cout << this->x;
 	this->x += x;
 	this->y += y;

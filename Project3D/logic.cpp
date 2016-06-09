@@ -74,7 +74,7 @@ void collisioncheck(Player *player) {
 	if (player->isLit > 0)
 	{
 		player->isLit--;
-	}else{
+	} else{ 
 		player->score++;
 		cout << "score: " << player->score << endl;
 	}

@@ -21,21 +21,11 @@ class Player : public GameObject {
 			life = 3;
 		}
 
-//<<<<<<< HEAD
-//		void Draw(){
-//			glPushMatrix();
-//			glTranslatef(x, y, z);
-//			glScalef(0.3f, 0.3f, 0.3f);
-//			glRotatef(180, 0, 1, 0);
-//			model->draw();
-//			glPopMatrix();
-//		}
-//=======
 		void Draw(void);
 
 		void move(float, float, float);
 
-		int isLit = 0;
-		int life;
-		int score;
+	int isLit = 0;
+	int score;
+	int life = 3;
 };
