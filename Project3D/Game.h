@@ -58,8 +58,6 @@ private:
 	int i = 0;
 	void(*backspaceFunc)();
 
-	
-	Node *a;
 	//= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
 	struct Camera
 	{

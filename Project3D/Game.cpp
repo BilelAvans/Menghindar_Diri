@@ -1,14 +1,8 @@
 #include "Game.h"
 
-#ifndef LOGIC_H
-#include "logic.h"
-#endif
-
 #define KEY_ESCAPE 27
 
 using namespace std;
-
-char* haha = "haha";
 
 SoundPlayer sound((char *) "New.ogg");
 
@@ -45,9 +39,64 @@ Game::Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc) {
 	w = gc;
 }
 
+void hud()
+{
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(0.0, win.width, win.height, 0.0, -1.0, 10.0);
+	glMatrixMode(GL_MODELVIEW);
+	//glPushMatrix();        ----Not sure if I need this
+	glLoadIdentity();
+	glDisable(GL_CULL_FACE);
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	string score_str = "SCORE:" + to_string(player->score);
+	char score_char[1024];
+#ifdef __APPLE__
+	strcpy(score_char, score_str.c_str());
+#else
+	strcpy_s(score_char, score_str.c_str());
+#endif
+	string lives_str = "LIVES:" + to_string(player->life);
+	char lives_char[1024];
+#ifdef __APPLE__
+	strcpy(lives_char, lives_str.c_str());
+#else
+	strcpy_s(lives_char, lives_str.c_str());
+#endif
+
+	glPushMatrix();
+	glTranslatef(10, 60, 0);
+	glScalef(0.2, 0.2, 1);
+	glRotatef(180, 1, 0, 0);
+	for (char* p = lives_char; *p; p++)
+	{
+		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
+	}
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(10, 30, 0);
+	glScalef(0.2, 0.2, 1);
+	glRotatef(180, 1, 0, 0);
+	for (char* p = score_char; *p; p++)
+	{
+		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
+	}
+	glPopMatrix();
+	//glutStrokeCharacter(GLUT_STROKE_ROMAN, *score_c);
+
+
+	// Making sure we can render 3d again
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+}
+
 void display()
 {
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -59,7 +108,6 @@ void display()
 	glPopMatrix();
 
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
-
 
 	//glRotatef(g_rotation, 0, 1, 0);
 	//g_rotation++;
@@ -86,6 +134,9 @@ void display()
 	player->Draw();
 
 	node->draw();
+
+	hud();
+
 	glutSwapBuffers();
 
 }
@@ -152,10 +203,9 @@ void initialize()
 
 
 	//full screen
-	//glutFullScreen();
+	glutFullScreen();
 
 }
-
 
 void keyboard(unsigned char key, int x, int y)
 {
@@ -198,9 +248,6 @@ void logics() {
 
 void Run()
 {
-	//initialize();
-	printf("hoi: %s", haha);
-	
 	win.width = 1200;
 	win.height = 720;
 	win.title = (char *) "Menghindar? DIRI?!?!.";
@@ -226,9 +273,6 @@ void Run()
 	
 	sound.Play();
 
-	
-
-
 	glutMainLoop();												// run GLUT mainloop
 																//return 0;
 }
@@ -242,8 +286,3 @@ void Stop() {
 
 	backspaceFunc();
 }
-
-
-//Game::~Game() {
-//	
-//}
