@@ -20,6 +20,9 @@
 *.la
 *.a
 
+# Visual studio 
+*.suo
+
 # Executables
 *.exe
 *.out

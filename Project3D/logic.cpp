@@ -70,7 +70,7 @@ void createI(int i) {
 	}
 }
 
-void collisioncheck(Player *player) {
+bool collisioncheck(Player *player) {
 	if (player->isLit > 0)
 	{
 		player->isLit--;
@@ -87,8 +87,10 @@ void collisioncheck(Player *player) {
 
 			cout << "shits lit yo" << endl;
 			cout << "lives: " << player->life << endl;
+			return true;
 		}
 	}
+	return false;
 }
 
 void posnextConti() {

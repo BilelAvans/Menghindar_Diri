@@ -26,6 +26,9 @@
 #include "StaticOpenGLFunctions.h"
 #include "StaticSettings.h"
 
+
+#include "SoundPlayer.h"
+
 int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
@@ -33,11 +36,11 @@ int WiiBoadSensitivity = 0;
 //Player *player;
 
 Game *game;
-
 void comeback();
 
 void(*backspaceFunc)() = comeback;
-
+// Loads our menu slider sound
+SoundPlayer *player;
 
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
@@ -64,7 +67,6 @@ void Idle() {
 void Display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(1.0, 1.0, 1.0, 1.0);
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0, window_width, 0, window_height, -10, 10);
@@ -103,49 +105,8 @@ void Reshape(int w, int h) {
 
 }
 
-void KeysFunc(unsigned char c, int a, int b) {
-	switch (c) {
-		// Backspace
-	case 8: mMenu->Back();
-		break;
-		// 'W'
-	case 119: mMenu->TraverseUp();
-		break;
-		// 'S'
-	case 115: mMenu->TraverseDown();
-		break;
-	case 13: mMenu->activateCurrentItem();
-		break;
-	}
-		switch (c) {
-		case 'a':
-			if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
-				SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
-				it->DecrementSlider();
-			}
-			break;
-		case 'd':
-			if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
-				SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
-				it->IncrementSlider();
-			}
-			break;
-		}
-
-}
-
-void resetMenu() {
-//	glutLeaveFullScreen();
-	glutInitWindowSize(window_width, window_height);
-	glutInitWindowPosition(50, 50);
-
-	glutDisplayFunc(Display);
-	glutReshapeFunc(Reshape);
-	glutIdleFunc(Idle);
-	glutKeyboardFunc(KeysFunc);
-}
-
 void setMenu(char* MenuType);
+void resetMenu();
 
 void comeback() {
 	resetMenu();
@@ -153,16 +114,19 @@ void comeback() {
 	setMenu("MainMenu");
 }
 
-void Keys(unsigned char c, int a, int b) {
+void KeysFunc(unsigned char c, int a, int b) {
 	switch (c) {
 		// Backspace
-	case 8: mMenu->Back();
+	case 8:		mMenu->Back();
+		player->PlaySoundje();
 		break;
 		// 'W'
-	case 119: mMenu->TraverseUp();
+	case 119:	mMenu->TraverseUp(); 
+		player->PlaySoundje();
 		break;
 		// 'S'
-	case 115: mMenu->TraverseDown();
+	case 115:	mMenu->TraverseDown(); 
+		player->PlaySoundje();
 		break;
 	case 13: mMenu->activateCurrentItem();
 		break;
@@ -187,6 +151,19 @@ void Keys(unsigned char c, int a, int b) {
 void setMenu() {
 
 
+}
+
+void resetMenu() {
+	glutLeaveFullScreen();
+	glutInitWindowSize(window_width, window_height);
+	glutInitWindowPosition(50, 50);
+
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutIdleFunc(Idle);
+	glutKeyboardFunc(KeysFunc);
+
+	delete game;
 }
 
 void toGame() {
@@ -222,11 +199,13 @@ int main(int argc, char **argv) {
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
-	glutKeyboardFunc(Keys);
+	glutKeyboardFunc(KeysFunc);
 	setStaticSettings(50, 30, 0); // Settings (Music Volumme, Effects Volume, Wii board sensitivity)
 	//printf("Member is %i", MusicVolume);
 	//w->connect();
 
+	//musicThreadje = std::thread(playMenuSlideSound);
+	player = new SoundPlayer("Sounds/Achievement.mp3");
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL

@@ -289,7 +289,11 @@ void logics() {
 		Sleep(20);
 #endif
 		posnextConti();
-		collisioncheck(player);
+		if (collisioncheck(player))
+			if (player->life == 0) { // Out of lives
+				threadRunning = false;
+				Stop();
+			}
 	}
 }
 
@@ -317,7 +321,7 @@ void Run()
 	initialize();
 	w->connect();
 	logic = std::thread(logics);
-	SoundPlayer sound((char *) "New.ogg");
+	SoundPlayer sound("Sounds/New2.ogg");
 	
 	sound.Play();
 
@@ -333,4 +337,8 @@ void Stop() {
 	glDisable(GL_LIGHTING);
 
 	backspaceFunc();
+}
+
+Game::~Game() {
+	sound.Stop();
 }

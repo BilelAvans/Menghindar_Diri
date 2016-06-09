@@ -93,6 +93,6 @@ public:
 	//void Run();
 	//void Stop();
 
-	~Game() { std::cout << "Cleaning up Game"; }
+	~Game();
 
 };
