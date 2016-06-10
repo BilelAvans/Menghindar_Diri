@@ -4,21 +4,21 @@
 using namespace irrklang;
 using namespace std;
 
+bool musicThreadjeRunning = false;
+// Our little music thread
+std::thread musicThreadje;
+irrklang::ISoundEngine* engine;
+irrklang::ISoundSource* soundSource;
 
-
-SoundPlayer::SoundPlayer(char* filenameArgs) {
+SoundPlayer::SoundPlayer(char* filename) {
 	// Load our music (after placement in /Sounds/ folder)
 
-	/* ??????
-	this->filename = (char *) "Sounds/New.ogg";
-	*/
-	this->filename = filenameArgs;
-
+	this->filename = filename;
 
 	Load();
 	//printf("%g", difftime(clock2, clock1));
 	// Read out sound info (Source, Length, Format, ...)
-	soundSource = engine->addSoundSourceFromFile(filenameArgs);
+	soundSource = engine->addSoundSourceFromFile(filename);
 }
 
 void SoundPlayer::Load() {

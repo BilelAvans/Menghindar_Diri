@@ -4,7 +4,6 @@ extern int MusicVolume;
 extern int EffectVolume;
 extern int WiiBoadSensitivity;
 
-
 static void setStaticSettings(int mv, int eff, int sen) {
 	MusicVolume = mv, EffectVolume = eff, WiiBoadSensitivity = sen;
 }

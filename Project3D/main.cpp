@@ -27,24 +27,23 @@
 #include "StaticSettings.h"
 
 
-#include "SoundPlayer.h"
+void setMenu(char* MenuType);
+void resetMenu();
+void KeysFunc(unsigned char c, int a, int b);
 
 int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
 
-//Player *player;
-
 Game *game;
 void comeback();
-
 void(*backspaceFunc)() = comeback;
+
 // Loads our menu slider sound
 SoundPlayer player("Sounds/Achievement.mp3");
 
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
-
 GameController *gw = GameController::getInstance();
 
 void output(GLfloat x, GLfloat y, char *text)
@@ -72,28 +71,12 @@ void Display() {
 	glOrtho(0, window_width, 0, window_height, -10, 10);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 	// Draw Menu
 	mMenu->DrawBackGround();
 	mMenu->DrawMenu(drawText);
-
 	mMenu->getCurrentItem()->Fun();
-	//std::auto_ptr<MenuItem> item = std::auto_ptr<MenuItem>(mMenu->getCurrentItem());
-
 	glutSwapBuffers();
 
-}
-
-void mousePassiveMotion(int x, int y)
-{
-	//	int dx = x - win.width / 2;
-	//	int dy = y - win.height / 2;
-	//	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
-	//	{
-	//		camera.rotY += dx / 10.0f;
-	//		camera.rotX += dy / 10.0f;
-	//		glutWarpPointer(win.width / 2, win.height / 2);
-	//	}
 }
 
 void Reshape(int w, int h) {
@@ -102,11 +85,21 @@ void Reshape(int w, int h) {
 	glLoadIdentity();
 	gluOrtho2D(0, w, h, 0);
 	glMatrixMode(GL_MODELVIEW);
-
 }
 
-void setMenu(char* MenuType);
-void resetMenu();
+void resetMenu() {
+	glutLeaveFullScreen();
+	glutDestroyWindow(glutGetWindow());
+	glutCreateWindow("Glut");
+	glutInitWindowPosition(50, 50);
+
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutIdleFunc(Idle);
+	glutKeyboardFunc(KeysFunc);
+
+	//delete game;
+}
 
 void comeback() {
 	resetMenu();
@@ -147,35 +140,21 @@ void KeysFunc(unsigned char c, int a, int b) {
 			player.PlaySoundje();
 		}
 		break;
+	case 27:
+		exit(0);
+		break;
 	}
 
 }
-// Dummy function
-void setMenu() {
 
+void setMenu() {}
 
-}
-
-void resetMenu() {
-	glutLeaveFullScreen();
-	glutDestroyWindow(glutGetWindow());
-	glutCreateWindow("Glut");
-	glutInitWindowPosition(50, 50);
-
-	glutDisplayFunc(Display);
-	glutReshapeFunc(Reshape);
-	glutIdleFunc(Idle);
-	glutKeyboardFunc(KeysFunc);
-
-	delete game;
-}
 
 void toGame() {
 	game = new Game(&comeback, &setMenu, gw);
 	// Start
 	Run();
 }
-
 
 void setMenu(char *MenuType) {
 	if (MenuType == "MainMenu")
@@ -204,14 +183,10 @@ int main(int argc, char **argv) {
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeysFunc);
 	setStaticSettings(50, 30, 0); // Settings (Music Volumme, Effects Volume, Wii board sensitivity)
-	//printf("Member is %i", MusicVolume);
-	//w->connect();
 
-	//musicThreadje = std::thread(playMenuSlideSound);
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
 	glutMainLoop();
-
 	return 0;
 }

@@ -17,31 +17,22 @@
 
 class SoundPlayer {
 	
-	// Our 'real' player
-	char* filename;
-	void Load();
-	void PlaySoundInThread();
-	bool musicThreadjeRunning = false;
-	// Our little music thread
-	std::thread musicThreadje;
-	irrklang::ISoundEngine* engine;
-	irrklang::ISoundSource* soundSource;
+	private:
+		char* filename;
 
 	public:
-
+		void Load();
 		void Play();
 		void PlaySoundje();
+		void PlaySoundInThread();
 		void Pause();
 		void Stop();
 		void setVolume(float fVolume);
 		int  getVolume();
 		int  getTimeLength(); // in miliseconds!
-		SoundPlayer(char* filenameArgs);
+		SoundPlayer(char* filename);
 
-
-		SoundPlayer::~SoundPlayer() {
-			engine->drop();
-		}
+		//sSoundPlayer::~SoundPlayer();
 
 
 };

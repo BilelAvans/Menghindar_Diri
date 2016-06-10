@@ -10,9 +10,6 @@
 #include <GL\freeglut.h>
 #endif
 
-//#include <windows.h>
-//#include <OpenGL/OpenGL.h>
-
 using namespace std;
 
 class Vec3f
