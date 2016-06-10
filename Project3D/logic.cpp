@@ -19,23 +19,23 @@ double enemy1[10][3];
 enemy enemybuffer1[10];
 bool done = false;
 float gameWidth = 30.0f;
-int widthEnemy;
+float widthEnemy;
 Node* o;
 void create(double width) {
-	widthEnemy = width;
+	widthEnemy = (float)width;
 	srand(rand());
 	for (int i = 0; i < 10; i++)
 	{
 		done = false;
 		while (done == false) {
 
-			double random = ((rand() % 10 + 1) / 10.0) - 1;
+			float random = ((rand() % 10 + 1) / 10.0f) - 1;
 			if (i == 0) {
-				enemybuffer1[i] = enemy(random*gameWidth, 0, i * 20 - 200, 1, 1, 1, o, random);
+				enemybuffer1[i] = enemy(random*gameWidth, 0, (float)i * 20 - 200, 1, 1, 1, o, random);
 				done = true;
 			}
 			else {
-				enemybuffer1[i] = enemy(random*gameWidth, 0, i * 20 - 200, 1, 1, 1, o, random);
+				enemybuffer1[i] = enemy(random*gameWidth, 0, (float)i * 20 - 200, 1, 1, 1, o, random);
 				done = true;
 			}
 
@@ -58,7 +58,7 @@ void createI(int i) {
 
 	bool done = false;
 	while (done == false) {
-		double random = ((rand() % 10 + 1) / 10.0) - 1;
+		float random = (float)((rand() % 10 + 1) / 10.0) - 1;
 		if (i == 9) {
 			enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o, random);
 			done = true;

@@ -17,7 +17,7 @@ class Player : public GameObject {
 	public:
 		Player(float x, float y, float z, float width, float length, float height, Node* model) : GameObject(x, y, z, width, length, height, model)
 		{
-			collisionBox = new CollisionBox(x-0.5, y-0.5, z-0.5, width, length, height);
+			collisionBox = new CollisionBox(x-0.5f, y-0.5f, z-0.5f, width, length, height);
 			life = 3;
 		}
 

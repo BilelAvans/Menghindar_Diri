@@ -63,7 +63,7 @@ void hud()
 
 	glPushMatrix();
 	glTranslatef(10, 30, 0);
-	glScalef(0.2, 0.2, 1);
+	glScalef(0.2f, 0.2f, 1);
 	glRotatef(180, 1, 0, 0);
 	for (char* p = score_char; *p; p++)
 	{
