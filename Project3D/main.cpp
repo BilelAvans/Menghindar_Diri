@@ -131,20 +131,20 @@ void KeysFunc(unsigned char c, int a, int b) {
 		break;
 	case 13: mMenu->activateCurrentItem();
 		break;
-	}
-	switch (c) {
-	case 'a':
+	case 97:
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->DecrementSlider();
 			player.setVolume(EffectVolume);
+			player.PlaySoundje();
 		}
 		break;
-	case 'd':
+	case 100:
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->IncrementSlider();
 			player.setVolume(EffectVolume);
+			player.PlaySoundje();
 		}
 		break;
 	}

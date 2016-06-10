@@ -39,7 +39,7 @@ void SoundPlayer::Stop() {
 }
 
 void SoundPlayer::setVolume(float fVolume) {
-	engine->setSoundVolume(fVolume);
+	engine->setSoundVolume((float)(fVolume / 100));
 }
 
 int SoundPlayer::getVolume() {

@@ -269,8 +269,8 @@ void Run()
 	w->connect();
 	logic = std::thread(logics);
 	// Set Volumes
-	sound.setVolume((float)MusicVolume / float(100));
-	hitSound.setVolume((float)EffectVolume / float(100));
+	sound.setVolume(MusicVolume);
+	hitSound.setVolume(EffectVolume);
 
 	sound.PlaySoundje();
 
