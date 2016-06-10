@@ -91,9 +91,19 @@ void display()
 	glRotatef(camera.rotY, 0, 1, 0);
 	for (int i = 0; i < 10; i++)
 	{
-		glPushMatrix();
-		enemybuffer1[i].Draw();
-		glPopMatrix();
+		if (enemybuffer1[i].powers = true) {
+			glPushMatrix();
+			//glColor3f(0.5f, 0.5f, 0.5f);
+			enemybuffer1[i].Draw();
+
+			
+			glPopMatrix();
+		}
+		else {
+			glPushMatrix();
+			enemybuffer1[i].Draw();
+			glPopMatrix();
+		}
 	}
 	player->Draw();
 	hud();
@@ -208,7 +218,7 @@ void Run()
 	w->connect();
 	logic = std::thread(logics);
 	SoundPlayer sound((char *) "New.ogg");
-	sound.Play();
+	//sound.Play();
 	glutMainLoop();												// run GLUT mainloop
 }
 

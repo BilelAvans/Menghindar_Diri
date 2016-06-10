@@ -13,9 +13,13 @@ class enemy : public GameObject {
 
 public:
 	double random;
-	enemy(float x, float y, float z, float width, float length, float height, Node* model, double random) : GameObject(x, y, z, width, length, height, model)
+	bool powers;
+	int powerUp;
+	enemy(float x, float y, float z, float width, float length, float height, Node* model, double random, bool power) : GameObject(x, y, z, width, length, height, model)
 	{
 		collisionBox = new CollisionBox(x-0.5f, y-0.5f, z-0.5f, width, length, height);
+		powers = power;
+		cout << "power " << power << endl;
 	}
 	~enemy() {}
 	enemy()
@@ -33,6 +37,9 @@ public:
 		glScalef(.3f, .3f, .3f);
 		model->draw();
 		glPopMatrix();
+	}
+	void randomPower() {
+
 	}
 	float getx() {
 		return x;//deze is voor breedte

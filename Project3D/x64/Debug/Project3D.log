@@ -1,4 +1,17 @@
 ﻿  logic.cpp
-c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(100): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(65): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(69): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\logic.cpp(79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  enemy.cpp
+  Game.cpp
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
