@@ -40,7 +40,7 @@ void comeback();
 
 void(*backspaceFunc)() = comeback;
 // Loads our menu slider sound
-SoundPlayer *player;
+SoundPlayer player("Sounds/Achievement.mp3");
 
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
@@ -115,18 +115,19 @@ void comeback() {
 }
 
 void KeysFunc(unsigned char c, int a, int b) {
+	printf("%i", c);
 	switch (c) {
 		// Backspace
 	case 8:		mMenu->Back();
-		player->PlaySoundje();
+		player.PlaySoundje();
 		break;
 		// 'W'
 	case 119:	mMenu->TraverseUp(); 
-		player->PlaySoundje();
+		player.PlaySoundje();
 		break;
 		// 'S'
 	case 115:	mMenu->TraverseDown(); 
-		player->PlaySoundje();
+		player.PlaySoundje();
 		break;
 	case 13: mMenu->activateCurrentItem();
 		break;
@@ -136,12 +137,14 @@ void KeysFunc(unsigned char c, int a, int b) {
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->DecrementSlider();
+			player.setVolume(EffectVolume);
 		}
 		break;
 	case 'd':
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->IncrementSlider();
+			player.setVolume(EffectVolume);
 		}
 		break;
 	}
@@ -155,7 +158,8 @@ void setMenu() {
 
 void resetMenu() {
 	glutLeaveFullScreen();
-	glutInitWindowSize(window_width, window_height);
+	glutDestroyWindow(glutGetWindow());
+	glutCreateWindow("Glut");
 	glutInitWindowPosition(50, 50);
 
 	glutDisplayFunc(Display);
@@ -167,10 +171,6 @@ void resetMenu() {
 }
 
 void toGame() {
-	// Create a game
-	if (game != 0)
-		delete &game;
-
 	game = new Game(&comeback, &setMenu, gw);
 	// Start
 	Run();
@@ -208,7 +208,6 @@ int main(int argc, char **argv) {
 	//w->connect();
 
 	//musicThreadje = std::thread(playMenuSlideSound);
-	player = new SoundPlayer("Sounds/Achievement.mp3");
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL

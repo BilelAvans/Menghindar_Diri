@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\</FILEPATH>
+      <FILENAME>wiimotecontroller.h</FILENAME>
+      <LINE>28</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6273</DEFECTCODE>
+    <DESCRIPTION>Non-integer passed as _Param_(2) when an integer is required in call to 'printf' Actual type: 'double':  if a pointer value is being passed, %p should be used.</DESCRIPTION>
+    <FUNCTION>WiiMoteController::leftRightMovement</FUNCTION>
+    <DECORATED>?leftRightMovement@WiiMoteController@@UEAAHXZ</DECORATED>
+    <FUNCLINE>23</FUNCLINE>
+    <PATH />
+  </DEFECT>
+</DEFECTS>

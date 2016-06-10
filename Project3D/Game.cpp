@@ -5,7 +5,7 @@
 using namespace std;
 
 SoundPlayer sound("Sounds/New2.ogg");
-SoundPlayer *hitSound = new SoundPlayer("Sounds/Hit.mp3");
+SoundPlayer hitSound("Sounds/Hit.mp3");
 
 thread logic;
 
@@ -28,7 +28,6 @@ struct Camera
 } camera;
 
 Node *node;
-
 
 Game::Game() {
 
@@ -95,52 +94,6 @@ void hud()
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-	//glMatrixMode(GL_PROJECTION);
-	//glPushMatrix();
-	//glLoadIdentity();
-	//glOrtho(0.0, win.width, win.height, 0.0, -1.0, 10.0);
-	//glMatrixMode(GL_MODELVIEW);
-	////glPushMatrix();        ----Not sure if I need this
-	//glLoadIdentity();
-	//glDisable(GL_CULL_FACE);
-
-	//glClear(GL_DEPTH_BUFFER_BIT);
-
-	//string score_str = "SCORE:" + to_string(player->score);
-	//char score_char[1024];
-	//strcpy_s(score_char, score_str.c_str());
-
-	//string lives_str = "LIVES:" + to_string(player->life);
-	//char lives_char[1024];
-	//strcpy_s(lives_char, lives_str.c_str());
-
-	//glPushMatrix();
-	//glTranslatef(10, 60, 0);
-	//glScalef(0.2, 0.2, 1);
-	//glRotatef(180, 1, 0, 0);
-	//for (char* p = lives_char; *p; p++)
-	//{
-	//	glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
-	//}
-	//glPopMatrix();
-
-	//glPushMatrix();
-	//glTranslatef(10, 30, 0);
-	//glScalef(0.2, 0.2, 1);
-	//glRotatef(180, 1, 0, 0);
-	//for (char* p = score_char; *p; p++)
-	//{
-	//	glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, *p);
-	//}
-	//glPopMatrix();
-	////glutStrokeCharacter(GLUT_STROKE_ROMAN, *score_c);
-
-
-	//// Making sure we can render 3d again
-	//glMatrixMode(GL_PROJECTION);
-	//glPopMatrix();
-	//glMatrixMode(GL_MODELVIEW);
-
 }
 
 
@@ -148,7 +101,6 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
 
 	//skybox
 	glPushMatrix();
@@ -162,22 +114,14 @@ void display()
 	//g_rotation++;
 	glRotatef(camera.rotX, 1, 0, 0);
 	glRotatef(camera.rotY, 0, 1, 0);
-	/*
-	for (std::vector<shared_ptr<Character>>::iterator it = characters.begin(); it != characters.end(); it++) {
-	Character temp = it._Ptr->get;
-	temp.getModel().Draw();
-	}
-	*/
 
 	for (int i = 0; i < 10; i++)
 	{
 
-		//		glColor3f((GLfloat)i, (GLfloat)1.0f, (GLfloat)i);
 		glPushMatrix();
 		enemybuffer1[i].Draw();
 		glPopMatrix();
 	}
-	//	ModelObject("Models/cube.obj").Draw();
 
 
 	player->Draw();
@@ -291,9 +235,8 @@ void logics() {
 #endif
 		posnextConti();
 		if (collisioncheck(player)) {
-			hitSound->PlaySoundje();
+			hitSound.PlaySoundje();
 			if (player->life == 0) { // Out of lives
-				printf("Bye");
 				threadRunning = false;
 				Stop();
 			}
@@ -314,7 +257,7 @@ void Run()
 	// initialize and run program
 	//glutInit(&argc, argv);                                      // GLUT initialization
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
-	glutInitWindowSize(win.width, win.height);					// set window size
+	//glutInitWindowSize(win.width, win.height);					// set window size
 	glutDestroyWindow(glutGetWindow());
 	glutCreateWindow("Glut");
 	//glutCreateWindow(win.title);								// create Window
@@ -325,6 +268,9 @@ void Run()
 	initialize();
 	w->connect();
 	logic = std::thread(logics);
+	// Set Volumes
+	sound.setVolume((float)MusicVolume / float(100));
+	hitSound.setVolume((float)EffectVolume / float(100));
 
 	sound.PlaySoundje();
 
@@ -336,7 +282,7 @@ void Stop() {
 	sound.Stop();
 	logic.detach();
 	threadRunning = false;
-	glPopMatrix();
+	glLoadIdentity();
 	glDisable(GL_LIGHTING);
 
 	backspaceFunc();

@@ -37,7 +37,11 @@ class SoundPlayer {
 		int  getVolume();
 		int  getTimeLength(); // in miliseconds!
 		SoundPlayer(char* filenameArgs);
-		~SoundPlayer();
+
+
+		SoundPlayer::~SoundPlayer() {
+			engine->drop();
+		}
 
 
 };

@@ -81,7 +81,6 @@ public:
 	
 	Game(void);
 	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
-	
 	void mousePassiveMotion(int x, int y);
 
 	//void initialize(void);

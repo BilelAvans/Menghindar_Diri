@@ -27,8 +27,7 @@ void SoundPlayer::Load() {
 
 void SoundPlayer::Play() {
 	// Grab volume from settings
-	setVolume((float)MusicVolume / float(100));
-	engine->play2D(filename, true);
+	engine->play2D(filename, false);
 }
 
 void SoundPlayer::Pause() {
@@ -51,33 +50,29 @@ int SoundPlayer::getTimeLength() {
 	return soundSource->getPlayLength();
 }
 
-SoundPlayer::~SoundPlayer() {
-	engine->drop();	
-}
-
 void SoundPlayer::PlaySoundInThread() {
 	if (!musicThreadjeRunning) {
 		musicThreadjeRunning = true;
-
+		printf("looool \n");
 		Play();
 		// Create our end time
 		time_t endTime = time(0) + getTimeLength() / 1000;
 		for (double waitingtime = getTimeLength(); difftime(endTime, time(0)) > 0 && musicThreadjeRunning;) { }
-
+		//Stop();
+		printf("ddsdssd \n");
 		musicThreadjeRunning = false;
-		Stop();
-
 		musicThreadje.detach();
 	}
-
-
 }
 
 void SoundPlayer::PlaySoundje() {
-	if (musicThreadjeRunning)
+	if (musicThreadjeRunning) {
 		musicThreadjeRunning = false;
+	}
 
-	Sleep(1);
-
-	musicThreadje = std::thread(&SoundPlayer::PlaySoundInThread, this);
+	if (!musicThreadje.joinable()) {
+		musicThreadje = std::thread(&SoundPlayer::PlaySoundInThread, this);
+		musicThreadjeRunning = false;
+	}
+	
 }
