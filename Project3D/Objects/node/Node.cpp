@@ -28,17 +28,12 @@ void Node::draw() {
 	glRotatef(rotate[0], 1, 0, 0);
 	glRotatef(rotate[1], 0, 1, 0);
 	glRotatef(rotate[2], 0, 0, 1);
-
-
-
 	//teken het model
 	if(this->model != nullptr)
 		this->model->draw();
-
 	//tekenen de sub models
 	for(Node* n: this->subnodes)
 		n->draw();
-
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();

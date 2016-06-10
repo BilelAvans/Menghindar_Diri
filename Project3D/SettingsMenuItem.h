@@ -19,8 +19,6 @@ public:
 	void Fun();
 	void IncrementSlider();
 	void DecrementSlider();
-
-	//void Fun() { }
 	char* getInstanceTypeName() {
 		return "SettingsMenuItem";
 	}

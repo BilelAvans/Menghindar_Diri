@@ -72,28 +72,21 @@ int Model_OBJ::Load(char* filename)
 		objFile.seekg(0, ios::end);										// Go to end of the file, 
 		long long fileSize = objFile.tellg();									// get file size
 		objFile.seekg(0, ios::beg);										// we'll use this to register memory for our 3d model
-
 		vertexBuffer = (float*)malloc(fileSize);							// Allocate memory for the verteces
 		Faces_Triangles = (float*)malloc(fileSize*sizeof(float));			// Allocate memory for the triangles
 		normals = (float*)malloc(fileSize*sizeof(float));					// Allocate memory for the normals
-
 		int triangle_index = 0;												// Set triangle index to zero
 		int normal_index = 0;												// Set normal index to zero
-
 		while (!objFile.eof())											// Start reading file data
 		{
 			getline(objFile, line);											// Get line from file
-
 			if (line.c_str()[0] == 'v')										// The first character is a v: on this line is a vertex stored.
 			{
 				line[0] = ' ';												// Set first character to 0. This will allow us to use sscanf
-
-
 				custom_scanf(line.c_str(), "%f %f %f ",							// Read floats from the line: v X Y Z
 					&vertexBuffer[TotalConnectedPoints],
 					&vertexBuffer[TotalConnectedPoints + 1],
 					&vertexBuffer[TotalConnectedPoints + 2]);
-
 				TotalConnectedPoints += POINTS_PER_VERTEX;					// Add 3 to the total connected points
 			}
 			if (line.c_str()[0] == 'f')										// The first character is an 'f': on this line is a point stored
@@ -105,12 +98,9 @@ int Model_OBJ::Load(char* filename)
 					&vertexNumber[0],										// First point of our triangle. This is an 
 					&vertexNumber[1],										// pointer to our vertexBuffer list
 					&vertexNumber[2]);										// each point represents an X,Y,Z.
-
 				vertexNumber[0] -= 1;										// OBJ file starts counting from 1
 				vertexNumber[1] -= 1;										// OBJ file starts counting from 1
 				vertexNumber[2] -= 1;										// OBJ file starts counting from 1
-
-
 																			/********************************************************************
 																			* Create triangles (f 1 2 3) from points: (v X Y Z) (v X Y Z) (v X Y Z).
 																			* The vertexBuffer contains all verteces

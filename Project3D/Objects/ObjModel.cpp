@@ -199,30 +199,6 @@ void ObjModel::draw()
 		}
 		glEnd();
 	}
-
-	/*
-	foreach(group in groups)
-	{
-		zet het materiaal / texture van deze groep
-
-		glBegin(GL_TRIANGLES);
-		foreach(face in group.faces)
-		{
-			foreach(vertex in face.vertices)
-			{
-				glNormal
-				glTexCoord
-				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
-			}
-			
-		}
-		glEnd();
-
-	}
-	
-	*/
-
-
 }
 
 void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )

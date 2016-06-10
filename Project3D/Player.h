@@ -9,7 +9,7 @@
 #endif
 
 #include "GameObject.h"
-#endif // !GameObject_H
+#endif 
 
 
 class Player : public GameObject {

@@ -31,26 +31,7 @@
 #include "logic.h"
 
 extern void Run();
-
-
-//#include "SoundPlayer.h"
-//#include <thread>
-//#include "Skybox.h"
-//#ifdef __APPLE__
-//#include <OpenGL/OpenGL.h>
-//#include <GLUT/glut.h>
-//#include <zconf.h>
-//#include "Controls/keyboard/KeyboardController.h"
-//#include "Objects/node/Node.h"
-
-using namespace irrklang;
-
-#define KEY_ESCAPE 27
-
-using namespace std;
-
 extern void(*backspaceFunc)();
-
 void Stop();
 
 class Game {
@@ -65,34 +46,10 @@ private:
 	int i = 0;
 	void(*backspaceFunc)();
 
-	//= ModelObject((char *) "Models/lowPolyAirplane/lowPolyAirplane.obj");
-	struct Camera
-	{
-		float posX = 10;
-		float posY = -170; //-150 default
-		float posZ = -10;
-		float rotX = 0;
-		float rotY = 0;
-	} camera;
-
-	Node *node;
-
 public:
 	
-	Game(void);
-	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
 	
-	void mousePassiveMotion(int x, int y);
-
-	//void initialize(void);
-
-	//void keyboard(unsigned char key, int x, int y);
-	//void logics(void);
-	//void idle(void);
-	//void display(void);
-	//void Run();
-	//void Stop();
-
+	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
 	~Game() { std::cout << "Cleaning up Game"; }
 
 };
