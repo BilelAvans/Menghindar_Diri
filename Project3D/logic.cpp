@@ -21,6 +21,7 @@ bool done = false;
 float gameWidth = 30.0f;
 float widthEnemy;
 Node* o;
+int scores;
 void create(double width) {
 	widthEnemy = (float)width;
 	srand(rand());
@@ -71,6 +72,7 @@ void createI(int i) {
 }
 
 void collisioncheck(Player *player) {
+	scores = player->score;
 	if (player->isLit > 0)
 	{
 		player->isLit--;
@@ -94,7 +96,12 @@ void collisioncheck(Player *player) {
 void posnextConti() {
 	for (int i = 0; i < 10; i++)
 	{
-		enemybuffer1[i].move(0, 0, 1);
+		if (scores < 5000) {
+			enemybuffer1[i].move(0, 0, 1 + (scores / 2500.0));
+		}
+		else {
+			enemybuffer1[i].move(0, 0, 1 + (5000 / 2500.0));
+		}
 		if (enemybuffer1[i].getz() > 216) {
 			createI(i);
 		}
