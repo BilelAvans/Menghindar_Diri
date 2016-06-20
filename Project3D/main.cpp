@@ -40,7 +40,7 @@ void comeback();
 void(*backspaceFunc)() = comeback;
 
 // Loads our menu slider sound
-SoundPlayer player("Sounds/Achievement.mp3");
+SoundPlayer player(string("Sounds/Achievement.mp3"));
 
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
@@ -55,6 +55,7 @@ void output(GLfloat x, GLfloat y, char *text)
 	for (p = text; *p; p++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, *p);
 	glPopMatrix();
+
 }
 
 
@@ -84,7 +85,7 @@ void Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, w, h, 0);
-	glMatrixMode(GL_MODELVIEW);
+	//glMatrixMode(GL_MODELVIEW);
 }
 
 void resetMenu() {
@@ -100,7 +101,7 @@ void resetMenu() {
 
 	//delete game;
 }
-
+// Game to main menu function
 void comeback() {
 	resetMenu();
 
@@ -108,7 +109,7 @@ void comeback() {
 }
 
 void KeysFunc(unsigned char c, int a, int b) {
-	printf("%i", c);
+	//printf("%i", c);
 	switch (c) {
 		// Backspace
 	case 8:		mMenu->Back();
@@ -123,7 +124,8 @@ void KeysFunc(unsigned char c, int a, int b) {
 		player.PlaySoundje();
 		break;
 	case 13: mMenu->activateCurrentItem();
-		break;
+		player.PlaySoundje();
+		break; 
 	case 97:
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
@@ -140,14 +142,15 @@ void KeysFunc(unsigned char c, int a, int b) {
 			player.PlaySoundje();
 		}
 		break;
-	case 27:
-		exit(0);
-		break;
 	}
 
 }
 
 void setMenu() {}
+
+void ShutDown() {
+	exit(0);
+}
 
 
 void toGame() {
@@ -159,12 +162,16 @@ void toGame() {
 void setMenu(char *MenuType) {
 	if (MenuType == "MainMenu")
 		mMenu = Menu::ofMainMenu(&setMenu, &toGame);
-	if (MenuType == "ThemeMenu")
+	else if (MenuType == "ThemeMenu")
 		mMenu = Menu::ofThemeMenu(&setMenu, &setMenu, &setMenu, &setMenu);
-	if (MenuType == "SettingsMenu")
+	else if (MenuType == "SettingsMenu")
 		mMenu = Menu::ofSettingsMenu(&setMenu, &setMenu, &setMenu, &setMenu);
-	if (MenuType == "HelpMenu")
+	else if (MenuType == "HelpMenu")
 		mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu);
+	else if (MenuType == "HighScoreMenu")
+		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, Highscore());
+	else if (MenuType == "" || MenuType == 0)
+		ShutDown();
 
 }
 

@@ -18,6 +18,7 @@
 #endif
 
 #include "MenuItem.h"
+#include "highscore\Highscore.h"
 
 
 class Menu {
@@ -63,8 +64,9 @@ class Menu {
 		void Back(void);
 
 		// Pre-built menu's.
-		static Menu* ofMainMenu(void(*func1)(char* MenuType), void(*toGame)());
+		static Menu* ofMainMenu(void(*func1)(char* MenuType), void(*func)());
 		static Menu* ofHelpMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)());
 		static Menu* ofSettingsMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)());
 		static Menu* ofThemeMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)());
+		static Menu* ofHighScoreMenu(void(*goback)(char* MenuType), void(*func0)(), Highscore scores);
 };

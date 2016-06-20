@@ -1,2 +1,9 @@
-﻿  Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
+﻿  Game.cpp
+c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(65): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(231): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\bilel\documents\menghindar_diri\project3d\game.cpp(232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)

@@ -10,24 +10,23 @@ std::thread musicThreadje;
 irrklang::ISoundEngine* engine;
 irrklang::ISoundSource* soundSource;
 
-SoundPlayer::SoundPlayer(char* filename) {
+SoundPlayer::SoundPlayer(std::string filename) {
 	// Load our music (after placement in /Sounds/ folder)
-
 	this->filename = filename;
 
-	Load();
-	//printf("%g", difftime(clock2, clock1));
-	// Read out sound info (Source, Length, Format, ...)
-	soundSource = engine->addSoundSourceFromFile(filename);
+	Load();	
 }
 
 void SoundPlayer::Load() {
 	engine = createIrrKlangDevice();
+	// Read out sound info (Source, Length, Format, ...)
+	soundSource = engine->addSoundSourceFromFile(filename.c_str());
+
 }
 
 void SoundPlayer::Play() {
 	// Grab volume from settings
-	engine->play2D(filename, false);
+	engine->play2D(filename.c_str(), false);
 }
 
 void SoundPlayer::Pause() {
@@ -35,6 +34,8 @@ void SoundPlayer::Pause() {
 }
 
 void SoundPlayer::Stop() {
+	printf("ERROR SOME BITCH STOPPED ME");
+	musicThreadjeRunning = false;
 	engine->stopAllSounds();
 }
 
@@ -53,13 +54,19 @@ int SoundPlayer::getTimeLength() {
 void SoundPlayer::PlaySoundInThread() {
 	if (!musicThreadjeRunning) {
 		musicThreadjeRunning = true;
-		printf("looool \n");
+
 		Play();
-		// Create our end time
+		// Add time in seconds to our endtime variable
 		time_t endTime = time(0) + getTimeLength() / 1000;
-		for (double waitingtime = getTimeLength(); difftime(endTime, time(0)) > 0 && musicThreadjeRunning;) { }
+		//if (getTimeLength() / 1000 < 1)
+			//Sleep(getTimeLength());
+
+		while (difftime(endTime, time(0)) > 0 && musicThreadjeRunning) {
+			printf("Running");
+		}
+		
 		//Stop();
-		printf("ddsdssd \n");
+		printf("STOPPING");
 		musicThreadjeRunning = false;
 		musicThreadje.detach();
 	}
@@ -68,11 +75,21 @@ void SoundPlayer::PlaySoundInThread() {
 void SoundPlayer::PlaySoundje() {
 	if (musicThreadjeRunning) {
 		musicThreadjeRunning = false;
+		Sleep(1);
 	}
 
 	if (!musicThreadje.joinable()) {
 		musicThreadje = std::thread(&SoundPlayer::PlaySoundInThread, this);
-		musicThreadjeRunning = false;
 	}
 	
+}
+
+// Create a soundplayer with one of the theme songs
+SoundPlayer* SoundPlayer::ofThemeSong() {
+	
+	std::string str = "Sounds/New";
+	str += (char)(rand() % 2 + 48);
+	str.append(".ogg");
+
+	return new SoundPlayer(str);
 }

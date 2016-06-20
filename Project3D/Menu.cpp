@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "Menu.h"
 #include "SettingsMenuItem.h"
+#include "HighScoreMenuItem.h"
 
 bool barset = false;
 
@@ -60,10 +61,14 @@ void Menu::DrawBackGround() {
 	glBegin(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0);	glVertex3d(0, 0, 0);
-	glTexCoord2f(0, 1); glVertex3d(0, 720, 0);
-	glTexCoord2f(1, 1); glVertex3d(1200, 720, 0);
-	glTexCoord2f(1, 0); glVertex3d(1200, 0, 0);
+	//glTexCoord2f(0, 0);	glVertex3d(0, 0, 0);
+	//glTexCoord2f(0, 1); glVertex3d(0, 720, 0);
+	//glTexCoord2f(1, 1); glVertex3d(1200, 720, 0);
+	//glTexCoord2f(1, 0); glVertex3d(1200, 0, 0);
+	glTexCoord2f(0, 1);	glVertex3d(0, 0, 0);
+	glTexCoord2f(0, 0); glVertex3d(0, 720, 0);
+	glTexCoord2f(1, 0); glVertex3d(1200, 720, 0);
+	glTexCoord2f(1, 1); glVertex3d(1200, 0, 0);
 	glEnd();	
 }
 
@@ -100,7 +105,7 @@ void Menu::activateCurrentItem() {
 
 void Menu::Back() {
 	if (goBack != nullptr)
-		goBack("MainMenu");
+		goBack(goBackArguments);
 }
 
 MenuItem* Menu::getCurrentItem() {
@@ -114,19 +119,28 @@ Menu* Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)()) {
 	menu->addMenuItem(new MenuItem( 0, "Play Game", toGame ));
 	menu->addMenuItem(new MenuItem( 1, "Theme", func1, "ThemeMenu" ));
 	menu->addMenuItem(new MenuItem( 2, "Settings", func1, "SettingsMenu" ));
-	menu->addMenuItem(new MenuItem( 3, "Scoreboard", func1, "ScoreMenu" ));
+	menu->addMenuItem(new MenuItem( 3, "Scoreboard", func1, "HighScoreMenu" ));
 	menu->addMenuItem(new MenuItem(4, "Help", func1, "HelpMenu"));
+
 	menu->setBackGround("Backgrounds/MainMenuBlankPage.png");
+
+	menu->goBack = func1;
+	menu->goBackArguments = "";
+
 	return menu;
 }
 
 Menu* Menu::ofHelpMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)()) {
 	Menu *menu = new Menu();
+
 	menu->addMenuItem(new MenuItem{ 0, "Objects", func0 });
 	menu->addMenuItem(new MenuItem{ 1, "Powers Ups", func1});
 	menu->addMenuItem(new MenuItem{ 2, "Extra", func2 });
 	menu->setBackGround("Backgrounds/HelpMenuBlankPage.png");
+
 	menu->goBack = goback;
+	menu->goBackArguments = "MainMenu";
+
 	return menu;
 }
 
@@ -136,7 +150,10 @@ Menu* Menu::ofSettingsMenu(void(*goback)(char* MenuType), void(*func0)(), void(*
 	menu->addMenuItem(new SettingsMenuItem{ 1, "Effects", func1 });
 	menu->addMenuItem(new SettingsMenuItem{ 2, "Sensitivity", func2});
 	menu->setBackGround("Backgrounds/SettingsMenuBlankPage.png");
+
 	menu->goBack = goback;
+	menu->goBackArguments = "MainMenu";
+
 	return menu;
 }
 
@@ -146,6 +163,23 @@ Menu* Menu::ofThemeMenu(void(*goback)(char* MenuType), void(*func0)(), void(*fun
 	menu->addMenuItem(new MenuItem{ 1, "Player", func1 });
 	menu->addMenuItem(new MenuItem{ 2, "Enemy", func2 });
 	menu->setBackGround("Backgrounds/ThemeMenuBlankPage.png");
+
 	menu->goBack = goback;
+	menu->goBackArguments = "MainMenu";
+
 	return menu;
+}
+
+Menu* Menu::ofHighScoreMenu(void(*goback)(char* MenuType), void(*func0)(), Highscore scores) {
+	Menu *menu = new Menu();
+
+	menu->addMenuItem(new HighscoreMenuItem{ 0, "Highscores", func0, scores } );
+
+	menu->setBackGround("Backgrounds/ScoreBoardBlankPage.png");
+
+	menu->goBack = goback;
+	menu->goBackArguments = "MainMenu";
+
+	return menu;
+
 }

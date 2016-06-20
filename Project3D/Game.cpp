@@ -1,10 +1,14 @@
 #include "Game.h"
+
+#include <string.h>
+#include <iostream>
+
 using namespace irrklang;
 #define KEY_ESCAPE 27
 using namespace std;
 
-SoundPlayer sound("Sounds/New2.ogg");
-SoundPlayer hitSound("Sounds/Krah.ogg");
+SoundPlayer *sound = SoundPlayer::ofThemeSong();
+SoundPlayer hitSound(string ("Sounds/Krah.ogg"));
 
 thread logic;
 Player* player;
@@ -224,16 +228,16 @@ void Run()
 	w->connect();
 	logic = std::thread(logics);
 	// Set Volumes
-	sound.setVolume(MusicVolume);
+	sound->setVolume(MusicVolume);
 	hitSound.setVolume(EffectVolume);
 
-	sound.PlaySoundje();
+	sound->PlaySoundje();
 
 	glutMainLoop();												// run GLUT mainloop
 }
 
 void Stop() {
-	sound.Stop();
+	sound->Stop();
 	logic.detach();
 	threadRunning = false;
 

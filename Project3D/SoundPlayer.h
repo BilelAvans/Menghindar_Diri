@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <time.h>
+#include <string.h>
 
 #include "irrKlang.h"
 #include "StaticSettings.h"
@@ -18,7 +19,7 @@
 class SoundPlayer {
 	
 	private:
-		char* filename;
+		std::string filename;
 
 	public:
 		void Load();
@@ -30,7 +31,9 @@ class SoundPlayer {
 		void setVolume(float fVolume);
 		int  getVolume();
 		int  getTimeLength(); // in miliseconds!
-		SoundPlayer(char* filename);
+		SoundPlayer(std::string filename);
+
+		static SoundPlayer* ofThemeSong();
 
 		//sSoundPlayer::~SoundPlayer();
 

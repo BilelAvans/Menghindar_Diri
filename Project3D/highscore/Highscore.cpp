@@ -4,9 +4,18 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <algorithm>
 #include "Highscore.h"
 
 using namespace std;
+/*
+struct Highscore::Score {
+
+	string name;
+	int    score;
+}
+*/
 
 void Highscore::readHighscores(){
 
@@ -64,6 +73,7 @@ void Highscore::printHighscores() {
 }
 
 void Highscore::sort(){
+	
 	std::sort(scores->begin(), scores->end());
 }
 

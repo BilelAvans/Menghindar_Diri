@@ -22,6 +22,8 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuItem.cpp" />
     <ClCompile Include="SettingsMenuItem.cpp" />
+    <ClCompile Include="highscore\Highscore.cpp" />
+    <ClCompile Include="HighScoreMenuItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -49,5 +51,7 @@
     <ClInclude Include="ShapeCalculator.h" />
     <ClInclude Include="StaticOpenGLFunctions.h" />
     <ClInclude Include="StaticSettings.h" />
+    <ClInclude Include="highscore\Highscore.h" />
+    <ClInclude Include="HighScoreMenuItem.h" />
   </ItemGroup>
 </Project>

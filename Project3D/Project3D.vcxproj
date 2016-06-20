@@ -130,6 +130,8 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="HighScoreMenuItem.cpp" />
+    <ClCompile Include="highscore\Highscore.cpp" />
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -152,6 +154,8 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="HighScoreMenuItem.h" />
+    <ClInclude Include="highscore\Highscore.h" />
     <ClInclude Include="logic.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuItem.h" />
