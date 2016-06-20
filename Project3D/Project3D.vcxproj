@@ -149,6 +149,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Controls\GameController.h" />
     <ClInclude Include="Controls\wiimote\wiimote.h" />
+    <ClInclude Include="Controls\wiimote\WiiMoteController.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />

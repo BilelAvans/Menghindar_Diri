@@ -7,7 +7,8 @@
 
 #include "../GameController.h"
 #include "wiimote.h"
-
+#include <iostream>
+using namespace std;
 class WiiMoteController: public GameController {
 	public:
 
@@ -17,7 +18,7 @@ class WiiMoteController: public GameController {
 		}
 
 		void connect(){
-			w.Connect();
+			cout << w.Connect() << endl;
 		}
 
 		int leftRightMovement(){

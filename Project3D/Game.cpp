@@ -1,15 +1,20 @@
 #include "Game.h"
+#include "Controls\wiimote\WiiMoteController.h"
+#include <iostream>
+#include <cstdio>
 using namespace irrklang;
 #define KEY_ESCAPE 27
 using namespace std;
 SoundPlayer sound((char *) "New.ogg");
 thread logic;
+thread control;
 Player* player;
 bool threadRunning = false;
 glutWindow win;
 GameController *w;
 Node *a;
 Node *node;
+float lastFrameTime;
 
 struct Camera
 {
@@ -185,6 +190,7 @@ void logics() {
 	threadRunning = true;
 	while (threadRunning)
 	{
+
 #ifdef __APPLE__
 		usleep(20 * 1000);
 #else
@@ -192,6 +198,23 @@ void logics() {
 #endif
 		posnextConti();
 		collisioncheck(player);
+	}
+}
+void controls() {
+	threadRunning = true;
+	double speed = 1;
+	while (threadRunning)
+	{
+		float frameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		float deltaTime = frameTime - lastFrameTime;
+		lastFrameTime = frameTime;
+		
+#ifdef __APPLE__
+		usleep(20 * 1000);
+#else
+		Sleep(20);
+#endif
+		player->move(w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -216,7 +239,8 @@ void Run()
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
 	w->connect();
-	logic = std::thread(logics);
+	logic = thread(logics);
+	control = thread(controls);
 	SoundPlayer sound((char *) "New.ogg");
 	//sound.Play();
 	glutMainLoop();												// run GLUT mainloop

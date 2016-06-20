@@ -1,5 +1,11 @@
 #pragma once
 #ifndef GameObject_H
+#include <math.h>
+#include <cmath>
+#include <string>
+#include <time.h>
+#include <cstdlib>
+#include <iostream>
 #ifdef __APPLE__
 #include <glut/glut.h>
 #else
@@ -8,7 +14,7 @@
 #include "GameObject.h"
 #endif // !GameObject_H
 
-
+using namespace std;
 class enemy : public GameObject {
 
 public:
@@ -19,7 +25,10 @@ public:
 	{
 		collisionBox = new CollisionBox(x-0.5f, y-0.5f, z-0.5f, width, length, height);
 		powers = power;
-		cout << "power " << power << endl;
+		//cout << "power " << power << endl;
+		if (powers == 1) {
+			randomPower();
+		}
 	}
 	~enemy() {}
 	enemy()
@@ -39,6 +48,15 @@ public:
 		glPopMatrix();
 	}
 	void randomPower() {
+		srand(rand()*rand());
+		int random = (((rand() % 100) * rand() * rand()*rand()))%3;
+		if (random < 0) {
+			powerUp = -random;
+		}
+		else {
+			powerUp = random;
+		}
+		//cout << "powerup " << powerUp << endl;
 
 	}
 	float getx() {
