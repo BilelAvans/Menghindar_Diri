@@ -34,7 +34,6 @@ void SoundPlayer::Pause() {
 }
 
 void SoundPlayer::Stop() {
-	printf("ERROR SOME BITCH STOPPED ME");
 	musicThreadjeRunning = false;
 	engine->stopAllSounds();
 }
