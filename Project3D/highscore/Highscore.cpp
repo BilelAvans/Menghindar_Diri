@@ -78,16 +78,16 @@ int Highscore::getHighscoreRank(int score) {
 }
 
 vector<int> Highscore::getTopTenScores() {
-	////number of scores in scores vector
-	//int numberofscores = scores->size();
+	//number of scores in scores vector
+	int numberofscores = scores->size();
 
-	//if (numberofscores > 10)
-	//	numberofscores = 10;
+	if (numberofscores > 10)
+		numberofscores = 10;
 
-	//vector<int> topscores = vector<int>(numberofscores);
+	vector<int> topscores = vector<int>(numberofscores);
 
-	//for (int i = 0; i < numberofscores; i++)
-	//	topscores[i] = (*scores)[i];
+	for (int i = 0; i < numberofscores; i++)
+		topscores[i] = (*scores)[i];
 
 	return *scores;
 }
