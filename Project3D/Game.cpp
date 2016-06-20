@@ -121,7 +121,7 @@ void initialize()
 {
 	init();
 	create(10);
-	w->connect();
+
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -194,7 +194,12 @@ void logics() {
 #ifdef __APPLE__
 		usleep(20 * 1000);
 #else
-		Sleep(20);
+		if (player->score < 5000) {
+			Sleep(20-(player->score/1000.0));
+		}
+		else {
+			Sleep(20-5);
+		}
 #endif
 		posnextConti();
 		collisioncheck(player);
@@ -202,7 +207,7 @@ void logics() {
 }
 void controls() {
 	threadRunning = true;
-	double speed = 1;
+	double speed = 10;
 	while (threadRunning)
 	{
 		float frameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -214,7 +219,7 @@ void controls() {
 #else
 		Sleep(20);
 #endif
-		player->move(w->leftRightMovement()*deltaTime*speed, 0, 0);
+		player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -238,7 +243,8 @@ void Run()
 	glutKeyboardFunc(keyboard);						// register Keyboard Handler
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
-	w->connect();
+	//w->init();
+	//w->connect();
 	logic = thread(logics);
 	control = thread(controls);
 	SoundPlayer sound((char *) "New.ogg");

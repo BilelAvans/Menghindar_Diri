@@ -1,2 +1,7 @@
-﻿  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
+﻿  Game.cpp
+c:\users\sander\desktop\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(38): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\game.cpp(61): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\sander\desktop\menghindar_diri\project3d\game.cpp(198): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+c:\users\sander\desktop\menghindar_diri\project3d\game.cpp(222): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)

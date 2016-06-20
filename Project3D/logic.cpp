@@ -21,10 +21,11 @@ bool done = false;
 float gameWidth = 30.0f;
 int widthEnemy;
 Node* o;
+Node* op;
 void create(double width) {
 	widthEnemy = width;
 	srand(rand());
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		done = false;
 		while (done == false) {
@@ -45,6 +46,7 @@ void create(double width) {
 
 void init() {
 	o = new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj"));
+	op = new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplaneP.obj"));
 }
 
 void createI(int i) {
@@ -59,14 +61,14 @@ void createI(int i) {
 	bool done = false;
 	while (done == false) {
 		double random = ((rand() % 10 + 1) / 10.0) - 1;
-		double randomP= (rand() % 10 + 1) - 1;
+		double randomP= (rand() % 20 + 1) - 1;
 		if (i == 9) {
 			if (randomP != 7) {
 				enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o, random, false);
 				done = true;
 			} 
 			else {
-				enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, o, random, true);
+				enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[0].getz() - 20, 1, 1, 1, op, random, true);
 				done = true;
 			}
 		}
@@ -76,7 +78,7 @@ void createI(int i) {
 			done = true;
 			}
 			else {
-				enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[i + 1].getz() - 20, 1, 1, 1, o, random, true);
+				enemybuffer1[i] = enemy(random*gameWidth, 0, enemybuffer1[i + 1].getz() - 20, 1, 1, 1, op, random, true);
 				done = true;
 			}
 		}
@@ -89,17 +91,24 @@ void collisioncheck(Player *player) {
 		player->isLit--;
 	} else{ 
 		player->score++;
+		if (player->invince > 0) {
+			player->invince--;
+		}
 		//cout << "score: " << player->score << endl;
 	}
 
 	for (int i = 0; i < 10; i++)
 	{
-		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0 && player->isLit <= 0) {
+		
+		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0 && enemybuffer1[i].powerUp == -1 && player->isLit <= 0 && player->invince <=0) {
 			player->isLit = 75;
 			player->life--;
 
 			cout << "shits lit yo" << endl;
 			cout << "lives: " << player->life << endl;
+		}
+		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0 && enemybuffer1[i].powerUp != -1 && player->isLit <= 0) {
+			player->invince = 150;
 		}
 	}
 }

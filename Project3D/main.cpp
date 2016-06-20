@@ -195,6 +195,7 @@ int main(int argc, char **argv) {
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
+	gw->connect();
 	glutMainLoop();
 	return 0;
 }

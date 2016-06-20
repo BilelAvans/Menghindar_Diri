@@ -20,7 +20,7 @@ class enemy : public GameObject {
 public:
 	double random;
 	bool powers;
-	int powerUp;
+	int powerUp = -1;
 	enemy(float x, float y, float z, float width, float length, float height, Node* model, double random, bool power) : GameObject(x, y, z, width, length, height, model)
 	{
 		collisionBox = new CollisionBox(x-0.5f, y-0.5f, z-0.5f, width, length, height);
@@ -56,7 +56,7 @@ public:
 		else {
 			powerUp = random;
 		}
-		//cout << "powerup " << powerUp << endl;
+		cout << "powerup " << powerUp << endl;
 
 	}
 	float getx() {

@@ -28,4 +28,5 @@ class Player : public GameObject {
 	int isLit = 0;
 	int score = 0;
 	int life = 3;
+	int invince = 0;
 };
