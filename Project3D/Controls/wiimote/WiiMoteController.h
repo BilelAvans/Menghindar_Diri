@@ -7,7 +7,8 @@
 
 #include "../GameController.h"
 #include "wiimote.h"
-
+#include <iostream>
+using namespace std;
 class WiiMoteController: public GameController {
 	public:
 
@@ -17,7 +18,7 @@ class WiiMoteController: public GameController {
 		}
 
 		void connect(){
-			w.Connect();
+			cout << w.Connect() << endl;
 		}
 
 		int leftRightMovement(){
@@ -25,13 +26,13 @@ class WiiMoteController: public GameController {
 			w.RefreshState();
 			double weightL = w.BalanceBoard.Kg.BottomL + w.BalanceBoard.Kg.TopL;
 			double weightR = w.BalanceBoard.Kg.BottomR + w.BalanceBoard.Kg.TopR;
-			printf("%d", weightR);
+			//printf("%d", weightR);
 			if (weightR + 10 < weightL) {
-				printf("Going left");
+				//printf("Going left");
 				offset++;
 			}
 			if (weightL + 10 < weightR) {
-				printf("going right");
+				//printf("going right");
 				offset--;
 			}
 			return offset;

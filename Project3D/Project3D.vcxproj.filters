@@ -49,5 +49,6 @@
     <ClInclude Include="ShapeCalculator.h" />
     <ClInclude Include="StaticOpenGLFunctions.h" />
     <ClInclude Include="StaticSettings.h" />
+    <ClInclude Include="Controls\wiimote\WiiMoteController.h" />
   </ItemGroup>
 </Project>

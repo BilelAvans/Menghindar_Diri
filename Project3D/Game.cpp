@@ -1,15 +1,20 @@
 #include "Game.h"
+#include "Controls\wiimote\WiiMoteController.h"
+#include <iostream>
+#include <cstdio>
 using namespace irrklang;
 #define KEY_ESCAPE 27
 using namespace std;
 SoundPlayer sound((char *) "New.ogg");
 thread logic;
+thread control;
 Player* player;
 bool threadRunning = false;
 glutWindow win;
 GameController *w;
 Node *a;
 Node *node;
+float lastFrameTime;
 
 struct Camera
 {
@@ -91,9 +96,19 @@ void display()
 	glRotatef(camera.rotY, 0, 1, 0);
 	for (int i = 0; i < 10; i++)
 	{
-		glPushMatrix();
-		enemybuffer1[i].Draw();
-		glPopMatrix();
+		if (enemybuffer1[i].powers = true) {
+			glPushMatrix();
+			//glColor3f(0.5f, 0.5f, 0.5f);
+			enemybuffer1[i].Draw();
+
+			
+			glPopMatrix();
+		}
+		else {
+			glPushMatrix();
+			enemybuffer1[i].Draw();
+			glPopMatrix();
+		}
 	}
 	player->Draw();
 	hud();
@@ -106,7 +121,7 @@ void initialize()
 {
 	init();
 	create(10);
-	w->connect();
+
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -175,13 +190,36 @@ void logics() {
 	threadRunning = true;
 	while (threadRunning)
 	{
+
+#ifdef __APPLE__
+		usleep(20 * 1000);
+#else
+		if (player->score < 5000) {
+			Sleep(20-(player->score/1000.0));
+		}
+		else {
+			Sleep(20-5);
+		}
+#endif
+		posnextConti();
+		collisioncheck(player);
+	}
+}
+void controls() {
+	threadRunning = true;
+	double speed = 10;
+	while (threadRunning)
+	{
+		float frameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		float deltaTime = frameTime - lastFrameTime;
+		lastFrameTime = frameTime;
+		
 #ifdef __APPLE__
 		usleep(20 * 1000);
 #else
 		Sleep(20);
 #endif
-		posnextConti();
-		collisioncheck(player);
+		player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -205,10 +243,12 @@ void Run()
 	glutKeyboardFunc(keyboard);						// register Keyboard Handler
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
-	w->connect();
-	logic = std::thread(logics);
+	//w->init();
+	//w->connect();
+	logic = thread(logics);
+	control = thread(controls);
 	SoundPlayer sound((char *) "New.ogg");
-	sound.Play();
+	//sound.Play();
 	glutMainLoop();												// run GLUT mainloop
 }
 
