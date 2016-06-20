@@ -14,7 +14,7 @@ class HighscoreMenuItem : public MenuItem {
 private:
 	Highscore hScore;
 public:
-	HighscoreMenuItem(int idn, char* Textn, void(*doSomethingn)(), Highscore scores) : MenuItem(idn, Textn, doSomethingn) {};
+	HighscoreMenuItem(int idn, char* Textn, void(*doSomethingn)(), Highscore scores) : MenuItem(idn, Textn, doSomethingn) { hScore = scores;  };
 	HighscoreMenuItem(int idn, char* Textn, void(*doSomethingn)(char* MenuType), char* funcargsn) : MenuItem(idn, Textn, doSomethingn, funcargsn) {};
 
 	char* barTitle;

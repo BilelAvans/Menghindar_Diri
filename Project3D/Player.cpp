@@ -2,7 +2,7 @@
 #include <iostream>
 
 void Player::Draw() {
-	if (isLit % 10 > 5)
+	if (isLit % 10 > 5 || invince % 10 > 5)
 	{
 		return;
 	}

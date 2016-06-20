@@ -35,7 +35,10 @@ int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
 
+// Game and highscores
 Game *game;
+Highscore *hScore = new Highscore();
+
 void comeback();
 void(*backspaceFunc)() = comeback;
 
@@ -152,9 +155,16 @@ void ShutDown() {
 	exit(0);
 }
 
+void toHighscore(int score) {
+	resetMenu();
+	hScore = new Highscore();
+	hScore->addScore(score);
+
+	setMenu("HighScoreMenu");
+}
 
 void toGame() {
-	game = new Game(&comeback, &setMenu, gw);
+	game = new Game(&comeback, &toHighscore, gw);
 	// Start
 	Run();
 }
@@ -169,7 +179,7 @@ void setMenu(char *MenuType) {
 	else if (MenuType == "HelpMenu")
 		mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu);
 	else if (MenuType == "HighScoreMenu")
-		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, Highscore());
+		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, *hScore);
 	else if (MenuType == "" || MenuType == 0)
 		ShutDown();
 
@@ -194,6 +204,7 @@ int main(int argc, char **argv) {
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
+	gw->connect();
 	glutMainLoop();
 	return 0;
 }

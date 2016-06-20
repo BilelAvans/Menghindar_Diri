@@ -10,17 +10,21 @@
 using namespace std;
 
 class Highscore {
-	public:
-		void readHighscores();
-		void addScore(int score);
-		void printHighscores();
-		void writeScoresToFile();
-		int getHighscoreRank(int score);
-		vector<int> getTopTenScores();
+public:
+	Highscore() {
+		scores = new vector<int>(0);
+	}
 
-	private:
-		vector<int> *scores;
-		void sort();
+	void readHighscores();
+	void addScore(int score);
+	void printHighscores();
+	void writeScoresToFile();
+	int getHighscoreRank(int score);
+	vector<int> getTopTenScores();
+
+private:
+	vector<int> *scores;
+	void sort();
 };
 
 

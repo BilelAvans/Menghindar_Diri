@@ -3,21 +3,13 @@
 //
 
 #include <iostream>
-#include <fstream>
-#include <vector>
 #include <algorithm>
+#include <fstream>
 #include "Highscore.h"
 
 using namespace std;
-/*
-struct Highscore::Score {
 
-	string name;
-	int    score;
-}
-*/
-
-void Highscore::readHighscores(){
+void Highscore::readHighscores() {
 
 	ifstream read("highscores.txt");
 	int lines;
@@ -27,7 +19,7 @@ void Highscore::readHighscores(){
 	scores = new vector<int>(0);
 
 	//read the lines and add the numbers to the file
-	for(int i = 0; i < lines; i++){
+	for (int i = 0; i < lines; i++) {
 		int num;
 		read >> num;
 		scores->push_back(num);
@@ -40,7 +32,7 @@ void Highscore::readHighscores(){
 	read.close();
 }
 
-void Highscore::writeScoresToFile(){
+void Highscore::writeScoresToFile() {
 	//write the scores to a file
 
 	//open stream
@@ -50,7 +42,7 @@ void Highscore::writeScoresToFile(){
 	writeStream << scores->size() << endl;
 
 	//write the scores
-	for(int i = 0; i < scores->size(); i++){
+	for (int i = 0; i < scores->size(); i++) {
 		writeStream << (*scores)[i] << endl;
 	}
 
@@ -58,7 +50,7 @@ void Highscore::writeScoresToFile(){
 	writeStream.close();
 }
 
-void Highscore::addScore(int score){
+void Highscore::addScore(int score) {
 	scores->push_back(score);
 	this->sort();
 	this->writeScoresToFile();
@@ -66,37 +58,36 @@ void Highscore::addScore(int score){
 
 void Highscore::printHighscores() {
 	cout << "scores: ";
-	for(int i = 0; i < scores->size(); i++){
+	for (int i = 0; i < scores->size(); i++) {
 		cout << (*scores)[i] << " - ";
 	}
 	cout << endl;
 }
 
-void Highscore::sort(){
-	
+void Highscore::sort() {
 	std::sort(scores->begin(), scores->end());
 }
 
 int Highscore::getHighscoreRank(int score) {
-	for(int i = 0; i < scores->size(); i++){
-		if((*scores)[i] == score){
-			return i+1;
+	for (int i = 0; i < scores->size(); i++) {
+		if ((*scores)[i] == score) {
+			return i + 1;
 		}
 	}
 	return -1;
 }
 
-vector<int> Highscore::getTopTenScores(){
-	//number of scores in scores vector
-	int numberOfScores = scores->size();
+vector<int> Highscore::getTopTenScores() {
+	////number of scores in scores vector
+	//int numberofscores = scores->size();
 
-	if(numberOfScores > 10)
-		numberOfScores = 10;
+	//if (numberofscores > 10)
+	//	numberofscores = 10;
 
-	vector<int> topScores = vector<int>(numberOfScores);
+	//vector<int> topscores = vector<int>(numberofscores);
 
-	for(int i = 0; i < numberOfScores; i++)
-		topScores[i] = (*scores)[i];
+	//for (int i = 0; i < numberofscores; i++)
+	//	topscores[i] = (*scores)[i];
 
-	return topScores;
+	return *scores;
 }

@@ -61,11 +61,9 @@ void SoundPlayer::PlaySoundInThread() {
 			//Sleep(getTimeLength());
 
 		while (difftime(endTime, time(0)) > 0 && musicThreadjeRunning) {
-			printf("Running");
 		}
 		
-		//Stop();
-		printf("STOPPING");
+		Stop();
 		musicThreadjeRunning = false;
 		musicThreadje.detach();
 	}

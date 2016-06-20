@@ -1,7 +1,9 @@
 #include "Game.h"
 
-#include <string.h>
+#include "Controls\wiimote\WiiMoteController.h"
 #include <iostream>
+#include <cstdio>
+#include <string.h>
 
 using namespace irrklang;
 #define KEY_ESCAPE 27
@@ -11,14 +13,21 @@ SoundPlayer *sound = SoundPlayer::ofThemeSong();
 SoundPlayer hitSound(string ("Sounds/Krah.ogg"));
 
 thread logic;
+thread control;
 Player* player;
 bool threadRunning = false;
 glutWindow win;
 GameController *w;
 Node *a;
 Node *node;
+float lastFrameTime;
 
 bool shouldStop = false;
+
+void EndToHighScores();
+
+void(*endFunc)();
+void(*highscoreFunc)(int);
 
 struct Camera
 {
@@ -29,9 +38,10 @@ struct Camera
 	float rotY = 0;
 } camera;
 
-Game::Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc) {
-	backspaceFunc = backspacefunc;
-	endFunc = endfunc;
+Game::Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc) {
+	endFunc = backspacefunc;
+	highscoreFunc = endfunc;
+
 	w = gc;
 }
 
@@ -88,9 +98,6 @@ void hud()
 
 void display()
 {
-	if (player->life == 0)
-		shouldStop = true;
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -105,9 +112,19 @@ void display()
 
 	for (int i = 0; i < 10; i++)
 	{
-		glPushMatrix();
-		enemybuffer1[i].Draw();
-		glPopMatrix();
+		if (enemybuffer1[i].powers = true) {
+			glPushMatrix();
+			//glColor3f(0.5f, 0.5f, 0.5f);
+			enemybuffer1[i].Draw();
+
+
+			glPopMatrix();
+		}
+		else {
+			glPushMatrix();
+			enemybuffer1[i].Draw();
+			glPopMatrix();
+		}
 	}
 
 	player->Draw();
@@ -115,13 +132,14 @@ void display()
 	node->draw();
 	hud();
 	glutSwapBuffers();
+	
 }
 
 void initialize()
 {
 	init();
 	create(10);
-	w->connect();
+
 	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, win.width, win.height);
 	GLfloat aspect = (GLfloat)win.width / win.height;
@@ -159,14 +177,15 @@ void initialize()
 	player = new Player(-10, 0, 130, 1, 1, 1, new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
 	initSkybox();
 	//full screen
-	glutFullScreen();
+	//glutFullScreen();
+
 }
 
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case KEY_ESCAPE:
-		Stop();
+		EndToHighScores();
 		break;
 	case 'a':
 		//		camera.posX++;
@@ -179,12 +198,15 @@ void keyboard(unsigned char key, int x, int y)
 	default:
 		break;
 	}
-
-	if (shouldStop)
-		Stop();
 }
 
 void idle() {
+
+	if (player->life == 0 && threadRunning) {
+		EndToHighScores();
+		return;
+	}
+
 	//repaint
 	display();
 }
@@ -193,15 +215,38 @@ void logics() {
 	threadRunning = true;
 	while (threadRunning)
 	{
+
 #ifdef __APPLE__
 		usleep(20 * 1000);
 #else
-		Sleep(20);
+		if (player->score < 5000) {
+			Sleep(20-(player->score/1000.0));
+		}
+		else {
+			Sleep(20-5);
+		}
 #endif
 		posnextConti();
 		if (collisioncheck(player)) {
 			hitSound.PlaySoundje();
 		}
+	}
+}
+void controls() {
+	threadRunning = true;
+	double speed = 10;
+	while (threadRunning)
+	{
+		float frameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		float deltaTime = frameTime - lastFrameTime;
+		lastFrameTime = frameTime;
+		
+#ifdef __APPLE__
+		usleep(20 * 1000);
+#else
+		Sleep(20);
+#endif
+		player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -225,8 +270,10 @@ void Run()
 	glutKeyboardFunc(keyboard);						// register Keyboard Handler
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
-	w->connect();
+
+	//w->connect();
 	logic = std::thread(logics);
+	//control = std::thread(controls);
 	// Set Volumes
 	sound->setVolume(MusicVolume);
 	hitSound.setVolume(EffectVolume);
@@ -237,12 +284,22 @@ void Run()
 }
 
 void Stop() {
+	threadRunning = false;
 	sound->Stop();
 	logic.detach();
+
+	endFunc();
+}
+
+void EndToHighScores() {
 	threadRunning = false;
 
-	backspaceFunc();
+	sound->Stop();
+	logic.detach();
+	
+	highscoreFunc(player->score);
 }
+
 /*
 Game::~Game() {
 	sound.Stop();

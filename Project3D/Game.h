@@ -32,14 +32,12 @@
 #include "logic.h"
 
 extern void Run();
-extern void(*backspaceFunc)();
+
 void Stop();
 
 class Game {
 
 private:
-
-	void(*endFunc)(char*);
 
 	float g_rotation;
 
@@ -48,6 +46,6 @@ private:
 	void(*backspaceFunc)();
 
 public:
-	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
+	Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc);
 	~Game();
 };

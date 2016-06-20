@@ -1,12 +1,2 @@
-﻿  enemy.cpp
-  SoundPlayer.cpp
-c:\users\bilel\documents\menghindar_diri\project3d\soundplayer.cpp(46): warning C4244: 'return': conversion from 'irrklang::ik_f32' to 'int', possible loss of data
-  Player.cpp
-c:\users\bilel\documents\menghindar_diri\project3d\player.cpp(11): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  WiiMoteController.cpp
-c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(37): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-c:\users\bilel\documents\menghindar_diri\project3d\controls\wiimote\wiimotecontroller.h(28): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-  Generating Code...
-  LINK : C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe not found or not built by the last incremental link; performing full link
-  Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
+﻿  Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.exe
   Project3D.vcxproj -> C:\Users\Bilel\Documents\Menghindar_Diri\x64\Debug\Menghindar Diri.pdb (Partial PDB)
