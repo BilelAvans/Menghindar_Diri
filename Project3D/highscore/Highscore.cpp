@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <functional>
 #include <fstream>
 #include "Highscore.h"
 
@@ -65,7 +66,7 @@ void Highscore::printHighscores() {
 }
 
 void Highscore::sort() {
-	std::sort(scores->begin(), scores->end());
+	std::sort(scores->begin(), scores->end(), std::greater<int>());
 }
 
 int Highscore::getHighscoreRank(int score) {
@@ -78,7 +79,7 @@ int Highscore::getHighscoreRank(int score) {
 }
 
 vector<int> Highscore::getTopTenScores() {
-	//number of scores in scores vector
+	// number of scores in scores vector
 	int numberofscores = scores->size();
 
 	if (numberofscores > 10)

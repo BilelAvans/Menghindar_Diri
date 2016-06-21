@@ -18,7 +18,7 @@ void HighscoreMenuItem::Fun() {
 		int score;
 
 		for (int position = 1; position < scores.size(); position++, startY -= 30) {
-			score = scores.at(scores.size() - position);
+			score = scores.at(position - 1);
 			std::stringstream haha;
 			haha << position;
 			haha << ". ";
