@@ -279,7 +279,7 @@ void Run()
 	hitSound.setVolume(EffectVolume);
 
 	sound->PlaySoundje();
-
+	glutFullScreen();
 	glutMainLoop();												// run GLUT mainloop
 }
 

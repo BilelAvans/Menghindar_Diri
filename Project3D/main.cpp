@@ -96,7 +96,6 @@ void Reshape(int w, int h) {
 
 void resetMenu() {
 	glutLeaveFullScreen();
-
 	glutDestroyWindow(glutGetWindow());
 	glutCreateWindow("Glut");
 	glutInitWindowPosition(50, 50);
@@ -212,6 +211,7 @@ int main(int argc, char **argv) {
 	setMenu("MainMenu");
 	// Run openGL
 	gw->connect();
+	
 	glutMainLoop();
 	return 0;
 }
