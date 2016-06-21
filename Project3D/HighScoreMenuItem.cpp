@@ -22,9 +22,14 @@ void HighscoreMenuItem::Fun() {
 			std::stringstream haha;
 			haha << position;
 			haha << ". ";
+			
+			drawText(startX, startY, (char*)haha.str().c_str());
+			haha.str("");
+			haha.clear();
+
 			haha << score;
 
-			drawText(startX, startY, (char*)haha.str().c_str());
+			drawText(startX + 220, startY, (char*)haha.str().c_str());
 
 			haha.clear();
 		}
