@@ -13,6 +13,7 @@ class Highscore {
 public:
 	Highscore() {
 		scores = new vector<int>(0);
+		readHighscores();
 	}
 
 	void readHighscores();

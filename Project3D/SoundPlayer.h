@@ -20,6 +20,9 @@ class SoundPlayer {
 	
 	private:
 		std::string filename;
+		bool musicThreadjeRunning = false;
+		// Our little music thread
+		std::thread musicThreadje;
 
 	public:
 		void Load();
@@ -35,7 +38,12 @@ class SoundPlayer {
 
 		static SoundPlayer* ofThemeSong();
 
-		//sSoundPlayer::~SoundPlayer();
+		SoundPlayer::~SoundPlayer() {
+			musicThreadjeRunning = false;
+			Sleep(1);
+			if (musicThreadje.joinable())
+				musicThreadje.detach();
+		}
 
 
 };

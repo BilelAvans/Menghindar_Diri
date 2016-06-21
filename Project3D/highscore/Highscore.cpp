@@ -89,5 +89,5 @@ vector<int> Highscore::getTopTenScores() {
 	for (int i = 0; i < numberofscores; i++)
 		topscores[i] = (*scores)[i];
 
-	return *scores;
+	return topscores;
 }

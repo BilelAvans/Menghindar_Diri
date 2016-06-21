@@ -9,14 +9,17 @@
 #include <sstream>
 
 void HighscoreMenuItem::Fun() {
-		int startX = 350;
-		int startY = 500;
+		int startX = 365;
+		int startY = 475;
 		// Allez, Allez, commencons avec le premier
 		int position = 1;
 
-		std::stringstream haha;
+		vector<int> scores = hScore.getTopTenScores();
+		int score;
 
-		for (int score : hScore.getTopTenScores()) {
+		for (int position = 1; position < scores.size(); position++, startY -= 30) {
+			score = scores.at(scores.size() - position);
+			std::stringstream haha;
 			haha << position;
 			haha << ". ";
 			haha << score;
@@ -24,13 +27,6 @@ void HighscoreMenuItem::Fun() {
 			drawText(startX, startY, (char*)haha.str().c_str());
 
 			haha.clear();
-			startY -= 50;
-
-
-			// Reset
-			startX = 350;
-			haha.clear();
-			position++;
 		}
 
 		

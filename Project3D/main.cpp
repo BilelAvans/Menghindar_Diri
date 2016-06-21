@@ -35,6 +35,8 @@ int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
 
+bool gameWasLaunched = false;
+
 // Game and highscores
 Game *game;
 Highscore *hScore = new Highscore();
@@ -87,20 +89,25 @@ void Reshape(int w, int h) {
 	glViewport(0, 0, window_width, window_height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	gluPerspective(0, 0, -1, 1);
 	gluOrtho2D(0, w, h, 0);
 	//glMatrixMode(GL_MODELVIEW);
 }
 
 void resetMenu() {
 	glutLeaveFullScreen();
+
 	glutDestroyWindow(glutGetWindow());
 	glutCreateWindow("Glut");
 	glutInitWindowPosition(50, 50);
+	glViewport(0, 0, window_width, window_height);
 
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeysFunc);
+
+	gameWasLaunched = true;
 
 	//delete game;
 }
@@ -171,15 +178,15 @@ void toGame() {
 
 void setMenu(char *MenuType) {
 	if (MenuType == "MainMenu")
-		mMenu = Menu::ofMainMenu(&setMenu, &toGame);
+		mMenu = Menu::ofMainMenu(&setMenu, &toGame, gameWasLaunched);
 	else if (MenuType == "ThemeMenu")
-		mMenu = Menu::ofThemeMenu(&setMenu, &setMenu, &setMenu, &setMenu);
+		/* mMenu = Menu::ofThemeMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched); */ setMenu("MainMenu");
 	else if (MenuType == "SettingsMenu")
-		mMenu = Menu::ofSettingsMenu(&setMenu, &setMenu, &setMenu, &setMenu);
+		mMenu = Menu::ofSettingsMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched);
 	else if (MenuType == "HelpMenu")
-		mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu);
+		/* mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched); */ setMenu("MainMenu");
 	else if (MenuType == "HighScoreMenu")
-		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, *hScore);
+		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, *hScore, gameWasLaunched);
 	else if (MenuType == "" || MenuType == 0)
 		ShutDown();
 

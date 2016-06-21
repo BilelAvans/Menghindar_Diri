@@ -113,7 +113,7 @@ MenuItem* Menu::getCurrentItem() {
 }
 
 // Static builders
-Menu* Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)()) {
+Menu* Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)(), bool gamewaslaunched) {
 	Menu *menu = new Menu();
 	// Add menuitems
 	menu->addMenuItem(new MenuItem( 0, "Play Game", toGame ));
@@ -122,7 +122,11 @@ Menu* Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)()) {
 	menu->addMenuItem(new MenuItem( 3, "Scoreboard", func1, "HighScoreMenu" ));
 	menu->addMenuItem(new MenuItem(4, "Help", func1, "HelpMenu"));
 
-	menu->setBackGround("Backgrounds/MainMenuBlankPage.png");
+	if (!gamewaslaunched)
+		menu->setBackGround("Backgrounds/MainMenuBlankPage.png");
+	else
+		menu->setBackGround("Backgrounds/MainMenuBlankPageUpsideDown.png");
+
 
 	menu->goBack = func1;
 	menu->goBackArguments = "";
@@ -130,13 +134,18 @@ Menu* Menu::ofMainMenu(void(*func1)(char* MenuType), void(*toGame)()) {
 	return menu;
 }
 
-Menu* Menu::ofHelpMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)()) {
+Menu* Menu::ofHelpMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)(), bool gamewaslaunched) {
 	Menu *menu = new Menu();
 
 	menu->addMenuItem(new MenuItem{ 0, "Objects", func0 });
 	menu->addMenuItem(new MenuItem{ 1, "Powers Ups", func1});
 	menu->addMenuItem(new MenuItem{ 2, "Extra", func2 });
-	menu->setBackGround("Backgrounds/HelpMenuBlankPage.png");
+
+	if (!gamewaslaunched)
+		menu->setBackGround("Backgrounds/HelpMenuBlankPage.png");
+	else
+		menu->setBackGround("Backgrounds/HelpMenuBlankPage.png");
+
 
 	menu->goBack = goback;
 	menu->goBackArguments = "MainMenu";
@@ -144,12 +153,16 @@ Menu* Menu::ofHelpMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func
 	return menu;
 }
 
-Menu* Menu::ofSettingsMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)()) {
+Menu* Menu::ofSettingsMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)(), bool gamewaslaunched) {
 	Menu *menu = new Menu();
 	menu->addMenuItem(new SettingsMenuItem{ 0, "Music", func0 });
 	menu->addMenuItem(new SettingsMenuItem{ 1, "Effects", func1 });
 	menu->addMenuItem(new SettingsMenuItem{ 2, "Sensitivity", func2});
-	menu->setBackGround("Backgrounds/SettingsMenuBlankPage.png");
+
+	if (!gamewaslaunched)
+		menu->setBackGround("Backgrounds/SettingsMenuBlankPage.png");
+	else
+		menu->setBackGround("Backgrounds/SettingsMenuBlankPageUpsideDown.png");
 
 	menu->goBack = goback;
 	menu->goBackArguments = "MainMenu";
@@ -157,12 +170,16 @@ Menu* Menu::ofSettingsMenu(void(*goback)(char* MenuType), void(*func0)(), void(*
 	return menu;
 }
 
-Menu* Menu::ofThemeMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)()) {
+Menu* Menu::ofThemeMenu(void(*goback)(char* MenuType), void(*func0)(), void(*func1)(), void(*func2)(), bool gamewaslaunched) {
 	Menu *menu = new Menu();
 	menu->addMenuItem(new MenuItem{ 0, "Map", func0 });
 	menu->addMenuItem(new MenuItem{ 1, "Player", func1 });
 	menu->addMenuItem(new MenuItem{ 2, "Enemy", func2 });
-	menu->setBackGround("Backgrounds/ThemeMenuBlankPage.png");
+
+	if (!gamewaslaunched)
+		menu->setBackGround("Backgrounds/ThemeMenuBlankPage.png");
+	else
+		menu->setBackGround("Backgrounds/ThemeMenuBlankPage.png");
 
 	menu->goBack = goback;
 	menu->goBackArguments = "MainMenu";
@@ -170,12 +187,15 @@ Menu* Menu::ofThemeMenu(void(*goback)(char* MenuType), void(*func0)(), void(*fun
 	return menu;
 }
 
-Menu* Menu::ofHighScoreMenu(void(*goback)(char* MenuType), void(*func0)(), Highscore scores) {
+Menu* Menu::ofHighScoreMenu(void(*goback)(char* MenuType), void(*func0)(), Highscore scores, bool gamewaslaunched) {
 	Menu *menu = new Menu();
 
 	menu->addMenuItem(new HighscoreMenuItem{ 0, "Highscores", func0, scores } );
 
-	menu->setBackGround("Backgrounds/ScoreBoardBlankPage.png");
+	if (!gamewaslaunched)
+		menu->setBackGround("Backgrounds/ScoreBoardBlankPage.png");
+	else 
+		menu->setBackGround("Backgrounds/ScoreBoardBlankPageUpsideDown.png");
 
 	menu->goBack = goback;
 	menu->goBackArguments = "MainMenu";

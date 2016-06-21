@@ -4,9 +4,6 @@
 using namespace irrklang;
 using namespace std;
 
-bool musicThreadjeRunning = false;
-// Our little music thread
-std::thread musicThreadje;
 irrklang::ISoundEngine* engine;
 irrklang::ISoundSource* soundSource;
 
@@ -59,11 +56,15 @@ void SoundPlayer::PlaySoundInThread() {
 		time_t endTime = time(0) + getTimeLength() / 1000;
 		//if (getTimeLength() / 1000 < 1)
 			//Sleep(getTimeLength());
+		for (int x = 0; x < getTimeLength() % 1000 && musicThreadjeRunning; x++) {
+			Sleep(1);
+		}
 
 		while (difftime(endTime, time(0)) > 0 && musicThreadjeRunning) {
 		}
-		
-		Stop();
+
+
+		//Stop();
 		musicThreadjeRunning = false;
 		musicThreadje.detach();
 	}
@@ -84,8 +85,10 @@ void SoundPlayer::PlaySoundje() {
 // Create a soundplayer with one of the theme songs
 SoundPlayer* SoundPlayer::ofThemeSong() {
 	
+	srand(time(NULL));
+
 	std::string str = "Sounds/New";
-	str += (char)(rand() % 2 + 48);
+	str += (char)(rand() % 3 + 48);
 	str.append(".ogg");
 
 	return new SoundPlayer(str);

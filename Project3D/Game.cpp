@@ -300,8 +300,9 @@ void EndToHighScores() {
 	highscoreFunc(player->score);
 }
 
-/*
+
 Game::~Game() {
-	sound.Stop();
+	
+	delete(sound);
 }
-*/
+
