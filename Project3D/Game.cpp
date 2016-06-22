@@ -38,11 +38,13 @@ struct Camera
 	float rotY = 0;
 } camera;
 
-Game::Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc) {
+Game::Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc, bool running) {
 	endFunc = backspacefunc;
 	highscoreFunc = endfunc;
-
-	w = gc;
+	if (!running) {
+		w = gc;
+	}
+	
 }
 
 void hud()

@@ -46,6 +46,6 @@ private:
 	void(*backspaceFunc)();
 
 public:
-	Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc);
+	Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc, bool running);
 	~Game();
 };

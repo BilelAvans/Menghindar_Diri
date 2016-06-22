@@ -34,7 +34,7 @@ void KeysFunc(unsigned char c, int a, int b);
 int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
-
+bool running = false;
 bool gameWasLaunched = false;
 
 // Game and highscores
@@ -169,7 +169,8 @@ void toHighscore(int score) {
 }
 
 void toGame() {
-	game = new Game(&comeback, &toHighscore, gw);
+	game = new Game(&comeback, &toHighscore, gw, running);
+	running = true;
 	// Start
 	Run();
 }
@@ -209,8 +210,8 @@ int main(int argc, char **argv) {
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
-	
-	gw->connect();
+		gw->connect();
+		
 	
 	glutMainLoop();
 	return 0;
