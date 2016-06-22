@@ -18,6 +18,7 @@ class WiiMoteController: public GameController {
 		}
 
 		void connect(){
+			//cout << "Hello" << endl;
 			cout << w.Connect() << endl;
 		}
 
