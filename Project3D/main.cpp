@@ -105,7 +105,6 @@ void resetMenu() {
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeysFunc);
-
 	gameWasLaunched = true;
 
 	//delete game;
@@ -210,6 +209,7 @@ int main(int argc, char **argv) {
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
+	
 	gw->connect();
 	
 	glutMainLoop();

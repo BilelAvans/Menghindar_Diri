@@ -246,7 +246,8 @@ void controls() {
 #else
 		Sleep(20);
 #endif
-		player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
+		if (threadRunning)
+			player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -271,9 +272,9 @@ void Run()
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
 
-	//w->connect();
+//	w->connect();
 	logic = std::thread(logics);
-	//control = std::thread(controls);
+	control = std::thread(controls);
 	// Set Volumes
 	sound->setVolume(MusicVolume);
 	hitSound.setVolume(EffectVolume);
@@ -287,6 +288,7 @@ void Stop() {
 	threadRunning = false;
 	sound->Stop();
 	logic.detach();
+	control.detach();
 
 	endFunc();
 }
@@ -296,7 +298,8 @@ void EndToHighScores() {
 
 	sound->Stop();
 	logic.detach();
-	
+	control.detach();
+
 	highscoreFunc(player->score);
 }
 

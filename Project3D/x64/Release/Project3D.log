@@ -1,0 +1,58 @@
+﻿  Character.cpp
+  GameController.cpp
+  wiimote.cpp
+Controls\wiimote\wiimote.cpp(2502): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+Controls\wiimote\wiimote.cpp(2692): warning C4838: conversion from 'int' to 'BYTE' requires a narrowing conversion
+Controls\wiimote\wiimote.cpp(2757): warning C4838: conversion from 'int' to 'BYTE' requires a narrowing conversion
+  WiiMoteController.cpp
+c:\users\sander\desktop\menghindar_diri\project3d\controls\wiimote\WiiMoteController.h(39): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  enemy.cpp
+  Game.cpp
+c:\users\sander\desktop\menghindar_diri\project3d\Controls\wiimote\WiiMoteController.h(39): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+Game.cpp(75): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+Game.cpp(223): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+Game.cpp(249): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+Game.cpp(278): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Game.cpp(279): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameObject.cpp
+  HighScoreMenuItem.cpp
+  Highscore.cpp
+highscore\Highscore.cpp(83): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  logic.cpp
+logic.cpp(26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+logic.cpp(35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+logic.cpp(35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+logic.cpp(39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+logic.cpp(39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+logic.cpp(67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+logic.cpp(71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+logic.cpp(77): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+logic.cpp(81): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+main.cpp(142): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+main.cpp(150): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Menu.cpp
+Menu.cpp(18): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Menu.cpp(102): warning C4101: 'i': unreferenced local variable
+  MenuItem.cpp
+  ModelObject.cpp
+  Model_OBJ.cpp
+  Object.cpp
+  CollisionBox.cpp
+  Node.cpp
+  ObjModel.cpp
+Objects\ObjModel.cpp(162): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Player.cpp
+Player.cpp(11): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Compiling...
+  SettingsMenuItem.cpp
+  Skybox.cpp
+Skybox.cpp(26): warning C4800: 'GLboolean': forcing value to bool 'true' or 'false' (performance warning)
+  SoundPlayer.cpp
+SoundPlayer.cpp(43): warning C4244: 'return': conversion from 'irrklang::ik_f32' to 'int', possible loss of data
+SoundPlayer.cpp(88): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
+  All 1562 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Release\Menghindar Diri.exe
+  Project3D.vcxproj -> C:\Users\sander\Desktop\Menghindar_Diri\x64\Release\Menghindar Diri.pdb (Full PDB)
