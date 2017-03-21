@@ -85,7 +85,7 @@ void createI(int i) {
 	}
 }
 
-void collisioncheck(Player *player) {
+bool collisioncheck(Player *player) {
 	if (player->isLit > 0)
 	{
 		player->isLit--;
@@ -106,11 +106,13 @@ void collisioncheck(Player *player) {
 
 			cout << "shits lit yo" << endl;
 			cout << "lives: " << player->life << endl;
+			return true;
 		}
 		if (player->getCollisionBox()->intersect(enemybuffer1[i].getCollisionBox()) != 0 && enemybuffer1[i].powerUp != -1 && player->isLit <= 0) {
 			player->invince = 150;
 		}
 	}
+	return false;
 }
 
 void posnextConti() {

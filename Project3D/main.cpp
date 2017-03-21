@@ -26,13 +26,27 @@
 #include "StaticOpenGLFunctions.h"
 #include "StaticSettings.h"
 
+
+void setMenu(char* MenuType);
+void resetMenu();
+void KeysFunc(unsigned char c, int a, int b);
+
 int MusicVolume = 0;
 int EffectVolume = 0;
 int WiiBoadSensitivity = 0;
+bool running = false;
+bool gameWasLaunched = false;
 
+// Game and highscores
 Game *game;
+Highscore *hScore = new Highscore();
+
 void comeback();
 void(*backspaceFunc)() = comeback;
+
+// Loads our menu slider sound
+SoundPlayer player(string("Sounds/Achievement.mp3"));
+
 int window_width = 1200, window_height = 720;
 Menu *mMenu;
 GameController *gw = GameController::getInstance();
@@ -46,6 +60,7 @@ void output(GLfloat x, GLfloat y, char *text)
 	for (p = text; *p; p++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, *p);
 	glPopMatrix();
+
 }
 
 
@@ -74,82 +89,65 @@ void Reshape(int w, int h) {
 	glViewport(0, 0, window_width, window_height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	gluPerspective(0, 0, -1, 1);
 	gluOrtho2D(0, w, h, 0);
-	glMatrixMode(GL_MODELVIEW);
-}
-
-void KeysFunc(unsigned char c, int a, int b) {
-	switch (c) {
-		// Backspace
-	case 8: mMenu->Back();
-		break;
-		// 'W'
-	case 119: mMenu->TraverseUp();
-		break;
-		// 'S'
-	case 115: mMenu->TraverseDown();
-		break;
-	case 13: mMenu->activateCurrentItem();
-		break;
-	}
-		switch (c) {
-		case 'a':
-			if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
-				SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
-				it->DecrementSlider();
-			}
-			break;
-		case 'd':
-			if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
-				SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
-				it->IncrementSlider();
-			}
-			break;
-		}
+	//glMatrixMode(GL_MODELVIEW);
 }
 
 void resetMenu() {
-	glutInitWindowSize(window_width, window_height);
+	glutLeaveFullScreen();
+	glutDestroyWindow(glutGetWindow());
+	glutCreateWindow("Glut");
 	glutInitWindowPosition(50, 50);
+	glViewport(0, 0, window_width, window_height);
+
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeysFunc);
+	gameWasLaunched = true;
+
+	//delete game;
 }
-
-void setMenu(char* MenuType);
-
+// Game to main menu function
 void comeback() {
 	resetMenu();
 
 	setMenu("MainMenu");
 }
 
-void Keys(unsigned char c, int a, int b) {
+void KeysFunc(unsigned char c, int a, int b) {
+	//printf("%i", c);
 	switch (c) {
 		// Backspace
-	case 8: mMenu->Back();
+	case 8:		mMenu->Back();
+		player.PlaySoundje();
 		break;
 		// 'W'
-	case 119: mMenu->TraverseUp();
+	case 119:	mMenu->TraverseUp(); 
+		player.PlaySoundje();
 		break;
 		// 'S'
-	case 115: mMenu->TraverseDown();
+	case 115:	mMenu->TraverseDown(); 
+		player.PlaySoundje();
 		break;
 	case 13: mMenu->activateCurrentItem();
-		break;
-	}
-	switch (c) {
-	case 'a':
+		player.PlaySoundje();
+		break; 
+	case 97:
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->DecrementSlider();
+			player.setVolume(EffectVolume);
+			player.PlaySoundje();
 		}
 		break;
-	case 'd':
+	case 100:
 		if (mMenu->getCurrentItem()->getInstanceTypeName() == "SettingsMenuItem") {
 			SettingsMenuItem *it = (SettingsMenuItem*)mMenu->getCurrentItem();
 			it->IncrementSlider();
+			player.setVolume(EffectVolume);
+			player.PlaySoundje();
 		}
 		break;
 	}
@@ -158,22 +156,38 @@ void Keys(unsigned char c, int a, int b) {
 
 void setMenu() {}
 
+void ShutDown() {
+	exit(0);
+}
+
+void toHighscore(int score) {
+	resetMenu();
+	hScore = new Highscore();
+	hScore->addScore(score);
+
+	setMenu("HighScoreMenu");
+}
+
 void toGame() {
-	// Create a game
-	game = new Game(&comeback, &setMenu, gw);
+	game = new Game(&comeback, &toHighscore, gw, running);
+	running = true;
 	// Start
 	Run();
 }
 
 void setMenu(char *MenuType) {
 	if (MenuType == "MainMenu")
-		mMenu = Menu::ofMainMenu(&setMenu, &toGame);
-	if (MenuType == "ThemeMenu")
-		mMenu = Menu::ofThemeMenu(&setMenu, &setMenu, &setMenu, &setMenu);
-	if (MenuType == "SettingsMenu")
-		mMenu = Menu::ofSettingsMenu(&setMenu, &setMenu, &setMenu, &setMenu);
-	if (MenuType == "HelpMenu")
-		mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu);
+		mMenu = Menu::ofMainMenu(&setMenu, &toGame, gameWasLaunched);
+	else if (MenuType == "ThemeMenu")
+		/* mMenu = Menu::ofThemeMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched); */ setMenu("MainMenu");
+	else if (MenuType == "SettingsMenu")
+		mMenu = Menu::ofSettingsMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched);
+	else if (MenuType == "HelpMenu")
+		/* mMenu = Menu::ofHelpMenu(&setMenu, &setMenu, &setMenu, &setMenu, gameWasLaunched); */ setMenu("MainMenu");
+	else if (MenuType == "HighScoreMenu")
+		mMenu = Menu::ofHighScoreMenu(setMenu, &setMenu, *hScore, gameWasLaunched);
+	else if (MenuType == "" || MenuType == 0)
+		ShutDown();
 
 }
 
@@ -190,12 +204,15 @@ int main(int argc, char **argv) {
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Idle);
-	glutKeyboardFunc(Keys);
+	glutKeyboardFunc(KeysFunc);
 	setStaticSettings(50, 30, 0); // Settings (Music Volumme, Effects Volume, Wii board sensitivity)
+
 	// Start in Main Menu
 	setMenu("MainMenu");
 	// Run openGL
-	gw->connect();
+		gw->connect();
+		
+	
 	glutMainLoop();
 	return 0;
 }

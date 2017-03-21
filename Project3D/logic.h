@@ -9,7 +9,7 @@
 extern double enemy1[10][3];
 extern enemy enemybuffer1[10];
 void create(double width);
-void collisioncheck(Player *player);
+bool collisioncheck(Player *player);
 void posnextConti();
 void init();
 #endif

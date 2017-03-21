@@ -1,23 +1,29 @@
-#include <iostream>
 #include "SoundPlayer.h"
-#include "StaticSettings.h"
+
 
 using namespace irrklang;
 using namespace std;
-char* filename;
-ISoundEngine* engine;
-SoundPlayer::SoundPlayer(char* filename) {
-	this->filename = (char *) "Sounds/New.ogg";	
-	Load();
+
+irrklang::ISoundEngine* engine;
+irrklang::ISoundSource* soundSource;
+
+SoundPlayer::SoundPlayer(std::string filename) {
+	// Load our music (after placement in /Sounds/ folder)
+	this->filename = filename;
+
+	Load();	
 }
 
 void SoundPlayer::Load() {
 	engine = createIrrKlangDevice();
+	// Read out sound info (Source, Length, Format, ...)
+	soundSource = engine->addSoundSourceFromFile(filename.c_str());
+
 }
 
 void SoundPlayer::Play() {
-	setVolume((float)MusicVolume / float(100));
-	engine->play2D(filename, true);
+	// Grab volume from settings
+	engine->play2D(filename.c_str(), false);
 }
 
 void SoundPlayer::Pause() {
@@ -25,17 +31,65 @@ void SoundPlayer::Pause() {
 }
 
 void SoundPlayer::Stop() {
+	musicThreadjeRunning = false;
 	engine->stopAllSounds();
 }
 
 void SoundPlayer::setVolume(float fVolume) {
-	engine->setSoundVolume(fVolume);
+	engine->setSoundVolume((float)(fVolume / 100));
 }
 
 int SoundPlayer::getVolume() {
 	return engine->getSoundVolume();
 }
 
-SoundPlayer::~SoundPlayer() {
-	engine->drop();
+int SoundPlayer::getTimeLength() {
+	return soundSource->getPlayLength();
+}
+
+void SoundPlayer::PlaySoundInThread() {
+	if (!musicThreadjeRunning) {
+		musicThreadjeRunning = true;
+
+		Play();
+		// Add time in seconds to our endtime variable
+		time_t endTime = time(0) + getTimeLength() / 1000;
+		//if (getTimeLength() / 1000 < 1)
+			//Sleep(getTimeLength());
+		for (int x = 0; x < getTimeLength() % 1000 && musicThreadjeRunning; x++) {
+			Sleep(1);
+		}
+
+		while (difftime(endTime, time(0)) > 0 && musicThreadjeRunning) {
+		}
+
+
+		//Stop();
+		musicThreadjeRunning = false;
+		musicThreadje.detach();
+	}
+}
+
+void SoundPlayer::PlaySoundje() {
+	if (musicThreadjeRunning) {
+		musicThreadjeRunning = false;
+		Sleep(1);
+	}
+
+	if (!musicThreadje.joinable()) {
+		musicThreadje = std::thread(&SoundPlayer::PlaySoundInThread, this);
+	}
+	
+}
+
+// Create a soundplayer with one of the theme songs
+SoundPlayer* SoundPlayer::ofThemeSong() {
+	
+	srand(time(NULL));
+
+	std::string str = "Sounds/New";
+	str += (char)(rand() % 3 + 48);
+	str.append(".ogg");
+
+	return new SoundPlayer(str);
 }

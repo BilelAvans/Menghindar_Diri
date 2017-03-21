@@ -9,16 +9,17 @@
 #include <vector>
 #include <cmath>
 #include <memory>
+#include <thread>
 #include "Character.h"
 #include "Player.h"
 #include "ModelObject.h"
-
 
 #include "Controls/GameController.h"
 #include "SoundPlayer.h"
 #include <thread>
 #include "Skybox.h"
 #include "StaticSettings.h"
+#include "highscore\highscore.h"
 
 #ifdef __APPLE__
 #include "../irrKlang-1.5.0/64/include/irrKlang.h"
@@ -31,14 +32,12 @@
 #include "logic.h"
 
 extern void Run();
-extern void(*backspaceFunc)();
+
 void Stop();
 
 class Game {
 
 private:
-
-	void(*endFunc)(char*);
 
 	float g_rotation;
 
@@ -47,9 +46,6 @@ private:
 	void(*backspaceFunc)();
 
 public:
-	
-	
-	Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc);
-	~Game() { std::cout << "Cleaning up Game"; }
-
+	Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc, bool running);
+	~Game();
 };

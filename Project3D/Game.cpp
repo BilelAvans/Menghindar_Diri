@@ -1,11 +1,17 @@
 #include "Game.h"
+
 #include "Controls\wiimote\WiiMoteController.h"
 #include <iostream>
 #include <cstdio>
+#include <string.h>
+
 using namespace irrklang;
 #define KEY_ESCAPE 27
 using namespace std;
-SoundPlayer sound((char *) "New.ogg");
+
+SoundPlayer *sound = SoundPlayer::ofThemeSong();
+SoundPlayer hitSound(string ("Sounds/Krah.ogg"));
+
 thread logic;
 thread control;
 Player* player;
@@ -16,6 +22,13 @@ Node *a;
 Node *node;
 float lastFrameTime;
 
+bool shouldStop = false;
+
+void EndToHighScores();
+
+void(*endFunc)();
+void(*highscoreFunc)(int);
+
 struct Camera
 {
 	float posX = 10;
@@ -25,10 +38,13 @@ struct Camera
 	float rotY = 0;
 } camera;
 
-Game::Game(void(*backspacefunc)(), void(*endfunc)(char*), GameController *gc) {
-	backspaceFunc = backspacefunc;
-	endFunc = endfunc;
-	w = gc;
+Game::Game(void(*backspacefunc)(), void(*endfunc)(int), GameController *gc, bool running) {
+	endFunc = backspacefunc;
+	highscoreFunc = endfunc;
+	if (!running) {
+		w = gc;
+	}
+	
 }
 
 void hud()
@@ -86,6 +102,7 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
 	//skybox
 	glPushMatrix();
 	glRotatef(180, 1, 0, 0);
@@ -94,6 +111,7 @@ void display()
 	glTranslatef(camera.posX, camera.posZ, camera.posY);
 	glRotatef(camera.rotX, 1, 0, 0);
 	glRotatef(camera.rotY, 0, 1, 0);
+
 	for (int i = 0; i < 10; i++)
 	{
 		if (enemybuffer1[i].powers = true) {
@@ -101,7 +119,7 @@ void display()
 			//glColor3f(0.5f, 0.5f, 0.5f);
 			enemybuffer1[i].Draw();
 
-			
+
 			glPopMatrix();
 		}
 		else {
@@ -110,11 +128,13 @@ void display()
 			glPopMatrix();
 		}
 	}
+
 	player->Draw();
 	hud();
 	node->draw();
 	hud();
 	glutSwapBuffers();
+	
 }
 
 void initialize()
@@ -159,14 +179,15 @@ void initialize()
 	player = new Player(-10, 0, 130, 1, 1, 1, new Node(new ObjModel("Models/lowPolyAirplane/lowPolyAirplane.obj")));
 	initSkybox();
 	//full screen
-	glutFullScreen();
+	//glutFullScreen();
+
 }
 
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case KEY_ESCAPE:
-		Stop();
+		EndToHighScores();
 		break;
 	case 'a':
 		//		camera.posX++;
@@ -182,6 +203,12 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 void idle() {
+
+	if (player->life == 0 && threadRunning) {
+		EndToHighScores();
+		return;
+	}
+
 	//repaint
 	display();
 }
@@ -202,7 +229,9 @@ void logics() {
 		}
 #endif
 		posnextConti();
-		collisioncheck(player);
+		if (collisioncheck(player)) {
+			hitSound.PlaySoundje();
+		}
 	}
 }
 void controls() {
@@ -219,7 +248,8 @@ void controls() {
 #else
 		Sleep(20);
 #endif
-		player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
+		if (threadRunning)
+			player->move(-w->leftRightMovement()*deltaTime*speed, 0, 0);
 	}
 }
 
@@ -235,7 +265,7 @@ void Run()
 
 	// initialize and run program
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);  // Display Mode
-	glutInitWindowSize(win.width, win.height);					// set window size
+	//glutInitWindowSize(win.width, win.height);					// set window size
 	glutDestroyWindow(glutGetWindow());
 	glutCreateWindow("Glut");
 	glutDisplayFunc(display);						// register Display Function
@@ -243,19 +273,41 @@ void Run()
 	glutKeyboardFunc(keyboard);						// register Keyboard Handler
 	glEnable(GLUT_MULTISAMPLE);									// Enable Multisampling
 	initialize();
-	//w->init();
-	//w->connect();
-	logic = thread(logics);
-	control = thread(controls);
-	SoundPlayer sound((char *) "New.ogg");
-	//sound.Play();
+
+//	w->connect();
+	logic = std::thread(logics);
+	control = std::thread(controls);
+	// Set Volumes
+	sound->setVolume(MusicVolume);
+	hitSound.setVolume(EffectVolume);
+
+	sound->PlaySoundje();
+	glutFullScreen();
 	glutMainLoop();												// run GLUT mainloop
 }
 
 void Stop() {
-	sound.Stop();
 	threadRunning = false;
-	glPopMatrix();
-	glDisable(GL_LIGHTING);
-	backspaceFunc();
+	sound->Stop();
+	logic.detach();
+	control.detach();
+
+	endFunc();
 }
+
+void EndToHighScores() {
+	threadRunning = false;
+
+	sound->Stop();
+	logic.detach();
+	control.detach();
+
+	highscoreFunc(player->score);
+}
+
+
+Game::~Game() {
+	
+	delete(sound);
+}
+

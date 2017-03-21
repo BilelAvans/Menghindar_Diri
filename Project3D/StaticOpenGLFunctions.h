@@ -16,24 +16,22 @@
 #include "Controls/wiimote/wiimote.h"
 #endif
 
-static void drawBarAdjuster(char *string);
+static void drawBarAdjuster(char *str);
 
-static void drawText(int x, int y, char *string) {
+static void drawText(int x, int y, char *str) {
 	
 	glRasterPos2f((GLfloat)x, (GLfloat)y);
 
-	for (int i = 0; i < strlen(string); i++)
-		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]);
+	for (int i = 0; i < strlen(str); i++)
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, str[i]);
 
-
-	
 }
 
-static void drawBarAdjuster(char *string) {
+static void drawBarAdjuster(char *str) {
 	// start x = 300, endx = 1095;
 	int* currentValue = 0;
 
-	if (string == "Music") {
+	if (str == "Music") {
 		currentValue = &MusicVolume;
 		GLfloat x = (GLfloat)(300 + 7.95 * *currentValue), y = GLfloat(600);
 		glBegin(GL_QUADS);
@@ -44,7 +42,7 @@ static void drawBarAdjuster(char *string) {
 		glEnd();
 
 	}
-	else if (string == "Effects") {
+	else if (str == "Effects") {
 		currentValue = &EffectVolume;
 		GLfloat x = (GLfloat)(300 + 7.95 * *currentValue), y = (GLfloat)(600);
 		glBegin(GL_QUADS);
